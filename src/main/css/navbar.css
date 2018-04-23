@@ -12,7 +12,11 @@
 }
 
 .nav {
-  background: #eb8d4c;
+  background: #b3d200;
+}
+
+.nav-item:hover {
+  background: #303c51;
 }
 
 .nav-item a,
@@ -26,10 +30,6 @@
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
   cursor: pointer;
-}
-
-.nav-item:hover {
-  background: #c5763f;
 }
 
 @media screen and (max-width: 768px) {
