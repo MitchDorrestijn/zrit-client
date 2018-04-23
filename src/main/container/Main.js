@@ -2,12 +2,11 @@ import React, { Component } from 'react';
 import '../css/App.css';
 import axios from 'axios';
 
-class Main extends Component {
+export default class Main extends Component {
 
     constructor(props) {
         super(props);
         this.state = {ponged: 'Not Ponged'};
-
         this.ping = this.ping.bind(this);
     }
 
@@ -36,5 +35,3 @@ class Main extends Component {
         );
     }
 }
-
-export default Main;

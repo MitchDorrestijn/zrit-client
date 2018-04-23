@@ -22,6 +22,27 @@
   font-size: large;
 }
 
+.Links {
+  background-color: orange;
+  height: 55em;
+}
+
+.Rechts {
+  background-color: red;
+  height: 55em;
+}
+
+@media all and (min-width: 480px) {
+  .Login {
+    padding: 60px 0;
+  }
+
+  .Login form {
+    margin: 0 auto;
+    max-width: 320px;
+  }
+}
+
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
