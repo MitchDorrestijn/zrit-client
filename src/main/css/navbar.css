@@ -1,0 +1,39 @@
+.top-navigation {
+  margin-top: 15px;
+}
+
+.top-navigation figure {
+  text-align: left;
+}
+
+.top-navigation .logout-btn a {
+  color: #444444;
+  margin: 20px 0px;
+}
+
+.nav {
+  background: #eb8d4c;
+}
+
+.nav-item a,
+.nav-item:hover a {
+  color: #FFFFFF
+}
+
+.nav-item {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.nav-item:hover {
+  background: #c5763f;
+}
+
+@media screen and (max-width: 768px) {
+  .nav {
+    display: block !important;
+  }
+}
