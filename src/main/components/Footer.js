@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { Col } from 'reactstrap';
+import React from 'react';
 
 import '../css/footer.css';
 
