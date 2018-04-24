@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import ReactTable from "react-table";
-import 'react-table/react-table.css'
 
+import 'react-table/react-table.css'
 import '../css/table.css';
 
 export default class CRUDTable extends Component {
@@ -26,7 +26,9 @@ export default class CRUDTable extends Component {
 
   render() {
     return(
-      <ReactTable showPaginationBottom={false} minRows={0} data={this.state.data} columns={this.state.columns} />
+      <div>
+        <ReactTable showPaginationBottom={false} minRows={0} data={this.state.data} columns={this.state.columns} />
+      </div>
     );
   }
 }
