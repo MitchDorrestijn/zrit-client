@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component should match snapshot 1`] = `
+<footer>
+  <small>
+    Heeft u vragen? Bel ons:
+  </small>
+  <span>
+    020 - 123 45 67
+  </span>
+</footer>
+`;
