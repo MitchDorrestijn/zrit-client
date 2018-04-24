@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should rende Header correctly 1`] = `
+exports[`Header component should match snapshot 1`] = `
 <div>
   <Row
     className="top-navigation"

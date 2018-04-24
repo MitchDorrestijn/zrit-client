@@ -3,7 +3,7 @@ import { Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import '../css/navbar.css';
 import Logo from '../assets/img/logo.gif';
 
-export default class TablePage extends Component {
+export default class Header extends Component {
   render() {
     return (
       <div>
