@@ -1,0 +1,10 @@
+.grandParentContaniner {
+    display: table;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.parentContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
