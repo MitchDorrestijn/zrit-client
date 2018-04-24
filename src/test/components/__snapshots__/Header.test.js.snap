@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Header component should match snapshot 1`] = `
+<div>
+  <Row
+    className="top-navigation"
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <figure>
+        <img
+          alt="logo Zorgrit"
+          src="logo.gif"
+        />
+      </figure>
+    </Col>
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+      xs="6"
+    >
+      <span
+        className="float-right logout-btn"
+      >
+        <NavLink
+          href="#"
+          tag="a"
+        >
+          Uitloggen
+        </NavLink>
+      </span>
+    </Col>
+  </Row>
+  <Nav
+    className="nav-pills nav-justified"
+    tag="ul"
+    vertical={false}
+  >
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Ritten
+      </NavLink>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Chauffeurs
+      </NavLink>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Clienten
+      </NavLink>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Betalingen
+      </NavLink>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Ritten bestellen
+      </NavLink>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <NavLink
+        href="#"
+        tag="a"
+      >
+        Over
+      </NavLink>
+    </NavItem>
+  </Nav>
+</div>
+`;
