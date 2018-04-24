@@ -1,3 +1,5 @@
+//The tests for the Header class are defined here (Header can be found on any page)
+
 import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';

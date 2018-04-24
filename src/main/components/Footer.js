@@ -2,6 +2,7 @@ import React from 'react';
 
 import '../css/footer.css';
 
+//this stateless functional component renders the footer
 const Footer = () => {
 	return (
     <footer>

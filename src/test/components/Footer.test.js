@@ -1,3 +1,5 @@
+//The tests for the Footer component are defined here (Footer can be found on any page)
+
 import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';

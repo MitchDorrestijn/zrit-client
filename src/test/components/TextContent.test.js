@@ -1,3 +1,5 @@
+//The tests for the TextContent component are defined here (TextContent can be found on the TablePage)
+
 import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';

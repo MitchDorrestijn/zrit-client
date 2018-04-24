@@ -4,6 +4,7 @@ import TextContent from '../components/TextContent';
 import Footer from '../components/Footer';
 import { Container, Row, Col } from 'reactstrap';
 
+//this class puts all the necessary components together to render the full table page.
 export default class TablePage extends Component {
   render(){
     return(

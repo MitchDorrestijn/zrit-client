@@ -3,6 +3,7 @@ import { Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
 import '../css/navbar.css';
 import Logo from '../assets/img/logo.gif';
 
+//this class takes care of rendering the top navigation bar + logo
 export default class Header extends Component {
   render() {
     return (
