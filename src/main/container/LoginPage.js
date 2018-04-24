@@ -7,12 +7,8 @@ import LoginForm from "../components/LoginForm";
 import 'bootstrap/dist/css/bootstrap.css';
 import '../css/login.css';
 
-export default class Login extends Component {
-
-    constructor(props) {
-        super(props);
-    }
-
+//this class takes care of rendering of the LoginPage
+export default class LoginPage extends Component {
     render() {
         return (
             <Container>

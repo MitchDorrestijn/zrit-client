@@ -6,8 +6,8 @@ export default class App extends Component {
     render() {
         return (
             <div className="App">
-                <LoginPage/>
-                {/*<TablePage />*/}
+                {/*<LoginPage/>*/}
+                <TablePage />
             </div>
         );
     }

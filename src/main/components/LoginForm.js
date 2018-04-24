@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {Button, Form, Label, Input} from 'reactstrap';
 import Logo from '../assets/img/logo.gif';
 
+//this class takes care of rendering the top LoginForm + Logo
 export default class LoginForm extends Component {
     render() {
         return (
