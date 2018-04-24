@@ -5,8 +5,8 @@ import Logo from '../assets/img/logo.gif';
 export default class LoginForm extends Component {
     render() {
         return (
-            <div className="grandParentContaniner">
-                <div className="parentContainer">
+            <div className="loginGrandParentContaniner">
+                <div className="loginParentContainer">
                     <Form>
                         <header>
                             <img className="mb-4" src={Logo} alt="logo Zorgrit"/>

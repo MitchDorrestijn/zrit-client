@@ -8,3 +8,14 @@
     display: table-cell;
     vertical-align: middle;
 }
+
+.loginGrandParentContaniner {
+    display: table;
+    height: 100vh;
+    margin: 0 auto;
+}
+
+.loginParentContainer {
+    display: table-cell;
+    vertical-align: middle;
+}
