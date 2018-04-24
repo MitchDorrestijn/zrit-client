@@ -1,0 +1,9 @@
+.rt-thead.-header {
+  background: #303c51;
+  color: #FFFFFF;
+  box-shadow: none !important;
+}
+
+.rt-resizable-header {
+  padding: 15px 0px !important;
+}
