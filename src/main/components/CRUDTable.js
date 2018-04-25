@@ -5,6 +5,7 @@ import {BootstrapTable, TableHeaderColumn, SearchField} from 'react-bootstrap-ta
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/table.css';
 
+//This class takes care of rendering the table component
 export default class CRUDTable extends Component {
   constructor(props) {
     super(props);
@@ -61,29 +62,29 @@ export default class CRUDTable extends Component {
       sortColumnName: undefined, //Name of the column that is going to be sorted
       sortOrder: undefined //desc or asc
     };
-  }
+  };
 
   removeItem = () => {
     console.log("Verwijder het id " + this.refs.table.state.selectedRowKeys);
-  }
+  };
 
   editItem = () => {
     console.log("Edit het id " + this.refs.table.state.selectedRowKeys);
-  }
+  };
 
   addItem = () => {
     console.log("Voeg een nieuw item toe");
-  }
+  };
 
   renderSortedColumn = (sortColumnName, sortOrder) => {
     this.setState({sortColumnName: sortColumnName, sortOrder: sortOrder});
-  }
+  };
 
   renderSearchField = (props) => {
     return (
       <SearchField className='searchfield' placeholder='Type om te zoeken'/>
     );
-  }
+  };
 
   renderButtons = (props) => {
     return (
@@ -93,7 +94,7 @@ export default class CRUDTable extends Component {
         <Button onClick={this.editItem} color="primary" className='crud-btn'>Bewerken</Button>
       </div>
     );
-  }
+  };
 
   render() {
     const tableOptions = {
@@ -137,5 +138,5 @@ export default class CRUDTable extends Component {
         </TableHeaderColumn>
       </BootstrapTable>
     </div>);
-  }
+  };
 }
