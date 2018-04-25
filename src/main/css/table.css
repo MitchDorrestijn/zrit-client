@@ -1,9 +1,19 @@
-.rt-thead.-header {
-  background: #edf4f4;
-  color: #333333;
-  box-shadow: none !important;
+.react-bs-table-bordered {
+  border-radius: 0;
+  margin-top: 30px;
 }
 
-.rt-resizable-header {
-  padding: 15px 0px !important;
+th {
+  background: #edf4f4;
+  color: #333333;
+  border-bottom: none !important;
+}
+
+.searchfield {
+  border-radius: 0 !important;
+}
+
+.searchfield:focus {
+  box-shadow: none !important;
+  border-color: #0056b3 !important;
 }
