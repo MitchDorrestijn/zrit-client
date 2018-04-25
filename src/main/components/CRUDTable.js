@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-
+import { Button } from 'reactstrap'
 import {BootstrapTable, TableHeaderColumn, SearchField} from 'react-bootstrap-table';
-import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 
+import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/table.css';
 
 export default class CRUDTable extends Component {
@@ -64,11 +64,15 @@ export default class CRUDTable extends Component {
   }
 
   removeItem = () => {
-    console.log("Verwijder het id " + this.refs.table.state.selectedRowKeys)
+    console.log("Verwijder het id " + this.refs.table.state.selectedRowKeys);
   }
 
   editItem = () => {
-    console.log("Edit het id " + this.refs.table.state.selectedRowKeys)
+    console.log("Edit het id " + this.refs.table.state.selectedRowKeys);
+  }
+
+  addItem = () => {
+    console.log("Voeg een nieuw item toe");
   }
 
   renderSortedColumn = (sortColumnName, sortOrder) => {
@@ -81,17 +85,26 @@ export default class CRUDTable extends Component {
     );
   }
 
+  renderButtons = (props) => {
+    return (
+      <div>
+        <Button onClick={this.addItem} color="primary" className='crud-btn'>Toevoegen</Button>
+        <Button onClick={this.removeItem} color="primary" className='crud-btn'>Verwijder</Button>
+        <Button onClick={this.editItem} color="primary" className='crud-btn'>Bewerken</Button>
+      </div>
+    );
+  }
+
   render() {
     const tableOptions = {
       sortColumnName: this.state.sortName,
       sortOrder: this.state.sortOrder,
       renderSortedColumn: this.renderSortedColumn,
       noDataText: 'Geen resultaten gevonden',
-      searchField: this.renderSearchField
+      searchField: this.renderSearchField,
+      btnGroup: this.renderButtons
     };
     return (<div>
-      <button onClick={this.removeItem}>Verwijder</button>
-      <button onClick={this.editItem}>Bewerken</button>
       <BootstrapTable search={true} data={this.data} options={tableOptions} selectRow={{
           mode: 'radio'
         }} ref='table'>

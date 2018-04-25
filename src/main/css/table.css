@@ -9,11 +9,26 @@ th {
   border-bottom: none !important;
 }
 
-.searchfield {
+.searchfield,
+.crud-btn {
   border-radius: 0 !important;
 }
 
 .searchfield:focus {
   box-shadow: none !important;
   border-color: #0056b3 !important;
+}
+
+.crud-btn {
+  margin-right: 7.5px;
+  background: #b3d200 !important;
+  border: none !important;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+.crud-btn:hover {
+  background: #0056b3 !important;
 }
