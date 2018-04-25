@@ -1,0 +1,294 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CRUDTable component should match snapshot 1`] = `
+<div>
+  <BootstrapTable
+    autoCollapse={
+      Object {
+        "filter": false,
+        "search": false,
+        "sort": false,
+      }
+    }
+    bodyContainerClass={null}
+    bordered={true}
+    cellEdit={
+      Object {
+        "afterSaveCell": undefined,
+        "beforeSaveCell": undefined,
+        "blurToEscape": false,
+        "blurToSave": false,
+        "mode": "none",
+        "nonEditableRows": undefined,
+      }
+    }
+    columnFilter={false}
+    condensed={false}
+    containerClass={null}
+    csvFileName="spreadsheet.csv"
+    data={
+      Array [
+        Object {
+          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
+          "chauffeur_toegewezen": "Nee",
+          "datum": "22-02-2017",
+          "id": 1,
+          "naam_chauffeur": "-",
+          "naam_client": "Gerda Willems",
+          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
+        },
+        Object {
+          "bestemming": "Singelpark 7, 3984 NC, Odijk",
+          "chauffeur_toegewezen": "Nee",
+          "datum": "21-02-2017",
+          "id": 2,
+          "naam_chauffeur": "-",
+          "naam_client": "Hans de Wit",
+          "ophaal_locatie": "Wegedoorn 23, 3984 AZ, Odijk",
+        },
+        Object {
+          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
+          "chauffeur_toegewezen": "Ja",
+          "datum": "20-02-2017",
+          "id": 3,
+          "naam_chauffeur": "Taxi bedrijf",
+          "naam_client": "Gerda Willems",
+          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
+        },
+      ]
+    }
+    deleteRow={false}
+    expandColumnOptions={
+      Object {
+        "expandColumnBeforeSelectColumn": true,
+        "expandColumnComponent": undefined,
+        "expandColumnVisible": false,
+        "expandedColumnHeaderComponent": undefined,
+      }
+    }
+    exportCSV={false}
+    fetchInfo={
+      Object {
+        "dataTotalSize": 0,
+      }
+    }
+    footer={false}
+    headerContainerClass={null}
+    height="100%"
+    hover={false}
+    ignoreSinglePage={false}
+    insertRow={false}
+    keyBoardNav={false}
+    multiColumnSearch={false}
+    multiColumnSort={1}
+    options={
+      Object {
+        "btnGroup": [Function],
+        "noDataText": "Geen resultaten gevonden",
+        "renderSortedColumn": [Function],
+        "searchField": [Function],
+        "sortColumnName": undefined,
+        "sortOrder": undefined,
+      }
+    }
+    pagination={false}
+    printable={false}
+    renderAlert={true}
+    replace={false}
+    search={true}
+    selectRow={
+      Object {
+        "mode": "radio",
+      }
+    }
+    striped={false}
+    tableBodyClass={null}
+    tableContainerClass={null}
+    tableFooterClass={null}
+    tableHeaderClass={null}
+    trClassName=""
+    version="3"
+    withoutTabIndex={false}
+  >
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="id"
+      dataSort={false}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={true}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={true}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width={null}
+    >
+      ID
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="datum"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="110"
+    >
+      Datum ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="ophaal_locatie"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="260"
+    >
+      Ophaallocatie ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="bestemming"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="260"
+    >
+      Bestemming ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="chauffeur_toegewezen"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="140"
+    >
+      Chauffeur 
+      <br />
+       toegewezen ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="naam_chauffeur"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="140"
+    >
+      Naam 
+      <br />
+       chauffeur ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="naam_client"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="140"
+    >
+      Naam client ↕
+    </TableHeaderColumn>
+  </BootstrapTable>
+</div>
+`;

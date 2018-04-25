@@ -25,7 +25,7 @@ exports[`TablePage component should match snapshot 1`] = `
       >
         Cookie tiramisu bonbon dragée danish icing danish I love. Lemon drops halvah tiramisu tootsie roll cheesecake. Candy canes candy canes jelly beans I love. Tootsie roll I love cheesecake gingerbread dragée cupcake dragée marzipan cupcake.
       </TextContent>
-      [tabel komt hier]
+      <CRUDTable />
       <Footer />
     </Col>
   </Row>
