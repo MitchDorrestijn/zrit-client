@@ -13,7 +13,7 @@ export default class TablePage extends Component {
         <Row>
           <Col>
             <Header />
-            <TextContent title="Betalingen">
+            <TextContent title="Zorginstelling toevoegen">
               Cookie tiramisu bonbon dragée danish icing danish I love. Lemon drops halvah tiramisu tootsie roll cheesecake. Candy canes candy canes jelly beans I love. Tootsie roll I love cheesecake gingerbread dragée cupcake dragée marzipan cupcake.
             </TextContent>
             <ZorginstellingForm />
