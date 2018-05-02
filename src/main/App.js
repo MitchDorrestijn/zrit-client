@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import LoginPage from './container/LoginPage';
 import TablePage from './container/TablePage';
 import AddPage from './container/AddPage';
+import UpdatePage from './container/UpdatePage';
 
 export default class App extends Component {
     render() {
@@ -10,6 +11,7 @@ export default class App extends Component {
                 {/*<LoginPage/>*/}
                 {/* <TablePage /> */}
                 <AddPage />
+                {/* <UpdatePage /> */}
             </div>
         );
     }
