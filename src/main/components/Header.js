@@ -21,6 +21,9 @@ export default class Header extends Component {
 
         <Nav className="nav-pills nav-justified">
           <NavItem>
+            <NavLink href="#">Zorginstellingen</NavLink>
+          </NavItem>
+          <NavItem>
             <NavLink href="#">Ritten</NavLink>
           </NavItem>
           <NavItem>
