@@ -13,6 +13,12 @@ import axios from 'axios';
 import '../css/zorginstellingForm.css';
 
 export default class ZorginstellingForm extends React.Component {
+
+  /**
+   * Setups all the data.
+   * @constructor
+   * @param {props} props - The given properties by the superclass
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -27,12 +33,19 @@ export default class ZorginstellingForm extends React.Component {
     }
   }
 
+  /**
+   * Saves form changes in the state.
+   * @param {string} event - HTML object from the form target
+   */
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
+  /**
+   * Makes the POST request ready and sends it to the server
+   */
   handleAddZorginstelling = () => {
     let data = {
       naam: this.state.zorginstellingNaam,
@@ -49,6 +62,9 @@ export default class ZorginstellingForm extends React.Component {
     });
   }
 
+  /**
+   * Renders the view for the user
+   */
   render() {
     return (<div>
       <Form>
