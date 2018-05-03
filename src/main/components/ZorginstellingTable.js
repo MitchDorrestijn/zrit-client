@@ -68,15 +68,9 @@ export default class ZorginstellingTable extends Component {
 
     this.state = {
       sortColumnName: undefined,
-      sortOrder: undefined
+      sortOrder: undefined,
+      disableButtons: true
     };
-  };
-
-  /**
-   * Removes the selected row.
-   */
-  deleteItem = () => {
-    console.log("Verwijder het id " + this.refs.table.state.selectedRowKeys);
   };
 
   /**
@@ -92,6 +86,13 @@ export default class ZorginstellingTable extends Component {
   createItem = () => {
     return this.props.history.push(this.props.routes.createZorginstelling);
   };
+
+  /**
+   * Enables the buttons for allowing the item to update
+   */
+  onSelect = () => {
+    this.setState({disableButtons: false});
+  }
 
   /**
    * Renders the columns sorted.
@@ -115,8 +116,7 @@ export default class ZorginstellingTable extends Component {
   renderButtons = () => {
     return (<div>
       <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button onClick={this.deleteItem} color="primary" className='crud-btn'>Verwijder</Button>
-      <Button onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button disabled={this.state.disableButtons} onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
 
@@ -134,7 +134,8 @@ export default class ZorginstellingTable extends Component {
     };
     return (<div>
       <BootstrapTable search={true} data={this.data} options={tableOptions} selectRow={{
-          mode: 'radio'
+          mode: 'radio',
+          onSelect: this.onSelect
         }} ref='table'>
         <TableHeaderColumn export={false} hidden={true} dataField="id" isKey={true}>
           ID
