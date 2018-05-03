@@ -7,12 +7,16 @@ import { Container, Row, Col } from 'reactstrap';
 
 //this class puts all the necessary components together to render the full update page.
 export default class UpdatePage extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render(){
     return(
       <Container>
         <Row>
           <Col>
-            <Header />
+            <Header routes={this.props.routes} history={this.props.history} />
             <TextContent title="Zorginstelling bewerken">
               Cookie tiramisu bonbon dragée danish icing danish I love. Lemon drops halvah tiramisu tootsie roll cheesecake. Candy canes candy canes jelly beans I love. Tootsie roll I love cheesecake gingerbread dragée cupcake dragée marzipan cupcake.
             </TextContent>

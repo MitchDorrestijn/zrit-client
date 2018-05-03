@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+import { Nav, NavItem, Row, Col, NavLink } from 'reactstrap';
+import {Link} from 'react-router-dom';
 import '../css/navbar.css';
 import Logo from '../assets/img/logo.gif';
 
 //this class takes care of rendering the top navigation bar + logo
 export default class Header extends Component {
+  constructor(props){
+    super(props);
+  }
+
   render() {
     return (
       <div>
@@ -21,7 +26,7 @@ export default class Header extends Component {
 
         <Nav className="nav-pills nav-justified">
           <NavItem>
-            <NavLink href="#">Zorginstellingen</NavLink>
+            <Link className="nav-link" to={this.props.routes.readZorginstelling}>Zorginstellingen</Link>
           </NavItem>
           <NavItem>
             <NavLink href="#">Ritten</NavLink>

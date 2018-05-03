@@ -2,12 +2,13 @@ import React, {Component} from 'react';
 import {Button} from 'reactstrap'
 import {BootstrapTable, TableHeaderColumn, SearchField} from 'react-bootstrap-table';
 import {CSVLink} from 'react-csv';
+import {Redirect} from 'react-router-dom';
 
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/table.css';
 
 //This class takes care of rendering the table component
-export default class CRUDTable extends Component {
+export default class ZorginstellingTable extends Component {
 
   /**
    * Setups all the data.
@@ -74,22 +75,22 @@ export default class CRUDTable extends Component {
   /**
    * Removes the selected row.
    */
-  removeItem = () => {
+  deleteItem = () => {
     console.log("Verwijder het id " + this.refs.table.state.selectedRowKeys);
   };
 
   /**
-   * Edits the selected row.
+   * Redirect to a page where a the selected item can be updated.
    */
-  editItem = () => {
-    console.log("Edit het id " + this.refs.table.state.selectedRowKeys);
+  updateItem = () => {
+    return this.props.history.push(`${this.props.routes.updateZorginstelling}/${this.refs.table.state.selectedRowKeys}`);
   };
 
   /**
    * Redirect to a page where a new item can be added.
    */
-  addItem = () => {
-    console.log("Voeg een nieuw item toe");
+  createItem = () => {
+    return this.props.history.push(this.props.routes.createZorginstelling);
   };
 
   /**
@@ -113,9 +114,9 @@ export default class CRUDTable extends Component {
    */
   renderButtons = () => {
     return (<div>
-      <Button onClick={this.addItem} color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button onClick={this.removeItem} color="primary" className='crud-btn'>Verwijder</Button>
-      <Button onClick={this.editItem} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
+      <Button onClick={this.deleteItem} color="primary" className='crud-btn'>Verwijder</Button>
+      <Button onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
 
