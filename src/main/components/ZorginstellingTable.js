@@ -1,14 +1,25 @@
-import React, {Component} from 'react';
+/**
+ * React related imports
+ */
+import React from 'react';
 import {Button} from 'reactstrap'
-import {BootstrapTable, TableHeaderColumn, SearchField} from 'react-bootstrap-table';
 import {CSVLink} from 'react-csv';
-import {Redirect} from 'react-router-dom';
+import {
+  BootstrapTable,
+  TableHeaderColumn,
+  SearchField
+} from 'react-bootstrap-table';
 
+/**
+ * Style related imports
+ */
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/table.css';
 
-//This class takes care of rendering the table component
-export default class ZorginstellingTable extends Component {
+/**
+ * This class takes care of rendering the zorginstellingen table, from here other actions can be taken
+ */
+export default class ZorginstellingTable extends React.Component {
 
   /**
    * Setups all the data.
@@ -65,7 +76,6 @@ export default class ZorginstellingTable extends Component {
         display: 'Naam client'
       }
     ];
-
     this.state = {
       sortColumnName: undefined,
       sortOrder: undefined,
@@ -74,21 +84,21 @@ export default class ZorginstellingTable extends Component {
   };
 
   /**
-   * Redirect to a page where a the selected item can be updated.
+   * Redirect to a page where a the selected zorginstelling can be updated.
    */
   updateItem = () => {
     return this.props.history.push(`${this.props.routes.updateZorginstelling}/${this.refs.table.state.selectedRowKeys}`);
   };
 
   /**
-   * Redirect to a page where a new item can be added.
+   * Redirect to a page where a new zorginstelling can be added.
    */
   createItem = () => {
     return this.props.history.push(this.props.routes.createZorginstelling);
   };
 
   /**
-   * Enables the buttons for allowing the item to update
+   * Enables the buttons for allowing the zorginstelling to update
    */
   onSelect = () => {
     this.setState({disableButtons: false});
@@ -97,26 +107,27 @@ export default class ZorginstellingTable extends Component {
   /**
    * Renders the columns sorted.
    * @param {string} sortColumnName - Name of the column that is going to be sorted
-   * @param {string} sortOrder - Can be desc or asc
+   * @param {string} sortOrder - Can be either desc or asc
    */
   renderSortedColumn = (sortColumnName, sortOrder) => {
     this.setState({sortColumnName: sortColumnName, sortOrder: sortOrder});
   };
 
   /**
-   * Renders the search field above the tabel
+   * Renders the search field above the table
    */
   renderSearchField = () => {
     return (<SearchField className='searchfield' placeholder='Type om te zoeken'/>);
   };
 
   /**
-   * Renders the buttons above the tabel
+   * Renders the buttons above the table
    */
   renderButtons = () => {
     return (<div>
       <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button disabled={this.state.disableButtons} onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button disabled={this.state.disableButtons}
+        onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
 
@@ -132,46 +143,51 @@ export default class ZorginstellingTable extends Component {
       searchField: this.renderSearchField,
       btnGroup: this.renderButtons
     };
-    return (<div>
-      <BootstrapTable search={true} data={this.data} options={tableOptions} selectRow={{
-          mode: 'radio',
-          onSelect: this.onSelect
-        }} ref='table'>
-        <TableHeaderColumn export={false} hidden={true} dataField="id" isKey={true}>
-          ID
-        </TableHeaderColumn>
 
-        <TableHeaderColumn width='110' dataField="datum" dataSort={true}>
-          Datum &#x2195;
-        </TableHeaderColumn>
+    return (
+      <div>
+        <BootstrapTable search={true} data={this.data} options={tableOptions} selectRow={{
+            mode: 'radio',
+            onSelect: this.onSelect
+          }} ref='table'>
+          
+          <TableHeaderColumn export={false} hidden={true} dataField="id" isKey={true}>
+            ID
+          </TableHeaderColumn>
 
-        <TableHeaderColumn width='260' dataField="ophaal_locatie" dataSort={true}>
-          Ophaallocatie &#x2195;
-        </TableHeaderColumn>
+          <TableHeaderColumn width='110' dataField="datum" dataSort={true}>
+            Datum &#x2195;
+          </TableHeaderColumn>
 
-        <TableHeaderColumn width='260' dataField="bestemming" dataSort={true}>
-          Bestemming &#x2195;
-        </TableHeaderColumn>
+          <TableHeaderColumn width='260' dataField="ophaal_locatie" dataSort={true}>
+            Ophaallocatie &#x2195;
+          </TableHeaderColumn>
 
-        <TableHeaderColumn width='140' dataField="chauffeur_toegewezen" dataSort={true}>
-          Chauffeur
-          <br/>
-          toegewezen &#x2195;
-        </TableHeaderColumn>
+          <TableHeaderColumn width='260' dataField="bestemming" dataSort={true}>
+            Bestemming &#x2195;
+          </TableHeaderColumn>
 
-        <TableHeaderColumn width='140' dataField="naam_chauffeur" dataSort={true}>
-          Naam
-          <br/>
-          chauffeur &#x2195;
-        </TableHeaderColumn>
+          <TableHeaderColumn width='140' dataField="chauffeur_toegewezen" dataSort={true}>
+            Chauffeur
+            <br/>
+            toegewezen &#x2195;
+          </TableHeaderColumn>
 
-        <TableHeaderColumn width='140' dataField="naam_client" dataSort={true}>
-          Naam client &#x2195;
-        </TableHeaderColumn>
-      </BootstrapTable>
-      <CSVLink data={this.data} filename={"zorginstelling_overview"} className="btn btn-primary crud-btn" target="">
-        Export als CSV
-      </CSVLink>
-    </div>);
+          <TableHeaderColumn width='140' dataField="naam_chauffeur" dataSort={true}>
+            Naam
+            <br/>
+            chauffeur &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn width='140' dataField="naam_client" dataSort={true}>
+            Naam client &#x2195;
+          </TableHeaderColumn>
+        </BootstrapTable>
+
+        <CSVLink data={this.data} filename={"zorginstelling_overview"} className="btn btn-primary crud-btn" target="">
+          Export als CSV
+        </CSVLink>
+      </div>
+    );
   };
 }

@@ -1,30 +1,38 @@
-import React, { Component } from 'react';
+/**
+ * React related imports
+ */
+import React from 'react';
+import {
+  Container,
+  Row,
+  Col
+} from 'reactstrap';
+
+/**
+ * Self made components imports
+ */
 import Header from '../components/Header';
-import TextContent from '../components/TextContent';
 import Footer from '../components/Footer';
-import ZorginstellingForm from '../components/ZorginstellingForm';
-import { Container, Row, Col } from 'reactstrap';
+import UpdateZorginstelling from '../views/zorginstelling/UpdateZorginstelling';
 
-//this class puts all the necessary components together to render the full update page.
-export default class UpdatePage extends Component {
-  constructor(props){
-    super(props);
-  }
-
-  render(){
-    return(
-      <Container>
-        <Row>
-          <Col>
-            <Header routes={this.props.routes} history={this.props.history} />
-            <TextContent title="Zorginstelling bewerken">
-              Cookie tiramisu bonbon dragée danish icing danish I love. Lemon drops halvah tiramisu tootsie roll cheesecake. Candy canes candy canes jelly beans I love. Tootsie roll I love cheesecake gingerbread dragée cupcake dragée marzipan cupcake.
-            </TextContent>
-            <ZorginstellingForm update={true} id={1} />
-            <Footer />
-          </Col>
-        </Row>
-      </Container>
-    );
-  }
+/**
+ * This component renders the update page for the elements based on the URL
+ */
+const UpdatePage = (props) => {
+  let pageURLToMatch = props.match.url.replace(/[0-9]/g, '').slice(0, -1);
+  return (
+		<Container>
+	    <Row>
+	      <Col>
+	        <Header routes={props.routes} history={props.history}/>
+						{pageURLToMatch === props.routes.updateZorginstelling &&
+							<UpdateZorginstelling routes={props.routes} history={props.history}/>
+						}
+	        <Footer/>
+	      </Col>
+	    </Row>
+  	</Container>
+	);
 }
+
+export default UpdatePage;
