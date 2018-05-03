@@ -52,12 +52,12 @@ export default class ZorginstellingForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      zorginstellingNaam: null,
-      zorginstellingAdresregel: null,
-      zorginstellingPostcode: null,
-      zorginstellingPlaats: null,
-      zorginstellingEmail: null,
-      zorginstellingWachtwoord: null,
+      zorginstellingNaam: "",
+      zorginstellingAdresregel: "",
+      zorginstellingPostcode: "",
+      zorginstellingPlaats: "",
+      zorginstellingEmail: "",
+      zorginstellingWachtwoord: "",
       success: false,
       error: false
     }
@@ -85,6 +85,7 @@ export default class ZorginstellingForm extends React.Component {
       email: this.state.zorginstellingEmail,
       wachtwoord: this.state.zorginstellingWachtwoord
     }
+    console.log(data);
     if (this.props.update) {
       axios.put(`/zorginstelling/${this.props.id}`, data).then((res) => {
         this.setState({success: res.data, error: false});
@@ -130,36 +131,36 @@ export default class ZorginstellingForm extends React.Component {
               <h5>Plaatsgegevens</h5>
               <FormGroup>
                 <Label for="zorginstellingNaam">Naam:</Label>
-                <Input type="text" name="zorginstellingNaam" placeholder="Type de naam van de zorginstelling"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
+                  placeholder="Type de naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="zorginstellingAdresregel">Adres:</Label>
-                <Input type="text" name="zorginstellingAdresregel" placeholder="Type het adres van de zorginstelling"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingAdresregel} type="text" name="zorginstellingAdresregel"
+                  placeholder="Type het adres van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="zorginstellingPostcode">Postcode:</Label>
-                <Input type="text" name="zorginstellingPostcode" placeholder="Type de postcode van de zorginstelling"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingPostcode} type="text" name="zorginstellingPostcode"
+                  placeholder="Type de postcode van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="zorginstellingPlaats">Plaats:</Label>
-                <Input type="text" name="zorginstellingPlaats" placeholder="Type de plaats van de zorginstelling"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingPlaats} type="text" name="zorginstellingPlaats"
+                  placeholder="Type de plaats van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
             <Col md="4">
               <h5>Accountgegevens</h5>
               <FormGroup>
                 <Label for="zorginstellingEmail">Email:</Label>
-                <Input type="email" name="zorginstellingEmail" placeholder="Zorginstelling email"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingEmail} type="email" name="zorginstellingEmail"
+                  placeholder="Zorginstelling email" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="zorginstellingWachtwoord">Wachtwoord:</Label>
-                <Input type="password" name="zorginstellingWachtwoord" placeholder="Zorginstelling wachtwoord"
-                  onChange={(event) => this.handleChange(event)}/>
+                <Input value={this.state.zorginstellingWachtwoord} type="password" name="zorginstellingWachtwoord"
+                  placeholder="Zorginstelling wachtwoord" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
           </Row>
