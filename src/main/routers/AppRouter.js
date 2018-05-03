@@ -30,13 +30,13 @@ const AppRouter = () => {
   return (
 		<BrowserRouter>
 	    <Switch>
-	      <Route exact="exact" path={routes.login}
+	      <Route exact path={routes.login}
 					render={(props) => (<LoginPage {...props} routes={routes}/>)}/>
-	      <Route exact="exact" path={routes.readZorginstelling}
+	      <Route exact path={routes.readZorginstelling}
 					render={(props) => (<ReadPage {...props} routes={routes}/>)}/>
-	      <Route exact="exact" path={routes.createZorginstelling}
+	      <Route exact path={routes.createZorginstelling}
 					render={(props) => (<CreatePage {...props} routes={routes}/>)}/>
-	      <Route exact="exact" path={`${routes.updateZorginstelling}/:id`}
+	      <Route exact path={`${routes.updateZorginstelling}/:id`}
 				render={(props) => (<UpdatePage {...props} routes={routes}/>)}/>
 	    </Switch>
   	</BrowserRouter>

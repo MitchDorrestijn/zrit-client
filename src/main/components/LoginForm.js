@@ -28,12 +28,12 @@ const LoginForm = () => {
           <Label for="inputUserName" className="float-left">
             <b>Gebruikersnaam</b>
           </Label>
-          <Input type="text" id="inputUserName" className="mb-3 " placeholder="Gebruikersnaam" autofocus="autofocus"/>
+          <Input type="text" id="inputUserName" className="mb-3 " placeholder="Gebruikersnaam" autoFocus />
           <Label for="inputPassword" className="float-left">
             <b>Wachtwoord</b>
           </Label>
           <Input type="password" id="inputPassword" className="mb-4" placeholder="Password"/>
-          <Button color="primary" size="lg" block="block" type="submit">Inloggen</Button>
+          <Button color="primary" className="crud-btn" size="lg" type="submit">Inloggen</Button>
         </Form>
       </div>
     </div>
