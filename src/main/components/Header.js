@@ -30,7 +30,9 @@ const Header = (props) => {
       <Row className="top-navigation">
         <Col xs="6">
           <figure>
-            <img src={Logo} alt="logo Zorgrit"/>
+            <Link to={props.routes.readZorginstelling}>
+              <img src={Logo} alt="logo Zorgrit"/>
+            </Link>
           </figure>
         </Col>
         <Col xs="6">
