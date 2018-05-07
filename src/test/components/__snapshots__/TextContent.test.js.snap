@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`TextContent component should match snapshot 1`] = `
+exports[`<TextContent /> should match snapshot 1`] = `
 <Col
   className="textblock"
   md={

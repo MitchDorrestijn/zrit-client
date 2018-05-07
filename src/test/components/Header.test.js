@@ -4,41 +4,54 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import Header from '../../main/components/Header';
+import AppRouter from '../../main/routers/AppRouter';
 
-const wrapper = shallow(<Header />);
+const props = {
+  readZorginstelling: '/read/zorginstelling'
+}
 
-test('Header component should match snapshot', () => {
+const wrapper = shallow(<Header routes={props} />);
+
+test('<Header /> should match snapshot', () => {
   expect(toJSON(wrapper)).toMatchSnapshot();
 });
 
-test('Should render six NavItem components', () => {
-  expect(wrapper.find('NavItem').length).toBe(6);
-});
-
-test('Should render seven NavLink components', () => {
-  expect(wrapper.find('NavLink').length).toBe(7);
-});
-
-test('Should render one Nav component', () => {
-  expect(wrapper.find('Nav').length).toBe(1);
-});
-
-test('Should render one Row component', () => {
+test('<Header /> should render one <Row />', () => {
   expect(wrapper.find('Row').length).toBe(1);
 });
 
-test('Should render two Col component', () => {
+test('<Header /> should render two <Col />', () => {
   expect(wrapper.find('Col').length).toBe(2);
 });
 
-test('Class .top-navigation should be rendered in a <Row />', () => {
+test('<Header /> should render one figure', () => {
+  expect(wrapper.find('figure').length).toBe(1);
+});
+
+test('<Header /> should render one image', () => {
+  expect(wrapper.find('img').length).toBe(1);
+});
+
+test('<Header /> should render <Link /> nine times', () => {
+  expect(wrapper.find('Link').length).toBe(9);
+});
+
+test('<Header /> should render <Nav /> one time', () => {
+  expect(wrapper.find('Nav').length).toBe(1);
+});
+
+test('<Header /> should render <NavItem /> seven times', () => {
+  expect(wrapper.find('NavItem').length).toBe(7);
+});
+
+test('.top-navigation class should be applied to a <Row />', () => {
   expect(wrapper.find('.top-navigation').text()).toBe('<Row />')
 });
 
-test('Class .nav-justified should be rendered in a <Nav />', () => {
+test('.nav-justified class should be applied to a <Nav />', () => {
   expect(wrapper.find('.nav-justified').text()).toBe('<Nav />')
 });
 
-test('Class .logout-btn should be rendered in a <NavLink />', () => {
-  expect(wrapper.find('.logout-btn').text()).toBe('<NavLink />')
+test('.logout-btn class should be applied to a <Link />', () => {
+  expect(wrapper.find('.logout-btn').text()).toBe('<Link />')
 });

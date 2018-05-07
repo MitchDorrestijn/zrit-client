@@ -37,7 +37,7 @@ const Header = (props) => {
         </Col>
         <Col xs="6">
           <span className="float-right logout-btn">
-            <NavLink href="#">Uitloggen</NavLink>
+            <Link to="#">Uitloggen</Link>
           </span>
         </Col>
       </Row>
@@ -46,22 +46,22 @@ const Header = (props) => {
           <Link className="nav-link" to={props.routes.readZorginstelling}>Zorginstellingen</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Ritten</NavLink>
+          <Link className="nav-link" to="#">Ritten</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Chauffeurs</NavLink>
+          <Link className="nav-link" to="#">Chauffeurs</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Clienten</NavLink>
+          <Link className="nav-link" to="#">Clienten</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Betalingen</NavLink>
+          <Link className="nav-link" to="#">Betalingen</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Ritten bestellen</NavLink>
+          <Link className="nav-link" to="#">Ritten bestellen</Link>
         </NavItem>
         <NavItem>
-          <NavLink href="#">Over</NavLink>
+          <Link className="nav-link" to="#">Over</Link>
         </NavItem>
       </Nav>
     </div>

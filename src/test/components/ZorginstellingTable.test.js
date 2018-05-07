@@ -1,9 +1,9 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import CRUDTable from '../../main/components/CRUDTable';
+import ZorginstellingTable from '../../main/components/ZorginstellingTable';
 
-const wrapper = shallow(<CRUDTable />);
+const wrapper = shallow(<ZorginstellingTable />);
 
 test('CRUDTable component should match snapshot', () => {
   expect(toJSON(wrapper)).toMatchSnapshot();
@@ -17,5 +17,6 @@ test('Should render one BootstrapTable component', () => {
   expect(wrapper.find('BootstrapTable').length).toBe(1);
 });
 
-// TODO: Write tests for user input
-// TODO: Write tests for props
+test('Should render one CSVLink component', () => {
+  expect(wrapper.find('CSVLink').length).toBe(1);
+});

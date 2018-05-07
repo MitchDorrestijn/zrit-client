@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Header component should match snapshot 1`] = `
+exports[`<Header /> should match snapshot 1`] = `
 <div>
   <Row
     className="top-navigation"
@@ -20,10 +20,15 @@ exports[`Header component should match snapshot 1`] = `
       xs="6"
     >
       <figure>
-        <img
-          alt="logo Zorgrit"
-          src="logo.gif"
-        />
+        <Link
+          replace={false}
+          to="/read/zorginstelling"
+        >
+          <img
+            alt="logo Zorgrit"
+            src="logo.gif"
+          />
+        </Link>
       </figure>
     </Col>
     <Col
@@ -42,12 +47,12 @@ exports[`Header component should match snapshot 1`] = `
       <span
         className="float-right logout-btn"
       >
-        <NavLink
-          href="#"
-          tag="a"
+        <Link
+          replace={false}
+          to="#"
         >
           Uitloggen
-        </NavLink>
+        </Link>
       </span>
     </Col>
   </Row>
@@ -59,62 +64,79 @@ exports[`Header component should match snapshot 1`] = `
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="/read/zorginstelling"
+      >
+        Zorginstellingen
+      </Link>
+    </NavItem>
+    <NavItem
+      tag="li"
+    >
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Ritten
-      </NavLink>
+      </Link>
     </NavItem>
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Chauffeurs
-      </NavLink>
+      </Link>
     </NavItem>
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Clienten
-      </NavLink>
+      </Link>
     </NavItem>
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Betalingen
-      </NavLink>
+      </Link>
     </NavItem>
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Ritten bestellen
-      </NavLink>
+      </Link>
     </NavItem>
     <NavItem
       tag="li"
     >
-      <NavLink
-        href="#"
-        tag="a"
+      <Link
+        className="nav-link"
+        replace={false}
+        to="#"
       >
         Over
-      </NavLink>
+      </Link>
     </NavItem>
   </Nav>
 </div>

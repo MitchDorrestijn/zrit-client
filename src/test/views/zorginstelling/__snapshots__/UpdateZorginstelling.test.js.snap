@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<UpdateZorginstelling /> should match snapshot 1`] = `
+<div>
+  <TextContent
+    title="Zorginstelling bewerken"
+  >
+    Op deze pagina kunt u de gegevens van een zorginstelling aanpassen / wijzigen. De informatie die op dit moment in de velden staat is de informatie die het systeem nu heeft. Om deze te bewerken kunt u deze informatie aanpassen en op 'oplaan' drukken. Op de zorginstelling te verwijderen drukt u op de knop 'verwijderen'.
+  </TextContent>
+  <ZorginstellingForm
+    id={1}
+    update={true}
+  />
+</div>
+`;

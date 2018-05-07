@@ -99,6 +99,7 @@ exports[`CRUDTable component should match snapshot 1`] = `
     selectRow={
       Object {
         "mode": "radio",
+        "onSelect": [Function],
       }
     }
     striped={false}
@@ -122,6 +123,7 @@ exports[`CRUDTable component should match snapshot 1`] = `
       editColumnClassName=""
       editable={true}
       expandable={true}
+      export={false}
       filterFormatted={false}
       headerTitle={true}
       hidden={true}
@@ -233,9 +235,9 @@ exports[`CRUDTable component should match snapshot 1`] = `
       sortIndicator={true}
       width="140"
     >
-      Chauffeur 
+      Chauffeur
       <br />
-       toegewezen ↕
+      toegewezen ↕
     </TableHeaderColumn>
     <TableHeaderColumn
       className=""
@@ -260,9 +262,9 @@ exports[`CRUDTable component should match snapshot 1`] = `
       sortIndicator={true}
       width="140"
     >
-      Naam 
+      Naam
       <br />
-       chauffeur ↕
+      chauffeur ↕
     </TableHeaderColumn>
     <TableHeaderColumn
       className=""
@@ -290,5 +292,45 @@ exports[`CRUDTable component should match snapshot 1`] = `
       Naam client ↕
     </TableHeaderColumn>
   </BootstrapTable>
+  <CSVLink
+    className="btn btn-primary crud-btn"
+    data={
+      Array [
+        Object {
+          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
+          "chauffeur_toegewezen": "Nee",
+          "datum": "22-02-2017",
+          "id": 1,
+          "naam_chauffeur": "-",
+          "naam_client": "Gerda Willems",
+          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
+        },
+        Object {
+          "bestemming": "Singelpark 7, 3984 NC, Odijk",
+          "chauffeur_toegewezen": "Nee",
+          "datum": "21-02-2017",
+          "id": 2,
+          "naam_chauffeur": "-",
+          "naam_client": "Hans de Wit",
+          "ophaal_locatie": "Wegedoorn 23, 3984 AZ, Odijk",
+        },
+        Object {
+          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
+          "chauffeur_toegewezen": "Ja",
+          "datum": "20-02-2017",
+          "id": 3,
+          "naam_chauffeur": "Taxi bedrijf",
+          "naam_client": "Gerda Willems",
+          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
+        },
+      ]
+    }
+    filename="zorginstelling_overview"
+    separator=","
+    target=""
+    uFEFF={true}
+  >
+    Export als CSV
+  </CSVLink>
 </div>
 `;

@@ -1,0 +1,212 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ZorginstellingForm /> should match snapshot 1`] = `
+<div>
+  <Form
+    tag="form"
+  >
+    <Row
+      tag="div"
+    >
+      <Col
+        md="4"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h5>
+          Plaatsgegevens
+        </h5>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingNaam"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Naam:
+          </Label>
+          <Input
+            name="zorginstellingNaam"
+            onChange={[Function]}
+            placeholder="Type de naam van de zorginstelling"
+            type="text"
+            value=""
+          />
+        </FormGroup>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingAdresregel"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Adres:
+          </Label>
+          <Input
+            name="zorginstellingAdresregel"
+            onChange={[Function]}
+            placeholder="Type het adres van de zorginstelling"
+            type="text"
+            value=""
+          />
+        </FormGroup>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingPostcode"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Postcode:
+          </Label>
+          <Input
+            name="zorginstellingPostcode"
+            onChange={[Function]}
+            placeholder="Type de postcode van de zorginstelling"
+            type="text"
+            value=""
+          />
+        </FormGroup>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingPlaats"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Plaats:
+          </Label>
+          <Input
+            name="zorginstellingPlaats"
+            onChange={[Function]}
+            placeholder="Type de plaats van de zorginstelling"
+            type="text"
+            value=""
+          />
+        </FormGroup>
+      </Col>
+      <Col
+        md="4"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h5>
+          Accountgegevens
+        </h5>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingEmail"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Email:
+          </Label>
+          <Input
+            name="zorginstellingEmail"
+            onChange={[Function]}
+            placeholder="Zorginstelling email"
+            type="email"
+            value=""
+          />
+        </FormGroup>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingWachtwoord"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Wachtwoord:
+          </Label>
+          <Input
+            name="zorginstellingWachtwoord"
+            onChange={[Function]}
+            placeholder="Zorginstelling wachtwoord"
+            type="password"
+            value=""
+          />
+        </FormGroup>
+      </Col>
+    </Row>
+  </Form>
+  <Button
+    className="crud-btn"
+    color="primary"
+    onClick={[Function]}
+    tag="button"
+  >
+    Toevoegen
+  </Button>
+</div>
+`;

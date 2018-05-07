@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreatePage /> should match snapshot 1`] = `
+<Container
+  tag="div"
+>
+  <Row
+    tag="div"
+  >
+    <Col
+      tag="div"
+      widths={
+        Array [
+          "xs",
+          "sm",
+          "md",
+          "lg",
+          "xl",
+        ]
+      }
+    >
+      <Header
+        routes=""
+      />
+      <CreateZorginstelling
+        routes=""
+      />
+      <Footer />
+    </Col>
+  </Row>
+</Container>
+`;

@@ -32,7 +32,7 @@ const LoginForm = () => {
           <Label for="inputPassword" className="float-left">
             <b>Wachtwoord</b>
           </Label>
-          <Input type="password" id="inputPassword" className="mb-4" placeholder="Password"/>
+          <Input type="password" id="inputPassword" className="mb-4" placeholder="Wachtwoord"/>
           <Button color="primary" className="crud-btn" size="lg" type="submit">Inloggen</Button>
         </Form>
       </div>
