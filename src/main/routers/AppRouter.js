@@ -15,6 +15,7 @@ import LoginPage from '../container/LoginPage';
 import ReadPage from '../container/ReadPage';
 import CreatePage from '../container/CreatePage';
 import UpdatePage from '../container/UpdatePage';
+import ErrorPage from '../container/ErrorPage';
 
 /**
  * Routes that the application knows
@@ -23,7 +24,8 @@ const routes = {
   login: '/',
   readZorginstelling: '/read/zorginstelling',
   createZorginstelling: '/create/zorginstelling',
-  updateZorginstelling: '/update/zorginstelling'
+  updateZorginstelling: '/update/zorginstelling',
+  error: '/error'
 }
 
 const AppRouter = () => {
@@ -38,6 +40,8 @@ const AppRouter = () => {
 					render={(props) => (<CreatePage {...props} routes={routes}/>)}/>
 	      <Route exact path={`${routes.updateZorginstelling}/:id`}
 				render={(props) => (<UpdatePage {...props} routes={routes}/>)}/>
+        <Route exact path={`${routes.error}`}
+        render={(props) => (<ErrorPage {...props} routes={routes}/>)}/>
 	    </Switch>
   	</BrowserRouter>
 	);

@@ -12,7 +12,6 @@ import {
   SearchField
 } from 'react-bootstrap-table';
 
-
 /**
  * Style related imports
  */
@@ -28,7 +27,7 @@ export default class ZorginstellingTable extends React.Component {
     axios.get(`${config.url}/zorginstelling/zorginstellingen`).then((res) => {
       this.setState({data: res.data});
     }).catch((err) => {
-      console.log(err);
+      return this.props.history.push(this.props.routes.error);
     });
   }
 
