@@ -65,6 +65,14 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
+   * Makes the DELETE request ready and sends it to the server
+   */
+  handleRemoveZorginstelling = () => {
+    // TODO: DELETE ENDPOINT IMPLEMENTEREN
+    console.log("Hier komt de DELETE endpoint.");
+  }
+
+  /**
    * Makes the POST or PUT request ready and sends it to the server
    */
   handleAddZorginstelling = () => {
@@ -127,6 +135,10 @@ export default class ZorginstellingForm extends React.Component {
         <Button onClick={this.handleAddZorginstelling} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
         </Button>
+        {this.props.update &&
+          <Button onClick={this.handleRemoveZorginstelling} color="primary" className="crud-btn">
+            Verwijder zorginstelling
+          </Button>}
       </div>
     );
   }
