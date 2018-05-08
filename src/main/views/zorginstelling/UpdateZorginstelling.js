@@ -13,6 +13,7 @@ import ZorginstellingForm from '../../components/ZorginstellingForm';
  * This component puts the textblock and zorginstellingform (for update) together and renders it
  */
 const UpdateZorginstelling = (props) => {
+	let pageURLToGoTo = props.history.location.pathname.replace(props.routes.updateZorginstelling + "/", "");
 	return (
     <div>
       <TextContent title="Zorginstelling bewerken">
@@ -21,7 +22,7 @@ const UpdateZorginstelling = (props) => {
 				Om deze te bewerken kunt u deze informatie aanpassen en op 'oplaan' drukken.
 				Op de zorginstelling te verwijderen drukt u op de knop 'verwijderen'.
       </TextContent>
-      <ZorginstellingForm update={true} id={props.history.location.pathname.replace(props.routes.updateZorginstelling + "/", "")} />
+      <ZorginstellingForm update={true} id={pageURLToGoTo} />
     </div>
 	);
 }

@@ -23,6 +23,11 @@ exports[`<AppRouter /> should match snapshot 1`] = `
       path="/update/zorginstelling/:id"
       render={[Function]}
     />
+    <Route
+      exact={true}
+      path="/error"
+      render={[Function]}
+    />
   </Switch>
 </BrowserRouter>
 `;

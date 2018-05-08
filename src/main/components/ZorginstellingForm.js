@@ -69,6 +69,7 @@ export default class ZorginstellingForm extends React.Component {
    */
   handleRemoveZorginstelling = () => {
     // TODO: DELETE ENDPOINT IMPLEMENTEREN
+    alert("Hier komt de DELETE endpoint.")
     console.log("Hier komt de DELETE endpoint.");
   }
 

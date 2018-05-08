@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Error /> should match snapshot 1`] = `
+<div>
+  <TextContent
+    title="Oh nee!"
+  >
+    Als u deze pagina ziet betekent het dat er iets niet helemaal goed gegaan is. Ga terug en probeer het opnieuw!
+  </TextContent>
+</div>
+`;

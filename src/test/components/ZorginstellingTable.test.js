@@ -3,14 +3,17 @@ import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import ZorginstellingTable from '../../main/components/ZorginstellingTable';
 
-const wrapper = shallow(<ZorginstellingTable />);
+const wrapper = shallow(<ZorginstellingTable history="" routes="" />);
+
+const push = jest.fn();
+wrapper.setProps({ history: { push } });
 
 test('CRUDTable component should match snapshot', () => {
   expect(toJSON(wrapper)).toMatchSnapshot();
 });
 
-test('Should render seven TableHeaderColumn component', () => {
-  expect(wrapper.find('TableHeaderColumn').length).toBe(7);
+test('Should render two TableHeaderColumn components', () => {
+  expect(wrapper.find('TableHeaderColumn').length).toBe(2);
 });
 
 test('Should render one BootstrapTable component', () => {

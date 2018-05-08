@@ -26,37 +26,7 @@ exports[`CRUDTable component should match snapshot 1`] = `
     condensed={false}
     containerClass={null}
     csvFileName="spreadsheet.csv"
-    data={
-      Array [
-        Object {
-          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
-          "chauffeur_toegewezen": "Nee",
-          "datum": "22-02-2017",
-          "id": 1,
-          "naam_chauffeur": "-",
-          "naam_client": "Gerda Willems",
-          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
-        },
-        Object {
-          "bestemming": "Singelpark 7, 3984 NC, Odijk",
-          "chauffeur_toegewezen": "Nee",
-          "datum": "21-02-2017",
-          "id": 2,
-          "naam_chauffeur": "-",
-          "naam_client": "Hans de Wit",
-          "ophaal_locatie": "Wegedoorn 23, 3984 AZ, Odijk",
-        },
-        Object {
-          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
-          "chauffeur_toegewezen": "Ja",
-          "datum": "20-02-2017",
-          "id": 3,
-          "naam_chauffeur": "Taxi bedrijf",
-          "naam_client": "Gerda Willems",
-          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
-        },
-      ]
-    }
+    data={Array []}
     deleteRow={false}
     expandColumnOptions={
       Object {
@@ -123,7 +93,6 @@ exports[`CRUDTable component should match snapshot 1`] = `
       editColumnClassName=""
       editable={true}
       expandable={true}
-      export={false}
       filterFormatted={false}
       headerTitle={true}
       hidden={true}
@@ -143,7 +112,7 @@ exports[`CRUDTable component should match snapshot 1`] = `
       columnTitle={false}
       csvFieldType="string"
       dataAlign="left"
-      dataField="datum"
+      dataField="name"
       dataSort={true}
       defaultASC={false}
       editColumnClassName=""
@@ -158,173 +127,14 @@ exports[`CRUDTable component should match snapshot 1`] = `
       keyValidator={false}
       searchable={true}
       sortIndicator={true}
-      width="110"
+      width={null}
     >
-      Datum ↕
-    </TableHeaderColumn>
-    <TableHeaderColumn
-      className=""
-      columnClassName=""
-      columnTitle={false}
-      csvFieldType="string"
-      dataAlign="left"
-      dataField="ophaal_locatie"
-      dataSort={true}
-      defaultASC={false}
-      editColumnClassName=""
-      editable={true}
-      expandable={true}
-      filterFormatted={false}
-      headerTitle={true}
-      hidden={false}
-      hiddenOnInsert={false}
-      invalidEditColumnClassName=""
-      isKey={false}
-      keyValidator={false}
-      searchable={true}
-      sortIndicator={true}
-      width="260"
-    >
-      Ophaallocatie ↕
-    </TableHeaderColumn>
-    <TableHeaderColumn
-      className=""
-      columnClassName=""
-      columnTitle={false}
-      csvFieldType="string"
-      dataAlign="left"
-      dataField="bestemming"
-      dataSort={true}
-      defaultASC={false}
-      editColumnClassName=""
-      editable={true}
-      expandable={true}
-      filterFormatted={false}
-      headerTitle={true}
-      hidden={false}
-      hiddenOnInsert={false}
-      invalidEditColumnClassName=""
-      isKey={false}
-      keyValidator={false}
-      searchable={true}
-      sortIndicator={true}
-      width="260"
-    >
-      Bestemming ↕
-    </TableHeaderColumn>
-    <TableHeaderColumn
-      className=""
-      columnClassName=""
-      columnTitle={false}
-      csvFieldType="string"
-      dataAlign="left"
-      dataField="chauffeur_toegewezen"
-      dataSort={true}
-      defaultASC={false}
-      editColumnClassName=""
-      editable={true}
-      expandable={true}
-      filterFormatted={false}
-      headerTitle={true}
-      hidden={false}
-      hiddenOnInsert={false}
-      invalidEditColumnClassName=""
-      isKey={false}
-      keyValidator={false}
-      searchable={true}
-      sortIndicator={true}
-      width="140"
-    >
-      Chauffeur
-      <br />
-      toegewezen ↕
-    </TableHeaderColumn>
-    <TableHeaderColumn
-      className=""
-      columnClassName=""
-      columnTitle={false}
-      csvFieldType="string"
-      dataAlign="left"
-      dataField="naam_chauffeur"
-      dataSort={true}
-      defaultASC={false}
-      editColumnClassName=""
-      editable={true}
-      expandable={true}
-      filterFormatted={false}
-      headerTitle={true}
-      hidden={false}
-      hiddenOnInsert={false}
-      invalidEditColumnClassName=""
-      isKey={false}
-      keyValidator={false}
-      searchable={true}
-      sortIndicator={true}
-      width="140"
-    >
-      Naam
-      <br />
-      chauffeur ↕
-    </TableHeaderColumn>
-    <TableHeaderColumn
-      className=""
-      columnClassName=""
-      columnTitle={false}
-      csvFieldType="string"
-      dataAlign="left"
-      dataField="naam_client"
-      dataSort={true}
-      defaultASC={false}
-      editColumnClassName=""
-      editable={true}
-      expandable={true}
-      filterFormatted={false}
-      headerTitle={true}
-      hidden={false}
-      hiddenOnInsert={false}
-      invalidEditColumnClassName=""
-      isKey={false}
-      keyValidator={false}
-      searchable={true}
-      sortIndicator={true}
-      width="140"
-    >
-      Naam client ↕
+      Naam ↕
     </TableHeaderColumn>
   </BootstrapTable>
   <CSVLink
     className="btn btn-primary crud-btn"
-    data={
-      Array [
-        Object {
-          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
-          "chauffeur_toegewezen": "Nee",
-          "datum": "22-02-2017",
-          "id": 1,
-          "naam_chauffeur": "-",
-          "naam_client": "Gerda Willems",
-          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
-        },
-        Object {
-          "bestemming": "Singelpark 7, 3984 NC, Odijk",
-          "chauffeur_toegewezen": "Nee",
-          "datum": "21-02-2017",
-          "id": 2,
-          "naam_chauffeur": "-",
-          "naam_client": "Hans de Wit",
-          "ophaal_locatie": "Wegedoorn 23, 3984 AZ, Odijk",
-        },
-        Object {
-          "bestemming": "Herenlaan 23, 3701 AR, Zeist",
-          "chauffeur_toegewezen": "Ja",
-          "datum": "20-02-2017",
-          "id": 3,
-          "naam_chauffeur": "Taxi bedrijf",
-          "naam_client": "Gerda Willems",
-          "ophaal_locatie": "2e Hogeweg 46, 3709 AZ, Zeist",
-        },
-      ]
-    }
+    data={Array []}
     filename="zorginstelling_overview"
     separator=","
     target=""

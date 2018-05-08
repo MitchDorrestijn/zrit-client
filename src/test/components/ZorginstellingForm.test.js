@@ -19,20 +19,20 @@ test('<ZorginstellingForm /> should have one type of <Row></Row> components', ()
   expect(wrapper.find('Row').length).toBe(1);
 });
 
-test('<ZorginstellingForm /> should render two <Col></Col> components', () => {
-  expect(wrapper.find('Col').length).toBe(2);
+test('<ZorginstellingForm /> should render one <Col></Col> component', () => {
+  expect(wrapper.find('Col').length).toBe(1);
 });
 
-test('<ZorginstellingForm /> should render six <FormGroup></FormGroup> components', () => {
-  expect(wrapper.find('FormGroup').length).toBe(6);
+test('<ZorginstellingForm /> should render one <FormGroup></FormGroup> component', () => {
+  expect(wrapper.find('FormGroup').length).toBe(1);
 });
 
-test('<ZorginstellingForm /> should render six <Input></Input> components', () => {
-  expect(wrapper.find('Input').length).toBe(6);
+test('<ZorginstellingForm /> should render one <Input></Input> component', () => {
+  expect(wrapper.find('Input').length).toBe(1);
 });
 
-test('<ZorginstellingForm /> should render six <Label></Label> components', () => {
-  expect(wrapper.find('Label').length).toBe(6);
+test('<ZorginstellingForm /> should render one <Label></Label> component', () => {
+  expect(wrapper.find('Label').length).toBe(1);
 });
 
 test('<ZorginstellingForm /> calls componentDidMount()', () => {

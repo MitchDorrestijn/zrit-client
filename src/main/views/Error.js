@@ -9,9 +9,9 @@ import React from 'react';
 import TextContent from '../components/TextContent';
 
 /**
- * This component puts the textblock and zorginstellingform (for update) together and renders it
+ * This component renders the error page
  */
-const UpdateZorginstelling = (props) => {
+const ErrorPage = (props) => {
 	return (
     <div>
       <TextContent title="Oh nee!">
@@ -21,4 +21,4 @@ const UpdateZorginstelling = (props) => {
 	);
 }
 
-export default UpdateZorginstelling;
+export default ErrorPage;
