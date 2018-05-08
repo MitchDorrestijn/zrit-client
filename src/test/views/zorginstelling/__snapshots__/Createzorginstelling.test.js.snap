@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CreateZorginstelling /> should match snapshot 1`] = `
+<div>
+  <TextContent
+    title="Zorginstelling toevoegen"
+  >
+    Op deze pagina kunt u een zorginstelling toevoegen. Vul alle velden hieronder in en de nieuwe zorginstelling wordt aan het systeem toegevoegd.
+  </TextContent>
+  <ZorginstellingForm />
+</div>
+`;

@@ -1,45 +1,70 @@
-import React, { Component } from 'react';
-import { Nav, NavItem, NavLink, Row, Col } from 'reactstrap';
+/**
+ * React related imports
+ */
+import React from 'react';
+import {
+  Nav,
+  NavItem,
+  Row,
+  Col
+} from 'reactstrap';
+import {Link} from 'react-router-dom';
+
+/**
+ * Style related imports
+ */
 import '../css/navbar.css';
+
+/**
+ * Other imports
+ */
 import Logo from '../assets/img/logo.gif';
 
-//this class takes care of rendering the top navigation bar + logo
-export default class Header extends Component {
-  render() {
-    return (
-      <div>
-        <Row className="top-navigation">
-          <Col xs="6">
-            <figure>
-              <img src={Logo} alt="logo Zorgrit" />
-            </figure>
-          </Col>
-          <Col xs="6">
-            <span className="float-right logout-btn"><NavLink href="#">Uitloggen</NavLink></span>
-          </Col>
-        </Row>
-
-        <Nav className="nav-pills nav-justified">
-          <NavItem>
-            <NavLink href="#">Ritten</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Chauffeurs</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Clienten</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Betalingen</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Ritten bestellen</NavLink>
-          </NavItem>
-          <NavItem>
-            <NavLink href="#">Over</NavLink>
-          </NavItem>
-        </Nav>
-      </div>
-    );
-  }
+/**
+ * This component renders the header and navigation bar
+ */
+const Header = (props) => {
+  return (
+    <div>
+      <Row className="top-navigation">
+        <Col xs="6">
+          <figure>
+            <Link to={props.routes.readZorginstelling}>
+              <img src={Logo} alt="logo Zorgrit"/>
+            </Link>
+          </figure>
+        </Col>
+        <Col xs="6">
+          <span className="float-right logout-btn">
+            <Link to="#">Uitloggen</Link>
+          </span>
+        </Col>
+      </Row>
+      <Nav className="nav-pills nav-justified">
+        <NavItem>
+          <Link className="nav-link" to={props.routes.readZorginstelling}>Zorginstellingen</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Ritten</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Chauffeurs</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Clienten</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Betalingen</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Ritten bestellen</Link>
+        </NavItem>
+        <NavItem>
+          <Link className="nav-link" to="#">Over</Link>
+        </NavItem>
+      </Nav>
+    </div>
+  );
 }
+
+export default Header;

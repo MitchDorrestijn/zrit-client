@@ -1,14 +1,22 @@
+/**
+ * React related imports
+ */
 import React from 'react';
 
+/**
+ * Style related imports
+ */
 import '../css/footer.css';
 
-//this stateless functional component renders the footer
+/**
+ * This component renders the footer
+ */
 const Footer = () => {
-	return (
-    <footer>
-		  <small>Heeft u vragen? Bel ons:</small>
-      <span>020 - 123 45 67</span>
-    </footer>
+  return (
+		<footer>
+    	<small>Heeft u vragen? Bel ons:</small>
+    	<span>020 - 123 45 67</span>
+  	</footer>
 	);
 }
 

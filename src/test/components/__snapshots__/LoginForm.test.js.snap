@@ -1,0 +1,81 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<LoginForm /> should match snapshot 1`] = `
+<div
+  className="loginGrandParentContaniner"
+>
+  <div
+    className="loginParentContainer"
+  >
+    <Form
+      tag="form"
+    >
+      <header>
+        <img
+          alt="logo Zorgrit"
+          className="mb-4"
+          src="logo.gif"
+        />
+      </header>
+      <Label
+        className="float-left"
+        for="inputUserName"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <b>
+          Gebruikersnaam
+        </b>
+      </Label>
+      <Input
+        autoFocus={true}
+        className="mb-3 "
+        id="inputUserName"
+        placeholder="Gebruikersnaam"
+        type="text"
+      />
+      <Label
+        className="float-left"
+        for="inputPassword"
+        tag="label"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <b>
+          Wachtwoord
+        </b>
+      </Label>
+      <Input
+        className="mb-4"
+        id="inputPassword"
+        placeholder="Wachtwoord"
+        type="password"
+      />
+      <Button
+        className="crud-btn"
+        color="primary"
+        size="lg"
+        tag="button"
+        type="submit"
+      >
+        Inloggen
+      </Button>
+    </Form>
+  </div>
+</div>
+`;

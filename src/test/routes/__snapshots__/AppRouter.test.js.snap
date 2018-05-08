@@ -1,0 +1,33 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<AppRouter /> should match snapshot 1`] = `
+<BrowserRouter>
+  <Switch>
+    <Route
+      exact={true}
+      path="/"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/read/zorginstelling"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/create/zorginstelling"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/update/zorginstelling/:id"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
+      path="/error"
+      render={[Function]}
+    />
+  </Switch>
+</BrowserRouter>
+`;

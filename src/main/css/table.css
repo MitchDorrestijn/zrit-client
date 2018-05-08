@@ -32,3 +32,12 @@ th {
 .crud-btn:hover {
   background: #0056b3 !important;
 }
+
+.crud-btn:disabled {
+  background: #DDDDDD !important;
+}
+
+.crud-btn:disabled:hover {
+  background: #DDDDD  !important;
+  cursor: not-allowed;
+}

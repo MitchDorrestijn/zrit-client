@@ -1,0 +1,14 @@
+input {
+  border-radius: 0 !important;
+}
+
+.input:focus,
+.form-control:focus {
+  box-shadow: none !important;
+  border-color: #0056b3 !important;
+}
+
+h5 {
+  color: #303c51 !important;
+  font-size: 18px !important;
+}

@@ -1,15 +1,24 @@
-import React, {Component} from 'react';
+/**
+ * React related imports
+ */
+import React from 'react';
+
+/**
+ * Other imports
+ */
 import HomeImg from '../assets/img/home.jpg';
 
-//this class takes care of rendering image on the left side of LoginPage
-export default class LoginImg extends Component {
-    render() {
-        return (
-            <div className="grandParentContaniner">
-                <div className="parentContainer">
-                    <img src={HomeImg} className="img-fluid" alt=""/>
-                </div>
-            </div>
-        )
-    }
+/**
+ * This component renders the image on the left side of login page
+ */
+const LoginImg = () => {
+  return (
+    <div className="grandParentContaniner">
+      <div className="parentContainer">
+        <img src={HomeImg} className="img-fluid" alt="zorgrit introimage"/>
+      </div>
+    </div>
+  );
 }
+
+export default LoginImg;

@@ -1,0 +1,67 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ZorginstellingForm /> should match snapshot 1`] = `
+<div>
+  <Form
+    tag="form"
+  >
+    <Row
+      tag="div"
+    >
+      <Col
+        md="4"
+        tag="div"
+        widths={
+          Array [
+            "xs",
+            "sm",
+            "md",
+            "lg",
+            "xl",
+          ]
+        }
+      >
+        <h5>
+          Zorginstellinggegevens
+        </h5>
+        <FormGroup
+          tag="div"
+        >
+          <Label
+            for="zorginstellingNaam"
+            tag="label"
+            widths={
+              Array [
+                "xs",
+                "sm",
+                "md",
+                "lg",
+                "xl",
+              ]
+            }
+          >
+            Naam:
+          </Label>
+          <Input
+            name="zorginstellingNaam"
+            onChange={[Function]}
+            placeholder="Type de naam van de zorginstelling"
+            type="text"
+            value=""
+          />
+        </FormGroup>
+      </Col>
+    </Row>
+  </Form>
+  <Button
+    className="crud-btn"
+    color="primary"
+    onClick={[Function]}
+    tag="button"
+  >
+    <span>
+      Toevoegen
+    </span>
+  </Button>
+</div>
+`;
