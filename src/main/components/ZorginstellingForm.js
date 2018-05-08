@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import axios from 'axios';
+import config from '../config';
 import {
   Col,
   Form,
@@ -29,14 +30,9 @@ export default class ZorginstellingForm extends React.Component {
    */
   componentDidMount() {
     if (this.props.update) {
-      axios.get(`/zorginstelling/${this.props.id}`).then((res) => {
+      axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
         this.setState({
-          zorginstellingNaam: res.naam,
-          zorginstellingAdresregel: res.adres,
-          zorginstellingPostcode: res.postcode,
-          zorginstellingPlaats: res.plaats,
-          zorginstellingEmail: res.email,
-          zorginstellingWachtwoord: res.wachtwoord
+          zorginstellingNaam: res.data.name
         });
       }).catch((err) => {
         this.setState({error: err.message, success: false});
@@ -53,11 +49,6 @@ export default class ZorginstellingForm extends React.Component {
     super(props);
     this.state = {
       zorginstellingNaam: "",
-      zorginstellingAdresregel: "",
-      zorginstellingPostcode: "",
-      zorginstellingPlaats: "",
-      zorginstellingEmail: "",
-      zorginstellingWachtwoord: "",
       success: false,
       error: false
     }
@@ -78,23 +69,19 @@ export default class ZorginstellingForm extends React.Component {
    */
   handleAddZorginstelling = () => {
     let data = {
-      naam: this.state.zorginstellingNaam,
-      adres: this.state.zorginstellingAdresregel,
-      postcode: this.state.zorginstellingPostcode,
-      plaats: this.state.zorginstellingPlaats,
-      email: this.state.zorginstellingEmail,
-      wachtwoord: this.state.zorginstellingWachtwoord
+      name: this.state.zorginstellingNaam
     }
-    console.log(data);
     if (this.props.update) {
-      axios.put(`/zorginstelling/${this.props.id}`, data).then((res) => {
-        this.setState({success: res.data, error: false});
+      axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
+        let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
+        this.setState({success: succesFeedback, error: false});
       }).catch((err) => {
         this.setState({error: err.message, success: false});
       });
     } else {
-      axios.post('/zorginstelling', data).then((res) => {
-        this.setState({success: res.data, error: false});
+      axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
+        let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
+        this.setState({success: succesFeedback, error: false});
       }).catch((err) => {
         this.setState({error: err.message, success: false});
       });
@@ -128,44 +115,18 @@ export default class ZorginstellingForm extends React.Component {
           }
           <Row>
             <Col md="4">
-              <h5>Plaatsgegevens</h5>
+              <h5>Zorginstellinggegevens</h5>
               <FormGroup>
                 <Label for="zorginstellingNaam">Naam:</Label>
                 <Input value={this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
                   placeholder="Type de naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
-              <FormGroup>
-                <Label for="zorginstellingAdresregel">Adres:</Label>
-                <Input value={this.state.zorginstellingAdresregel} type="text" name="zorginstellingAdresregel"
-                  placeholder="Type het adres van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="zorginstellingPostcode">Postcode:</Label>
-                <Input value={this.state.zorginstellingPostcode} type="text" name="zorginstellingPostcode"
-                  placeholder="Type de postcode van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="zorginstellingPlaats">Plaats:</Label>
-                <Input value={this.state.zorginstellingPlaats} type="text" name="zorginstellingPlaats"
-                  placeholder="Type de plaats van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
-              </FormGroup>
-            </Col>
-            <Col md="4">
-              <h5>Accountgegevens</h5>
-              <FormGroup>
-                <Label for="zorginstellingEmail">Email:</Label>
-                <Input value={this.state.zorginstellingEmail} type="email" name="zorginstellingEmail"
-                  placeholder="Zorginstelling email" onChange={(event) => this.handleChange(event)}/>
-              </FormGroup>
-              <FormGroup>
-                <Label for="zorginstellingWachtwoord">Wachtwoord:</Label>
-                <Input value={this.state.zorginstellingWachtwoord} type="password" name="zorginstellingWachtwoord"
-                  placeholder="Zorginstelling wachtwoord" onChange={(event) => this.handleChange(event)}/>
-              </FormGroup>
             </Col>
           </Row>
         </Form>
-        <Button onClick={this.handleAddZorginstelling} color="primary" className="crud-btn">Toevoegen</Button>
+        <Button onClick={this.handleAddZorginstelling} color="primary" className="crud-btn">
+          {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
+        </Button>
       </div>
     );
   }

@@ -21,7 +21,7 @@ const UpdateZorginstelling = (props) => {
 				Om deze te bewerken kunt u deze informatie aanpassen en op 'oplaan' drukken.
 				Op de zorginstelling te verwijderen drukt u op de knop 'verwijderen'.
       </TextContent>
-      <ZorginstellingForm update={true} id={1} />
+      <ZorginstellingForm update={true} id={props.history.location.pathname.replace(props.routes.updateZorginstelling + "/", "")} />
     </div>
 	);
 }

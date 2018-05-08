@@ -4,11 +4,14 @@
 import React from 'react';
 import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
+import axios from 'axios';
+import config from '../config';
 import {
   BootstrapTable,
   TableHeaderColumn,
   SearchField
 } from 'react-bootstrap-table';
+
 
 /**
  * Style related imports
@@ -21,6 +24,14 @@ import '../css/table.css';
  */
 export default class ZorginstellingTable extends React.Component {
 
+  componentDidMount(){
+    axios.get(`${config.url}/zorginstelling/zorginstellingen`).then((res) => {
+      this.setState({data: res.data});
+    }).catch((err) => {
+      console.log(err);
+    });
+  }
+
   /**
    * Setups all the data.
    * @constructor
@@ -28,58 +39,17 @@ export default class ZorginstellingTable extends React.Component {
    */
   constructor(props) {
     super(props);
-    this.data = [
-      {
-        'id': 1,
-        'datum': '22-02-2017',
-        'ophaal_locatie': '2e Hogeweg 46, 3709 AZ, Zeist',
-        'bestemming': 'Herenlaan 23, 3701 AR, Zeist',
-        'chauffeur_toegewezen': 'Nee',
-        'naam_chauffeur': '-',
-        'naam_client': 'Gerda Willems'
-      }, {
-        'id': 2,
-        'datum': '21-02-2017',
-        'ophaal_locatie': 'Wegedoorn 23, 3984 AZ, Odijk',
-        'bestemming': 'Singelpark 7, 3984 NC, Odijk',
-        'chauffeur_toegewezen': 'Nee',
-        'naam_chauffeur': '-',
-        'naam_client': 'Hans de Wit'
-      }, {
-        'id': 3,
-        'datum': '20-02-2017',
-        'ophaal_locatie': '2e Hogeweg 46, 3709 AZ, Zeist',
-        'bestemming': 'Herenlaan 23, 3701 AR, Zeist',
-        'chauffeur_toegewezen': 'Ja',
-        'naam_chauffeur': 'Taxi bedrijf',
-        'naam_client': 'Gerda Willems'
-      }
-    ];
     this.columns = [
       {
-        name: 'datum',
-        display: 'Datum'
-      }, {
-        name: 'ophaal_locatie',
-        display: 'Ophaallocatie'
-      }, {
-        name: 'bestemming',
-        display: 'Bestemming'
-      }, {
-        name: 'chauffeur_toegewezen',
-        display: 'Chauffeur toegewezen'
-      }, {
-        name: 'naam_chauffeur',
-        display: 'Naam chauffeur'
-      }, {
-        name: 'naam_client',
-        display: 'Naam client'
+        name: 'name',
+        display: 'Naam'
       }
     ];
     this.state = {
       sortColumnName: undefined,
       sortOrder: undefined,
-      disableButtons: true
+      disableButtons: true,
+      data: []
     };
   };
 
@@ -146,45 +116,21 @@ export default class ZorginstellingTable extends React.Component {
 
     return (
       <div>
-        <BootstrapTable search={true} data={this.data} options={tableOptions} selectRow={{
+        <BootstrapTable search={true} data={this.state.data} options={tableOptions} selectRow={{
             mode: 'radio',
             onSelect: this.onSelect
           }} ref='table'>
-          
-          <TableHeaderColumn export={false} hidden={true} dataField="id" isKey={true}>
+
+          <TableHeaderColumn hidden={true} dataField="id" isKey={true}>
             ID
           </TableHeaderColumn>
 
-          <TableHeaderColumn width='110' dataField="datum" dataSort={true}>
-            Datum &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width='260' dataField="ophaal_locatie" dataSort={true}>
-            Ophaallocatie &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width='260' dataField="bestemming" dataSort={true}>
-            Bestemming &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width='140' dataField="chauffeur_toegewezen" dataSort={true}>
-            Chauffeur
-            <br/>
-            toegewezen &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width='140' dataField="naam_chauffeur" dataSort={true}>
-            Naam
-            <br/>
-            chauffeur &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn width='140' dataField="naam_client" dataSort={true}>
-            Naam client &#x2195;
+          <TableHeaderColumn dataField="name" dataSort={true}>
+            Naam &#x2195;
           </TableHeaderColumn>
         </BootstrapTable>
 
-        <CSVLink data={this.data} filename={"zorginstelling_overview"} className="btn btn-primary crud-btn" target="">
+        <CSVLink data={this.state.data} filename={"zorginstelling_overview"} className="btn btn-primary crud-btn" target="">
           Export als CSV
         </CSVLink>
       </div>
