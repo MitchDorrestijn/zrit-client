@@ -30,13 +30,7 @@ export default class ZorginstellingForm extends React.Component {
    */
   componentDidMount() {
     if (this.props.update) {
-      axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
-        this.setState({
-          zorginstellingNaam: res.data.name
-        });
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+      this.handleGetZorginstelling();
     }
   }
 
@@ -55,18 +49,19 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
-   * Saves form changes in the state.
-   * @param {string} event - HTML object from the form target
-   */
-  handleChange(event) {
-    this.setState({
-      [event.target.name]: event.target.value
+ * Makes the GET request ready and sends it to the server
+ */
+  handleGetZorginstelling = () => {
+    axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
+      this.setState({zorginstellingNaam: res.data.name});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
     });
   }
 
   /**
-   * Makes the DELETE request ready and sends it to the server
-   */
+ * Makes the DELETE request ready and sends it to the server
+ */
   handleRemoveZorginstelling = () => {
     axios.delete(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
       let succesFeedback = "Zorginstelling succesvol verwijderd";
@@ -77,26 +72,50 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
+ * Makes a PUT request to the server
+ */
+  handleUpdateZorginstelling = (data) => {
+    axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
+      let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
+      this.setState({success: succesFeedback, error: false});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    });
+  }
+
+  /**
+ * Makes a POST request to the server
+ */
+  handleAddZorginstelling = (data) => {
+    axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
+      let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
+      this.setState({success: succesFeedback, error: false});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    });
+  }
+
+  /**
+   * Saves form changes in the state.
+   * @param {string} event - HTML object from the form target
+   */
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+  }
+
+  /**
    * Makes the POST or PUT request ready and sends it to the server
    */
-  handleAddZorginstelling = () => {
+  handleZorginstelling = () => {
     let data = {
       name: this.state.zorginstellingNaam
     }
     if(this.props.update) {
-      axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
-        let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
-        this.setState({success: succesFeedback, error: false});
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+      this.handleUpdateZorginstelling(data);
     } else {
-      axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
-        let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
-        this.setState({success: succesFeedback, error: false});
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+      this.handleAddZorginstelling(data);
     }
   }
 
@@ -136,7 +155,7 @@ export default class ZorginstellingForm extends React.Component {
             </Col>
           </Row>
         </Form>
-        <Button onClick={this.handleAddZorginstelling} color="primary" className="crud-btn">
+        <Button onClick={this.handleZorginstelling} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
         </Button>
         {this.props.update &&
