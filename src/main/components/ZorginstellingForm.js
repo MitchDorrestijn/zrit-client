@@ -30,13 +30,7 @@ export default class ZorginstellingForm extends React.Component {
    */
   componentDidMount() {
     if (this.props.update) {
-      axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
-        this.setState({
-          zorginstellingNaam: res.data.name
-        });
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+      this.handleGetZorginstelling();
     }
   }
 
@@ -49,9 +43,57 @@ export default class ZorginstellingForm extends React.Component {
     super(props);
     this.state = {
       zorginstellingNaam: "",
+      removed: false,
       success: false,
       error: false
     }
+  }
+
+  /**
+ * Makes the GET request ready and sends it to the server
+ */
+  handleGetZorginstelling = () => {
+    axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
+      this.setState({zorginstellingNaam: res.data.name});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    });
+  }
+
+  /**
+ * Makes the DELETE request ready and sends it to the server
+ */
+  handleRemoveZorginstelling = () => {
+    axios.delete(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
+      let succesFeedback = "Zorginstelling succesvol verwijderd";
+      this.setState({success: succesFeedback, error: false, removed: true});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    })
+  }
+
+  /**
+ * Makes a PUT request to the server
+ */
+  handleUpdateZorginstelling = (data) => {
+    axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
+      let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
+      this.setState({success: succesFeedback, error: false});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    });
+  }
+
+  /**
+ * Makes a POST request to the server
+ */
+  handleAddZorginstelling = (data) => {
+    axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
+      let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
+      this.setState({success: succesFeedback, error: false});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    });
   }
 
   /**
@@ -65,35 +107,16 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
-   * Makes the DELETE request ready and sends it to the server
-   */
-  handleRemoveZorginstelling = () => {
-    // TODO: DELETE ENDPOINT IMPLEMENTEREN
-    alert("Hier komt de DELETE endpoint.")
-    console.log("Hier komt de DELETE endpoint.");
-  }
-
-  /**
    * Makes the POST or PUT request ready and sends it to the server
    */
-  handleAddZorginstelling = () => {
+  handleZorginstelling = () => {
     let data = {
       name: this.state.zorginstellingNaam
     }
-    if (this.props.update) {
-      axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
-        let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
-        this.setState({success: succesFeedback, error: false});
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+    if(this.props.update) {
+      this.handleUpdateZorginstelling(data);
     } else {
-      axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
-        let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
-        this.setState({success: succesFeedback, error: false});
-      }).catch((err) => {
-        this.setState({error: err.message, success: false});
-      });
+      this.handleAddZorginstelling(data);
     }
   }
 
@@ -127,13 +150,13 @@ export default class ZorginstellingForm extends React.Component {
               <h5>Zorginstellinggegevens</h5>
               <FormGroup>
                 <Label for="zorginstellingNaam">Naam:</Label>
-                <Input value={this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
+                <Input value={this.state.removed ? "" : this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
                   placeholder="Type de naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
           </Row>
         </Form>
-        <Button onClick={this.handleAddZorginstelling} color="primary" className="crud-btn">
+        <Button disabled={this.state.removed} onClick={this.handleZorginstelling} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
         </Button>
         {this.props.update &&
