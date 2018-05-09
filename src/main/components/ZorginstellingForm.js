@@ -68,9 +68,12 @@ export default class ZorginstellingForm extends React.Component {
    * Makes the DELETE request ready and sends it to the server
    */
   handleRemoveZorginstelling = () => {
-    // TODO: DELETE ENDPOINT IMPLEMENTEREN
-    alert("Hier komt de DELETE endpoint.")
-    console.log("Hier komt de DELETE endpoint.");
+    axios.delete(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
+      let succesFeedback = "Zorginstelling succesvol verwijderd";
+      this.setState({success: succesFeedback, error: false});
+    }).catch((err) => {
+      this.setState({error: err.message, success: false});
+    })
   }
 
   /**
@@ -80,7 +83,7 @@ export default class ZorginstellingForm extends React.Component {
     let data = {
       name: this.state.zorginstellingNaam
     }
-    if (this.props.update) {
+    if(this.props.update) {
       axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
         let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
         this.setState({success: succesFeedback, error: false});
