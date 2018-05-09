@@ -43,6 +43,7 @@ export default class ZorginstellingForm extends React.Component {
     super(props);
     this.state = {
       zorginstellingNaam: "",
+      removed: false,
       success: false,
       error: false
     }
@@ -65,7 +66,7 @@ export default class ZorginstellingForm extends React.Component {
   handleRemoveZorginstelling = () => {
     axios.delete(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
       let succesFeedback = "Zorginstelling succesvol verwijderd";
-      this.setState({success: succesFeedback, error: false});
+      this.setState({success: succesFeedback, error: false, removed: true});
     }).catch((err) => {
       this.setState({error: err.message, success: false});
     })
@@ -149,13 +150,13 @@ export default class ZorginstellingForm extends React.Component {
               <h5>Zorginstellinggegevens</h5>
               <FormGroup>
                 <Label for="zorginstellingNaam">Naam:</Label>
-                <Input value={this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
+                <Input value={this.state.removed ? "" : this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
                   placeholder="Type de naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
           </Row>
         </Form>
-        <Button onClick={this.handleZorginstelling} color="primary" className="crud-btn">
+        <Button disabled={this.state.removed} onClick={this.handleZorginstelling} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
         </Button>
         {this.props.update &&
