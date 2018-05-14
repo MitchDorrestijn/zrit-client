@@ -10,7 +10,7 @@ import TextContent from '../../components/TextContent';
 import ChauffeurTable from '../../components/ChauffeurTable';
 
 /**
- * This component puts the textblock and zorginstellingtable together and renders it
+ * This component puts the textblock and chauffeur table together and renders it
  */
 const ReadChauffeur = (props) => {
   return (
