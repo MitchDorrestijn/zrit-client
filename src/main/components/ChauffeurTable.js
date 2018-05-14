@@ -1,49 +1,60 @@
 import React from 'react';
 import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
+import axios from 'axios';
 import {
   BootstrapTable,
   TableHeaderColumn,
   SearchField
 } from 'react-bootstrap-table';
 
+import config from '../config';
+
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
 import '../css/table.css';
 
 export default class ChauffeurTable extends React.Component {
+  componentDidMount(){
+    axios.get(`${config.url}/chauffeur/chauffeurs`).then((res) => {
+      console.log(res);
+      this.setState({data: res.data});
+    }).catch((err) => {
+      return this.props.history.push(this.props.routes.error);
+    });
+  }
 
   constructor(props){
     super(props);
     this.columns = [
       {
-        name: 'naam_chauffeur',
+        name: 'name',
         display: 'Naam chauffeur'
       }, {
-        name: 'aantal_ritten',
+        name: 'totalRides',
         display: 'Aantal ritten'
       },
       {
-        name: 'soort_vergoeding',
+        name: 'typeOfPayment',
         display: 'Soort vergoeding'
       },
       {
-        name: 'totaal_verdiend',
+        name: 'totalEarned',
         display: 'Totaal verdiend'
       },
       {
-        name: 'kenteken_auto',
+        name: 'numberPlate',
         display: 'Kenteken auto'
       },
       {
-        name: 'aantal_personen_auto',
+        name: 'numberOfPassengers',
         display: 'Aantal personen auto'
       },
       {
-        name: 'segment_auto',
+        name: 'segment',
         display: 'Segment auto'
       },
       {
-        name: 'beoordeling',
+        name: 'rating',
         display: 'Beoordeling'
       }
     ];
@@ -92,35 +103,35 @@ export default class ChauffeurTable extends React.Component {
             ID
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="naam_chauffeur" dataSort={true}>
+          <TableHeaderColumn width="200" dataField="name" dataSort={true}>
             Naam <br /> chauffeur &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="aantal_ritten" dataSort={true}>
+          <TableHeaderColumn width="100" dataField="totalRides" dataSort={true}>
             Aantal <br /> ritten &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="soort_vergoeding" dataSort={true}>
+          <TableHeaderColumn dataField="typeOfPayment" dataSort={true}>
             Soort <br /> vergoeding &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="totaal_verdiend" dataSort={true}>
+          <TableHeaderColumn dataField="totalEarned" dataSort={true}>
             Totaal <br /> verdiend &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="kenteken_auto" dataSort={true}>
+          <TableHeaderColumn dataField="numberPlate" dataSort={true}>
             Kenteken &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="aantal_personen_auto" dataSort={true}>
+          <TableHeaderColumn dataField="numberOfPassengers" dataSort={true}>
             Aantal <br /> personen &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="segment_auto" dataSort={true}>
+          <TableHeaderColumn dataField="segment" dataSort={true}>
             Segment <br /> auto &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="beoordeling" dataSort={true}>
+          <TableHeaderColumn dataField="rating" dataSort={true}>
             Beoordeling &#x2195;
           </TableHeaderColumn>
 
