@@ -130,35 +130,35 @@ export default class ChauffeurTable extends React.Component {
           ritten &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="typeOfPayment" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="typeOfPayment" dataSort={true}>
           Soort
           <br/>
           vergoeding &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="totalEarned" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="totalEarned" dataSort={true}>
           Totaal
           <br/>
           verdiend &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="numberPlate" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="numberPlate" dataSort={true}>
           Kenteken &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="numberOfPassengers" dataSort={true}>
+        <TableHeaderColumn width="120" dataField="numberOfPassengers" dataSort={true}>
           Aantal
           <br/>
           personen &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="segment" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="segment" dataSort={true}>
           Segment
           <br/>
           auto &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataField="rating" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="rating" dataSort={true}>
           Beoordeling &#x2195;
         </TableHeaderColumn>
 
