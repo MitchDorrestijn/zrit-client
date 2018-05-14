@@ -90,8 +90,8 @@ export default class ChauffeurTable extends React.Component {
    */
   renderButtons = () => {
     return (<div>
-      <Button onClick={Error: no source code supplied to jspretty!} color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button disabled={this.state.disableButtons} onClick={Error: no source code supplied to jspretty!} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button color="primary" className='crud-btn'>Toevoegen</Button>
+      <Button disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
 
