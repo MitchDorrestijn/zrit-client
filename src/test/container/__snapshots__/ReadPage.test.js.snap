@@ -25,6 +25,9 @@ exports[`<ReadPage /> should match snapshot 1`] = `
       <ReadZorginstelling
         routes=""
       />
+      <ReadChauffeur
+        routes=""
+      />
       <Footer />
     </Col>
   </Row>

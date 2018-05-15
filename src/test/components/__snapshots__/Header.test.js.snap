@@ -89,7 +89,6 @@ exports[`<Header /> should match snapshot 1`] = `
       <Link
         className="nav-link"
         replace={false}
-        to="#"
       >
         Chauffeurs
       </Link>

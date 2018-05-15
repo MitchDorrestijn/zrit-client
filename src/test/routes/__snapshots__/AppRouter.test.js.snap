@@ -15,6 +15,11 @@ exports[`<AppRouter /> should match snapshot 1`] = `
     />
     <Route
       exact={true}
+      path="/read/chauffeur"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
       path="/create/zorginstelling"
       render={[Function]}
     />
