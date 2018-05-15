@@ -15,15 +15,13 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
- * This class takes care of rendering the client table, from here other actions can be taken
+ * This class takes care of rendering the client table, from here other actions can be taken like editing
  */
 export default class ClientTable extends React.Component {
   componentDidMount() {
     axios.get(`${config.url}/client/clienten`).then((res) => {
-      console.log(res);
       this.setState({data: res.data});
     }).catch((err) => {
-      console.log(err);
       return this.props.history.push(this.props.routes.error);
     });
   }

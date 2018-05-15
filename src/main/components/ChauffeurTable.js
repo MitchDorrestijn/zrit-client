@@ -20,7 +20,6 @@ import '../css/table.css';
 export default class ChauffeurTable extends React.Component {
   componentDidMount() {
     axios.get(`${config.url}/chauffeur/chauffeurs`).then((res) => {
-      console.log(res);
       this.setState({data: res.data});
     }).catch((err) => {
       return this.props.history.push(this.props.routes.error);
