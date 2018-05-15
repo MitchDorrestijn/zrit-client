@@ -37,19 +37,19 @@ export default class ClientTable extends React.Component {
     super(props);
     this.columns = [
       {
-        name: 'warning',
-        display: 'WARNING'
+        name: 'warningPKB',
+        display: 'Warning'
       }, {
         name: 'name',
         display: 'Naam cliënt'
       }, {
-        name: 'PKB',
+        name: 'pkb',
         display: 'PKB cliënt'
       }, {
-        name: 'madeKilometers',
-        display: 'Gemaakte km'
+        name: 'totalMeters',
+        display: 'Gemaakte meters'
       }, {
-        name: 'toPay',
+        name: 'priceToPay',
         display: 'Te betalen door cliënt'
       }
     ];
@@ -106,11 +106,11 @@ export default class ClientTable extends React.Component {
           onSelect: this.onSelect
         }} ref='table'>
 
-        <TableHeaderColumn hidden={true} dataField="id" isKey={true}>
+        <TableHeaderColumn hidden={true} dataField="clientId" isKey={true}>
           ID
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="200" dataField="warning" dataSort={true}>
+        <TableHeaderColumn width="50" dataField="warningPKB" dataSort={true}>
           Warning
         </TableHeaderColumn>
 
@@ -118,19 +118,19 @@ export default class ClientTable extends React.Component {
           Naam
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="PKB" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="pkb" dataSort={true}>
           PKB
           <br/>
           cliënt &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="madeKilometers" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="totalMeters" dataSort={true}>
           Gemaakte
           <br/>
           km's' &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="toPay" dataSort={true}>
+        <TableHeaderColumn width="130" dataField="priceToPay" dataSort={true}>
           Te betalen
           <br/>
           door cliënt &#x2195;
