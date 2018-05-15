@@ -15,11 +15,11 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
- * This class takes care of rendering the chauffeur table, from here other actions can be taken
+ * This class takes care of rendering the client table, from here other actions can be taken like editing
  */
-export default class ChauffeurTable extends React.Component {
+export default class ClientTable extends React.Component {
   componentDidMount() {
-    axios.get(`${config.url}/chauffeur/chauffeurs`).then((res) => {
+    axios.get(`${config.url}/client/clienten`).then((res) => {
       this.setState({data: res.data});
     }).catch((err) => {
       return this.props.history.push(this.props.routes.error);
@@ -35,29 +35,20 @@ export default class ChauffeurTable extends React.Component {
     super(props);
     this.columns = [
       {
+        name: 'warningPKB',
+        display: 'Warning'
+      }, {
         name: 'name',
-        display: 'Naam chauffeur'
+        display: 'Naam cliënt'
       }, {
-        name: 'totalRides',
-        display: 'Aantal ritten'
+        name: 'pkb',
+        display: 'PKB cliënt'
       }, {
-        name: 'typeOfPayment',
-        display: 'Soort vergoeding'
+        name: 'totalMeters',
+        display: 'Gemaakte meters'
       }, {
-        name: 'totalEarned',
-        display: 'Totaal verdiend'
-      }, {
-        name: 'numberPlate',
-        display: 'Kenteken auto'
-      }, {
-        name: 'numberOfPassengers',
-        display: 'Aantal personen auto'
-      }, {
-        name: 'segment',
-        display: 'Segment auto'
-      }, {
-        name: 'rating',
-        display: 'Beoordeling'
+        name: 'priceToPay',
+        display: 'Te betalen door cliënt'
       }
     ];
     this.state = {
@@ -113,57 +104,39 @@ export default class ChauffeurTable extends React.Component {
           onSelect: this.onSelect
         }} ref='table'>
 
-        <TableHeaderColumn hidden={true} dataField="id" isKey={true}>
+        <TableHeaderColumn hidden={true} dataField="clientId" isKey={true}>
           ID
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="200" dataField="name" dataSort={true}>
+        <TableHeaderColumn width="50" dataField="warningPKB" dataSort={true}>
+          Warning
+        </TableHeaderColumn>
+
+        <TableHeaderColumn width="100" dataField="name" dataSort={true}>
           Naam
+        </TableHeaderColumn>
+
+        <TableHeaderColumn width="130" dataField="pkb" dataSort={true}>
+          PKB
           <br/>
-          chauffeur &#x2195;
+          cliënt &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="100" dataField="totalRides" dataSort={true}>
-          Aantal
+        <TableHeaderColumn width="130" dataField="totalMeters" dataSort={true}>
+          Gemaakte
           <br/>
-          ritten &#x2195;
+          km's' &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="typeOfPayment" dataSort={true}>
-          Soort
+        <TableHeaderColumn width="130" dataField="priceToPay" dataSort={true}>
+          Te betalen
           <br/>
-          vergoeding &#x2195;
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="130" dataField="totalEarned" dataSort={true}>
-          Totaal
-          <br/>
-          verdiend &#x2195;
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="130" dataField="numberPlate" dataSort={true}>
-          Kenteken &#x2195;
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="120" dataField="numberOfPassengers" dataSort={true}>
-          Aantal
-          <br/>
-          personen &#x2195;
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="130" dataField="segment" dataSort={true}>
-          Segment
-          <br/>
-          auto &#x2195;
-        </TableHeaderColumn>
-
-        <TableHeaderColumn width="130" dataField="rating" dataSort={true}>
-          Beoordeling &#x2195;
+          door cliënt &#x2195;
         </TableHeaderColumn>
 
       </BootstrapTable>
 
-      <CSVLink data={this.state.data} filename={"chauffeurs_overview"} className="btn btn-primary crud-btn" target="">
+      <CSVLink data={this.state.data} filename={"clienten_overview"} className="btn btn-primary crud-btn" target="">
         Export als CSV
       </CSVLink>
     </div>);

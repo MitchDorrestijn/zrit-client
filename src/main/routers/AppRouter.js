@@ -27,6 +27,7 @@ const routes = {
   updateZorginstelling: '/update/zorginstelling',
   error: '/error',
   readChauffeur: '/read/chauffeur',
+  readClienten: '/read/client'
 }
 
 const AppRouter = () => {
@@ -36,6 +37,7 @@ const AppRouter = () => {
 	      <Route exact path={routes.login} render={(props) => (<LoginPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readZorginstelling} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
+        <Route exact path={routes.readClienten} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
 	      <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
 	      <Route exact path={`${routes.updateZorginstelling}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
         <Route exact path={`${routes.error}`} render={(props) => (<ErrorPage {...props} routes={routes}/>)}/>
