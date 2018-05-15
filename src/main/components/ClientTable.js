@@ -46,7 +46,7 @@ export default class ClientTable extends React.Component {
         display: 'PKB cliënt'
       }, {
         name: 'madeKilometers',
-        display: 'Gemaakte km's''
+        display: 'Gemaakte kms'
       }, {
         name: 'toPay',
         display: 'Te betalen door cliënt'
