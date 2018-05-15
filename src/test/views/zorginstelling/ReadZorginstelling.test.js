@@ -16,3 +16,8 @@ test('<ReadZorginstelling /> should render one <TextContent> component', () => {
 test('<ReadZorginstelling /> should render one <ZorginstellingTable> component', () => {
   expect(wrapper.find('ZorginstellingTable').length).toBe(1);
 });
+
+test('<TextContent /> in <ReadZorginstelling /> should have a title of Zorginstellingen beheren', () => {
+  const childWrapper = wrapper.find('TextContent');
+  expect(childWrapper.prop('title')).toBe("Zorginstellingen beheren");
+});
