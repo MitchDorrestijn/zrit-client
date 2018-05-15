@@ -19,10 +19,11 @@ import '../css/table.css';
  */
 export default class ClientTable extends React.Component {
   componentDidMount() {
-    axios.get(`${config.url}/client/clients`).then((res) => {
+    axios.get(`${config.url}/client/clienten`).then((res) => {
       console.log(res);
       this.setState({data: res.data});
     }).catch((err) => {
+      console.log(err);
       return this.props.history.push(this.props.routes.error);
     });
   }
@@ -46,7 +47,7 @@ export default class ClientTable extends React.Component {
         display: 'PKB cliënt'
       }, {
         name: 'madeKilometers',
-        display: 'Gemaakte km's''
+        display: 'Gemaakte km'
       }, {
         name: 'toPay',
         display: 'Te betalen door cliënt'

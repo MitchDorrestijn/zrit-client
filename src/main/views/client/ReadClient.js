@@ -21,7 +21,7 @@ const ReadClient = (props) => {
 				vervolgens kunt u het record bewerken door op de knop 'bewerken' te drukken.
 				Om een nieuw item toe te toevoegen drukt u op de knop 'Toevoegen'.
 	    </TextContent>
-	    // <ClientTable routes={props.routes} history={props.history}/>
+	     <ClientTable routes={props.routes} history={props.history}/>
   	</div>
 	);
 }
