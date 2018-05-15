@@ -1,0 +1,129 @@
+<html><head><meta charset="utf-8"/><title>Test report</title><style type="text/css">html, body {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 1rem;
+	margin: 0;
+	padding: 0;
+	color: #333;
+}
+body {
+	padding: 1rem;
+	font-size: 0.85rem;
+}
+header {
+	display: flex;
+	align-items: center;
+}
+#title {
+	margin: 0;
+	flex-grow: 1;
+}
+#logo {
+	height: 4rem;
+}
+#timestamp {
+	font-weight: bold;
+	color: #666;
+	margin-bottom: 0.5rem;
+}
+#summary {
+	color: #999;
+	margin-bottom: 1rem;
+}
+.suite-info {
+	padding: 1rem;
+	background-color: #eee;
+	border-bottom: 2px solid #999;
+	color: #999;
+	display: flex;
+	align-items: center;
+}
+.suite-info .suite-path {
+	font-weight: bold;
+	word-break: break-all;
+	flex-grow: 1;
+}
+.suite-info .suite-time {
+	margin-left: 0.5rem;
+	padding: 0.2rem 0.3rem;
+	font-size: 0.75rem;
+}
+.suite-info .suite-time.warn {
+	background-color: #D8000C;
+	color: #fff;
+}
+.suite-table {
+	width: 100%;
+	font-size: 0.85rem;
+	margin-bottom: 1em;
+}
+.suite-table td {
+	padding: 0.5rem;
+}
+.suite-table tr.passed {
+	background-color: #DFF2BF;
+	color: #4F8A10;
+}
+.suite-table tr.pending {
+	background-color: #FEEFB3;
+	color: #9F6000;
+}
+.suite-table tr.failed {
+	background-color: #FFBABA;
+	color: #D8000C;
+}
+.suite-table td {
+	font-size: 0.85rem;
+	border-bottom: 1px solid #aaa;
+	vertical-align: top;
+}
+.suite-table td.suite {
+	font-weight: bold;
+	width: 20%;
+}
+.suite-table td.test {
+	font-style: italic;
+	width: 60%;
+}
+.suite-table td.test .failureMsg {
+	font-size: 1rem;
+	white-space: pre-wrap;
+	white-space: -moz-pre-wrap;
+	white-space: -pre-wrap;
+	white-space: -o-pre-wrap;
+	word-wrap: break-word;
+}
+.suite-table td.result {
+	width: 20%;
+	text-align: right;
+}
+
+/* CONSOLE LOGS */
+.suite-consolelog {
+	margin-bottom: 2rem;
+	padding: 1rem;
+	background-color: #efefef;
+}
+.suite-consolelog-header {
+	font-weight: bold;
+}
+.suite-consolelog-item {
+	padding: 0.5rem;
+}
+.suite-consolelog-item pre {
+	margin: 0;
+}
+.suite-consolelog-item-origin {
+	color: #777;
+	font-weight: bold;
+}
+.suite-consolelog-item-message {
+	color: #000;
+	font-size: 1rem;
+	padding: 0 0.5rem;
+}
+</style></head><header><h1 id="title">Test report</h1></header><div id="metadata-container"><div id="timestamp">Start: 2018-05-15 15:43:02</div><div id="summary">
+				96 tests --
+				96 passed /
+				0 failed /
+				0 pending
+			</div></div><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/ZorginstellingTable.test.js</div><div class="suite-time warn">18.937s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">CRUDTable component should match snapshot</td><td class="result">passed in 0.012s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render two TableHeaderColumn components</td><td class="result">passed in 0.006s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one BootstrapTable component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one CSVLink component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/container/ReadPage.test.js</div><div class="suite-time warn">19.684s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;ReadPage /&gt; should match snapshot</td><td class="result">passed in 0.013s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadPage /&gt; should render one &lt;Container&gt; component</td><td class="result">passed in 0.006s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadPage /&gt; should render one &lt;Row&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadPage /&gt; should render one &lt;Col&gt; component</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Header&gt; component</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Footer&gt; component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/routes/AppRouter.test.js</div><div class="suite-time warn">22.689s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;AppRouter /&gt; should match snapshot</td><td class="result">passed in 0.01s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;AppRouter /&gt; should render one &lt;BrowserRouter&gt; component</td><td class="result">passed in 0.005s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;AppRouter /&gt; should render one &lt;Switch&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;AppRouter /&gt; should render six &lt;Route&gt; component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/Header.test.js</div><div class="suite-time warn">22.944s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should match snapshot</td><td class="result">passed in 0.011s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render one &lt;Row /&gt;</td><td class="result">passed in 0.005s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render two &lt;Col /&gt;</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render one figure</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render one image</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render &lt;Link /&gt; nine times</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render &lt;Nav /&gt; one time</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Header /&gt; should render &lt;NavItem /&gt; seven times</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">.top-navigation class should be applied to a &lt;Row /&gt;</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">.nav-justified class should be applied to a &lt;Nav /&gt;</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">.logout-btn class should be applied to a &lt;Link /&gt;</td><td class="result">passed in 0.008s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/views/zorginstelling/ReadZorginstelling.test.js</div><div class="suite-time">4.787s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;ReadZorginstelling /&gt; should match snapshot</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadZorginstelling /&gt; should render one &lt;TextContent&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadZorginstelling /&gt; should render one &lt;ZorginstellingTable&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; in &lt;ReadZorginstelling /&gt; should have a title of Zorginstellingen beheren</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/container/CreatePage.test.js</div><div class="suite-time">1.357s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should match snapshot</td><td class="result">passed in 0.008s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Container&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Row&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Col&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Header&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;Footer&gt; component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/ChauffeurTable.test.js</div><div class="suite-time">1.193s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">CRUDTable component should match snapshot</td><td class="result">passed in 0.006s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render nine TableHeaderColumn components</td><td class="result">passed in 0.004s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one BootstrapTable component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one CSVLink component</td><td class="result">passed in 0.002s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/container/LoginPage.test.js</div><div class="suite-time">0.58s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should render one &lt;Container&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should render one &lt;Row&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should render two &lt;Col&gt; components</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should render one &lt;LoginImg&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginPage /&gt; should render one &lt;LoginForm&gt; component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/views/Error.test.js</div><div class="suite-time">0.897s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;Error /&gt; should match snapshot</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Error /&gt; should render one &lt;TextContent&gt; component</td><td class="result">passed in 0.002s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/views/zorginstelling/CreateZorginstelling.test.js</div><div class="suite-time">0.678s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;CreateZorginstelling /&gt; should match snapshot</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreateZorginstelling /&gt; should render one &lt;TextContent&gt; component</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;CreatePage /&gt; should render one &lt;ZorginstellingForm&gt; component</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/TextContent.test.js</div><div class="suite-time">0.725s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">The class .textblock should be applied in a &lt;Col /&gt;</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; render one &lt;Col /&gt;</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; render one &lt;h2&gt;&lt;/h2&gt;</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; render one &lt;p&gt;&lt;/p&gt;</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; render one &lt;hr /&gt;</td><td class="result">passed in 0s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/ZorginstellingForm.test.js</div><div class="suite-time warn">6.285s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should have one type of &lt;Form&gt;&lt;/Form&gt; components</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should have one type of &lt;Row&gt;&lt;/Row&gt; components</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should render one &lt;Col&gt;&lt;/Col&gt; component</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should render one &lt;FormGroup&gt;&lt;/FormGroup&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should render one &lt;Input&gt;&lt;/Input&gt; component</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; should render one &lt;Label&gt;&lt;/Label&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ZorginstellingForm /&gt; calls componentDidMount()</td><td class="result">passed in 0.032s</td></tr><tr class="passed"><td class="suite"/><td class="test">handleAddZorginstelling is called on form submit</td><td class="result">passed in 0.007s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/LoginImg.test.js</div><div class="suite-time">0.676s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;LoginImg /&gt; should match snapshot</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginImg /&gt; should render &lt;div&gt;&lt;/div&gt; two times</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginImg /&gt; should render one &lt;img /&gt; tag</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;img /&gt; tag should have the class .img-fluid</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/container/UpdatePage.test.js</div><div class="suite-time">2.543s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should render one &lt;Container&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should render one &lt;Row&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should render one &lt;Col&gt; component</td><td class="result">passed in 0.006s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should render one &lt;Header&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;UpdatePage /&gt; should render one &lt;Footer&gt; component</td><td class="result">passed in 0s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/views/chauffeur/ReadChauffeur.test.js</div><div class="suite-time">0.728s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;ReadChauffeur /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadChauffeur /&gt; should render one &lt;TextContent&gt; component</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;ReadChauffeur /&gt; should render one &lt;ChauffeurTable&gt; component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;TextContent /&gt; in &lt;ReadChauffeur /&gt; should have a title of Chauffeurs beheren</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/LoginForm.test.js</div><div class="suite-time">0.971s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render one &lt;Form /&gt;</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render two &lt;div&gt;&lt;/div&gt; elements</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render one &lt;header&gt;&lt;/header&gt;</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render one &lt;img /&gt;</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render &lt;Label /&gt; two times</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render &lt;Input /&gt; two times</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;LoginForm /&gt; should render one &lt;Button /&gt;</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/Footer.test.js</div><div class="suite-time">0.716s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">&lt;Footer /&gt; should match snapshot</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Footer /&gt; should have one type of &lt;footer&gt;&lt;/footer&gt; tags</td><td class="result">passed in 0.002s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Footer /&gt; should have one type of &lt;small&gt;&lt;/small&gt; tags</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">&lt;Footer /&gt; should have one type of &lt;span&gt;&lt;/span&gt; tags</td><td class="result">passed in 0s</td></tr><tr class="passed"><td class="suite"/><td class="test">The phonenumber in the &lt;Footer /&gt; should match 020 - 123 45 67</td><td class="result">passed in 0.001s</td></tr></table><div class="suite-info"><div class="suite-path">/Users/mitchdorrestijn/Desktop/OOSE-project-bitbucket/zorgrit-boterbloem-client/src/test/components/LoginPage.test.js</div><div class="suite-time">0.809s</div></div><table class="suite-table" cellspacing="0" cellpadding="0"><tr class="passed"><td class="suite"/><td class="test">LoginPage component should match snapshot</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one Container component</td><td class="result">passed in 0.003s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render one Row component</td><td class="result">passed in 0.001s</td></tr><tr class="passed"><td class="suite"/><td class="test">Should render two Col component</td><td class="result">passed in 0.001s</td></tr></table></html>
