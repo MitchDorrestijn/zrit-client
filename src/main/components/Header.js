@@ -60,7 +60,7 @@ const Header = (props) => {
           <Link className="nav-link" to="#">Ritten bestellen</Link>
         </NavItem>
         <NavItem>
-          <Link className="nav-link" to="#">Over</Link>
+          <Link className="nav-link" to="{props.routes.About}">Over</Link>
         </NavItem>
       </Nav>
     </div>
