@@ -5,8 +5,9 @@ import React from 'react';
 import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
 import axios from 'axios';
-import {BootstrapTable, TableHeaderColumn, SearchField} from 'react-bootstrap-table';
+import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import config from '../config';
+import {renderSearchField, renderSortedColumn} from '../global/Methods';
 
 /**
  * Style related imports
@@ -60,22 +61,6 @@ export default class ClientTable extends React.Component {
   }
 
   /**
-   * Renders the columns sorted.
-   * @param {string} sortColumnName - Name of the column that is going to be sorted
-   * @param {string} sortOrder - Can be either desc or asc
-   */
-  renderSortedColumn = (sortColumnName, sortOrder) => {
-    this.setState({sortColumnName: sortColumnName, sortOrder: sortOrder});
-  };
-
-  /**
-   * Renders the search field above the table
-   */
-  renderSearchField = () => {
-    return (<SearchField className='searchfield' placeholder='Type om te zoeken'/>);
-  };
-
-  /**
    * Renders the buttons above the table
    */
   renderButtons = () => {
@@ -92,9 +77,9 @@ export default class ClientTable extends React.Component {
     const tableOptions = {
       sortColumnName: this.state.sortName,
       sortOrder: this.state.sortOrder,
-      renderSortedColumn: this.renderSortedColumn,
+      renderSortedColumn: renderSortedColumn,
       noDataText: 'Geen resultaten gevonden',
-      searchField: this.renderSearchField,
+      searchField: renderSearchField,
       btnGroup: this.renderButtons
     };
 
