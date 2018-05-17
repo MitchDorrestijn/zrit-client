@@ -3,7 +3,7 @@ import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
 import ReadChauffeur from '../../../main/views/client/ReadClient';
 
-const wrapper = shallow(<ReadChauffeur />);
+const wrapper = shallow(<ReadClient />);
 
 test('<ReadClient /> should match snapshot', () => {
   expect(toJSON(wrapper)).toMatchSnapshot();
