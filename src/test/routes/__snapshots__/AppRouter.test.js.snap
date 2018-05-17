@@ -20,6 +20,11 @@ exports[`<AppRouter /> should match snapshot 1`] = `
     />
     <Route
       exact={true}
+      path="/read/client"
+      render={[Function]}
+    />
+    <Route
+      exact={true}
       path="/create/zorginstelling"
       render={[Function]}
     />

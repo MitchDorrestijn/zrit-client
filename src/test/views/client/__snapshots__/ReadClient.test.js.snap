@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<ReadClient /> should match snapshot 1`] = `
+<div>
+  <TextContent
+    title="Cliënten beheren"
+  >
+    Hieronder kunt u cliënten beheren. Druk op het rondje vooraan de tabel om een record te selecteren, vervolgens kunt u het record bewerken door op de knop 'bewerken' te drukken. Om een nieuw item toe te toevoegen drukt u op de knop 'Toevoegen'.
+  </TextContent>
+  <ClientTable />
+</div>
+`;
