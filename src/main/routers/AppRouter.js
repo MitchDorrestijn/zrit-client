@@ -16,6 +16,7 @@ import ReadPage from '../container/ReadPage';
 import CreatePage from '../container/CreatePage';
 import UpdatePage from '../container/UpdatePage';
 import ErrorPage from '../container/ErrorPage';
+import AboutPage from '../container/AboutPage';
 
 /**
  * Routes that the application knows
@@ -27,7 +28,8 @@ const routes = {
   updateZorginstelling: '/update/zorginstelling',
   error: '/error',
   readChauffeur: '/read/chauffeur',
-  readClienten: '/read/client'
+  readClienten: '/read/client',
+  aboutPage: '/about'
 }
 
 const AppRouter = () => {
@@ -41,7 +43,8 @@ const AppRouter = () => {
 	      <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
 	      <Route exact path={`${routes.updateZorginstelling}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
         <Route exact path={`${routes.error}`} render={(props) => (<ErrorPage {...props} routes={routes}/>)}/>
-	    </Switch>
+        <Route exact path={routes.About} render={(props) => (<AboutPage {...props} routes={routes}/>)}/>
+      </Switch>
   	</BrowserRouter>
 	);
 }
