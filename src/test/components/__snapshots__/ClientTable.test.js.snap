@@ -1,0 +1,252 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CRUDTable component should match snapshot 1`] = `
+<div>
+  <BootstrapTable
+    autoCollapse={
+      Object {
+        "filter": false,
+        "search": false,
+        "sort": false,
+      }
+    }
+    bodyContainerClass={null}
+    bordered={true}
+    cellEdit={
+      Object {
+        "afterSaveCell": undefined,
+        "beforeSaveCell": undefined,
+        "blurToEscape": false,
+        "blurToSave": false,
+        "mode": "none",
+        "nonEditableRows": undefined,
+      }
+    }
+    columnFilter={false}
+    condensed={false}
+    containerClass={null}
+    csvFileName="spreadsheet.csv"
+    data={Array []}
+    deleteRow={false}
+    expandColumnOptions={
+      Object {
+        "expandColumnBeforeSelectColumn": true,
+        "expandColumnComponent": undefined,
+        "expandColumnVisible": false,
+        "expandedColumnHeaderComponent": undefined,
+      }
+    }
+    exportCSV={false}
+    fetchInfo={
+      Object {
+        "dataTotalSize": 0,
+      }
+    }
+    footer={false}
+    headerContainerClass={null}
+    height="100%"
+    hover={false}
+    ignoreSinglePage={false}
+    insertRow={false}
+    keyBoardNav={false}
+    multiColumnSearch={false}
+    multiColumnSort={1}
+    options={
+      Object {
+        "btnGroup": [Function],
+        "noDataText": "Geen resultaten gevonden",
+        "renderSortedColumn": [Function],
+        "searchField": [Function],
+        "sortColumnName": undefined,
+        "sortOrder": undefined,
+      }
+    }
+    pagination={false}
+    printable={false}
+    renderAlert={true}
+    replace={false}
+    search={true}
+    selectRow={
+      Object {
+        "mode": "radio",
+        "onSelect": undefined,
+      }
+    }
+    striped={false}
+    tableBodyClass={null}
+    tableContainerClass={null}
+    tableFooterClass={null}
+    tableHeaderClass={null}
+    trClassName=""
+    version="3"
+    withoutTabIndex={false}
+  >
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="clientId"
+      dataSort={false}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={true}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={true}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width={null}
+    >
+      ID
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="warningPKB"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="50"
+    >
+      Warning
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="name"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="100"
+    >
+      Naam
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="pkb"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="130"
+    >
+      PKB
+      <br />
+      cliënt ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="totalMeters"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="130"
+    >
+      Gemaakte
+      <br />
+      km's' ↕
+    </TableHeaderColumn>
+    <TableHeaderColumn
+      className=""
+      columnClassName=""
+      columnTitle={false}
+      csvFieldType="string"
+      dataAlign="left"
+      dataField="priceToPay"
+      dataSort={true}
+      defaultASC={false}
+      editColumnClassName=""
+      editable={true}
+      expandable={true}
+      filterFormatted={false}
+      headerTitle={true}
+      hidden={false}
+      hiddenOnInsert={false}
+      invalidEditColumnClassName=""
+      isKey={false}
+      keyValidator={false}
+      searchable={true}
+      sortIndicator={true}
+      width="130"
+    >
+      Te betalen
+      <br />
+      door cliënt ↕
+    </TableHeaderColumn>
+  </BootstrapTable>
+  <CSVLink
+    className="btn btn-primary crud-btn"
+    data={Array []}
+    filename="clienten_overview"
+    separator=","
+    target=""
+    uFEFF={true}
+  >
+    Export als CSV
+  </CSVLink>
+</div>
+`;
