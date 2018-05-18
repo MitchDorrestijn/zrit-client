@@ -2,8 +2,6 @@
  * React related imports
  */
 import React from 'react';
-import axios from 'axios';
-import config from '../config';
 import {
   Col,
   Form,
@@ -14,6 +12,16 @@ import {
   Button,
   Alert
 } from 'reactstrap';
+
+/**
+ * Endpoints import
+ */
+import {
+  getSpecificZorginstelling,
+  deleteZorginstelling,
+  updateZorginstelling,
+  createZorginstelling
+} from '../CRUD/Zorginstelling';
 
 /**
  * Style related imports
@@ -30,7 +38,9 @@ export default class ZorginstellingForm extends React.Component {
    */
   componentDidMount() {
     if (this.props.update) {
-      this.handleGetZorginstelling();
+      getSpecificZorginstelling(this.props)
+      .then((res) => this.setState({zorginstellingNaam: res.data.name}))
+      .catch((err) => this.setState({error: err.message, success: false}));
     }
   }
 
@@ -50,50 +60,32 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
- * Makes the GET request ready and sends it to the server
- */
-  handleGetZorginstelling = () => {
-    axios.get(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
-      this.setState({zorginstellingNaam: res.data.name});
-    }).catch((err) => {
-      this.setState({error: err.message, success: false});
-    });
-  }
-
-  /**
- * Makes the DELETE request ready and sends it to the server
+ * Makes the DELETE request ready
  */
   handleRemoveZorginstelling = () => {
-    axios.delete(`${config.url}/zorginstelling/${this.props.id}`).then((res) => {
-      let succesFeedback = "Zorginstelling succesvol verwijderd";
-      this.setState({success: succesFeedback, error: false, removed: true});
-    }).catch((err) => {
-      this.setState({error: err.message, success: false});
-    })
+    deleteZorginstelling(this.props)
+    .then((res) => this.setState({success: "Zorginstelling succesvol verwijderd", error: false, removed: true}))
+    .catch((err) => this.setState({error: err.message, success: false}));
   }
 
   /**
- * Makes a PUT request to the server
+ * Makes the PUT request ready
+ * @param {string} data - New name of the zorginstelling
  */
   handleUpdateZorginstelling = (data) => {
-    axios.put(`${config.url}/zorginstelling/${this.props.id}/edit`, data).then((res) => {
-      let succesFeedback = "Naam zorginstelling gewijzigd naar " + res.data.name;
-      this.setState({success: succesFeedback, error: false});
-    }).catch((err) => {
-      this.setState({error: err.message, success: false});
-    });
+    updateZorginstelling(this.props, data)
+    .then((res) => this.setState({success: `Naam zorginstelling gewijzigd naar ${res.data.name}`, error: false}))
+    .catch((err) => this.setState({error: err.message, success: false}));
   }
 
   /**
- * Makes a POST request to the server
+ * Makes the POST request ready
+ * @param {string} data - Name of the zorginstelling
  */
   handleAddZorginstelling = (data) => {
-    axios.post(`${config.url}/zorginstelling/addZorginstelling`, data).then((res) => {
-      let succesFeedback = "Zorginstelling " + data.name + " succesvol toegevoegd";
-      this.setState({success: succesFeedback, error: false});
-    }).catch((err) => {
-      this.setState({error: err.message, success: false});
-    });
+    createZorginstelling(data)
+    .then((res) => this.setState({success: `Zorginstelling ${data.name} succesvol toegevoegd`, error: false}))
+    .catch((err) => this.setState({error: err.message, success: false}));
   }
 
   /**
@@ -107,14 +99,12 @@ export default class ZorginstellingForm extends React.Component {
   }
 
   /**
-   * Makes the POST or PUT request ready and sends it to the server
+   * Makes the POST or PUT request ready
    */
   handleZorginstelling = () => {
-    let data = {
-      name: this.state.zorginstellingNaam
-    }
-    if(this.props.update) {
-      this.handleUpdateZorginstelling(data);
+    let data = {name: this.state.zorginstellingNaam}
+    if(
+      this.props.update) {this.handleUpdateZorginstelling(data);
     } else {
       this.handleAddZorginstelling(data);
     }

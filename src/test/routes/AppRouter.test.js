@@ -17,6 +17,6 @@ test('<AppRouter /> should render one <Switch> component', () => {
   expect(wrapper.find('Switch').length).toBe(1);
 });
 
-test('<AppRouter /> should render seven <Route> component', () => {
-  expect(wrapper.find('Route').length).toBe(7);
+test('<AppRouter /> should render eight <Route> component', () => {
+  expect(wrapper.find('Route').length).toBe(8);
 });

@@ -38,6 +38,10 @@ exports[`<AppRouter /> should match snapshot 1`] = `
       path="/error"
       render={[Function]}
     />
+    <Route
+      exact={true}
+      render={[Function]}
+    />
   </Switch>
 </BrowserRouter>
 `;

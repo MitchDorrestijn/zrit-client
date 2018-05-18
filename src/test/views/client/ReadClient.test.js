@@ -1,7 +1,7 @@
 import React from 'react';
 import {shallow} from 'enzyme';
 import toJSON from 'enzyme-to-json';
-import ReadChauffeur from '../../../main/views/client/ReadClient';
+import ReadClient from '../../../main/views/client/ReadClient';
 
 const wrapper = shallow(<ReadClient />);
 
