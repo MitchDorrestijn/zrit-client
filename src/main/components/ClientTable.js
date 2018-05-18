@@ -4,10 +4,15 @@
 import React from 'react';
 import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
-import axios from 'axios';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import config from '../config';
 import {renderSearchField, renderSortedColumn} from '../global/Methods';
+
+/**
+ * Endpoints import
+ */
+import {
+  getAllClients
+} from '../CRUD/Client';
 
 /**
  * Style related imports
@@ -19,12 +24,12 @@ import '../css/table.css';
  * This class takes care of rendering the client table, from here other actions can be taken like editing
  */
 export default class ClientTable extends React.Component {
+
+  /**
+   * Makes a GET request to get all chauffeurs when component is mounted
+   */
   componentDidMount() {
-    axios.get(`${config.url}/client/clienten`).then((res) => {
-      this.setState({data: res.data});
-    }).catch((err) => {
-      return this.props.history.push(this.props.routes.error);
-    });
+    getAllClients(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
   }
 
   /**

@@ -16,3 +16,7 @@ export const renderSearchField = () => {
 export const renderSortedColumn = (sortColumnName, sortOrder) => {
   this.setState({sortColumnName: sortColumnName, sortOrder: sortOrder});
 };
+
+export const redirectToErrorPage = (props) => {
+  return props.history.push(props.routes.error);
+}

@@ -4,13 +4,21 @@
 import React from 'react';
 import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
-import axios from 'axios';
-import config from '../config';
 import {
   BootstrapTable,
   TableHeaderColumn
 } from 'react-bootstrap-table';
-import {renderSearchField, renderSortedColumn} from '../global/Methods';
+import {
+  renderSearchField,
+  renderSortedColumn
+} from '../global/Methods';
+
+/**
+ * Endpoints import
+ */
+import {
+  getAllZorginstellingen
+} from '../CRUD/Zorginstelling';
 
 /**
  * Style related imports
@@ -23,12 +31,11 @@ import '../css/table.css';
  */
 export default class ZorginstellingTable extends React.Component {
 
+  /**
+   * Makes a GET request to get all zorginstellingen when component is mounted
+   */
   componentDidMount(){
-    axios.get(`${config.url}/zorginstelling/zorginstellingen`).then((res) => {
-      this.setState({data: res.data});
-    }).catch((err) => {
-      return this.props.history.push(this.props.routes.error);
-    });
+    getAllZorginstellingen(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
   }
 
   /**
