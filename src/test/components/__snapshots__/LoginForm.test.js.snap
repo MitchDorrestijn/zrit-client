@@ -39,6 +39,7 @@ exports[`<LoginForm /> should match snapshot 1`] = `
         autoFocus={true}
         className="mb-3 "
         id="inputUserName"
+        name="username"
         placeholder="Gebruikersnaam"
         type="text"
       />
@@ -63,6 +64,7 @@ exports[`<LoginForm /> should match snapshot 1`] = `
       <Input
         className="mb-4"
         id="inputPassword"
+        name="password"
         placeholder="Wachtwoord"
         type="password"
       />
