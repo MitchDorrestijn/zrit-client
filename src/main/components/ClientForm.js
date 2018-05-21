@@ -28,7 +28,7 @@ import {
 /**
  * Style related imports
  */
-import '../css/zorginstellingForm.css';
+import '../css/form.css';
 import 'react-select/dist/react-select.css';
 
 /**
@@ -78,6 +78,7 @@ export default class ClientForm extends React.Component {
       clientTelefoon: "",
       clientBanknr: "",
       clientWachtwoord: "",
+      clientWachtwoord2: "",
       clientBegeleiderVerplicht: "",
       clientBeperkingen: [],
       clientBuget: "",
@@ -112,7 +113,6 @@ export default class ClientForm extends React.Component {
  * @param {string} data - Name of the client
  */
   handleAddClient = (data) => {
-    console.log(data);
     createClient(data)
     .then((res) => this.setState({success: `cliënt ${data.name} succesvol toegevoegd`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
@@ -142,7 +142,7 @@ export default class ClientForm extends React.Component {
    */
   handleClientBeperkingenSelect = (selectedOption) => {
     let arr = selectedOption.split(',');
-    this.setState({ clientBeperkingen: arr});
+    this.setState({clientBeperkingen: arr});
   }
 
   /**
@@ -282,7 +282,6 @@ export default class ClientForm extends React.Component {
                   placeholder="Wachtwoord cliënt herhaling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
-
             <Col md="3">
               <FormGroup>
                 <Label for="clientBegeleiderVerplicht">Begeleider verplicht:</Label>
@@ -299,7 +298,7 @@ export default class ClientForm extends React.Component {
                   options={[
                     { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'clientBeperkingen'},
                     { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'clientBeperkingen'},
-                    { value: 'oudere', label: 'Oudere', state: 'clientBeperkingen'},
+                    { value: 'oudere', label: 'Oudere', state: 'clientBeperkingen'}
                   ]}
                 />
               </FormGroup>
