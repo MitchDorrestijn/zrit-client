@@ -15,6 +15,7 @@ import Header from '../components/Header';
 import Footer from '../components/Footer';
 import UpdateZorginstelling from '../views/zorginstelling/UpdateZorginstelling';
 import UpdateClient from '../views/client/UpdateClient';
+import UpdateChauffeur from '../views/chauffeur/UpdateChauffeur';
 
 /**
  * This component renders the update page for the elements based on the URL
@@ -31,6 +32,9 @@ const UpdatePage = (props) => {
             }
             {pageURLToMatch === props.routes.updateClient &&
               <UpdateClient routes={props.routes} history={props.history} />
+            }
+            {pageURLToMatch === props.routes.updateChauffeur &&
+              <UpdateChauffeur routes={props.routes} history={props.history} />
             }
 	        <Footer/>
 	      </Col>
