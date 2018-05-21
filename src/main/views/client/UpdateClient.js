@@ -16,7 +16,7 @@ const UpdateClient = (props) => {
 	let pageURLToGoTo = props.history.location.pathname.replace(props.routes.updateClient + "/", "");
 	return (
     <div>
-      <TextContent title="cliënt bewerken">
+      <TextContent title="Cliënt bewerken">
 				Op deze pagina kunt u de gegevens van een cliënt aanpassen / wijzigen.
 				De informatie die op dit moment in de velden staat is de informatie die het systeem nu heeft.
 				Om deze te bewerken kunt u deze informatie aanpassen en op 'oplaan' drukken.
