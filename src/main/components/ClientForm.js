@@ -12,8 +12,9 @@ import {
   Button,
   Alert
 } from 'reactstrap';
-
+import Select from 'react-select';
 /**
+
  * Endpoints import
  */
 import {
@@ -27,6 +28,7 @@ import {
  * Style related imports
  */
 import '../css/zorginstellingForm.css';
+import 'react-select/dist/react-select.css';
 
 /**
  * This class takes care of rendering the client form and manages its state
@@ -75,7 +77,7 @@ export default class ClientForm extends React.Component {
       clientBanknr: "",
       clientWachtwoord: "",
       clientBegeleiderVerplicht: "",
-      clientBeperkingen: "",
+      clientBeperkingen: [],
       clientBuget: "",
       removed: false,
       success: false,
@@ -123,7 +125,14 @@ export default class ClientForm extends React.Component {
     });
   }
 
+  handleSelect = (selectedOption) => {
+    this.setState({ [selectedOption.state]: selectedOption.value });
+  }
 
+  handleClientBeperkingenSelect = (selectedOption) => {
+    let arr = selectedOption.split(',');
+    this.setState({ clientBeperkingen: arr});
+  }
 
   /**
    * Makes the POST or PUT request ready
@@ -235,18 +244,22 @@ export default class ClientForm extends React.Component {
             <Col md="4">
               <FormGroup>
                 <Label for="clientBegeleiderVerplicht">Begeleider verplicht:</Label>
-                <Input type="select" name="clientBegeleiderVerplicht" onChange={(event) => this.handleChange(event)}>
-                  <option selected={this.state.clientBegeleiderVerplicht == "Ja" || ""}>Ja</option>
-                  <option selected={this.state.clientBegeleiderVerplicht == "nee" || ""}>Nee</option>
-                </Input>
-
-                {/* <Input value={this.state.removed ? "" : this.state.clientBegeleiderVerplicht} type="text" name="clientBegeleiderVerplicht"
-                  placeholder="Begeleider verplicht?" onChange={(event) => this.handleChange(event)}/> */}
+                <Select name="clientBegeleiderVerplicht" value={this.state.clientBegeleiderVerplicht} onChange={this.handleSelect}
+                  options={[
+                    { value: 'ja', label: 'Ja', state: 'clientBegeleiderVerplicht'},
+                    { value: 'nee', label: 'Nee', state: 'clientBegeleiderVerplicht'}
+                  ]}
+                />
               </FormGroup>
               <FormGroup>
                 <Label for="clientBeperkingen">Beperkingen:</Label>
-                <Input value={this.state.removed ? "" : this.state.clientBeperkingen} type="text" name="clientBeperkingen"
-                  placeholder="Beperkignen" onChange={(event) => this.handleChange(event)}/>
+                <Select multi simpleValue name="clientBeperkingen" value={this.state.clientBeperkingen} onChange={this.handleClientBeperkingenSelect}
+                  options={[
+                    { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'clientBeperkingen'},
+                    { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'clientBeperkingen'},
+                    { value: 'oudere', label: 'Oudere', state: 'clientBeperkingen'},
+                  ]}
+                />
               </FormGroup>
               <FormGroup>
                 <Label for="clientBuget">Persoonlijk km buget:</Label>

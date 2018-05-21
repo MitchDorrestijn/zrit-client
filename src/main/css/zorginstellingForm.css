@@ -8,7 +8,19 @@ input {
   border-color: #0056b3 !important;
 }
 
+.Select,
+.Select--multi,
+.Select-control {
+  box-shadow: none !important;
+}
+
 h5 {
   color: #303c51 !important;
   font-size: 18px !important;
+}
+
+.Select--multi .Select-value {
+  background-color: rgba(179, 210, 0, 0.7) !important;
+  border: 1px solid rgba(48, 60, 81, 0.24) !important;
+  color: #2C2C2C !important;
 }
