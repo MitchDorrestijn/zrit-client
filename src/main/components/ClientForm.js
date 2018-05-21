@@ -13,8 +13,9 @@ import {
   Alert
 } from 'reactstrap';
 import Select from 'react-select';
-/**
+import Dropzone from 'react-dropzone';
 
+/**
  * Endpoints import
  */
 import {
@@ -53,7 +54,8 @@ export default class ClientForm extends React.Component {
         clientWachtwoord: res.data.password,
         clientBegeleiderVerplicht: res.data.begeleider,
         clientBeperkingen: res.data.disabilities,
-        clientBuget: res.data.pkb
+        clientBuget: res.data.pkb,
+        clientImage: res.data.clientImage
       }))
       .catch((err) => this.setState({error: err.message, success: false}));
     }
@@ -79,6 +81,7 @@ export default class ClientForm extends React.Component {
       clientBegeleiderVerplicht: "",
       clientBeperkingen: [],
       clientBuget: "",
+      clientImage: "",
       removed: false,
       success: false,
       error: false
@@ -134,6 +137,16 @@ export default class ClientForm extends React.Component {
     this.setState({ clientBeperkingen: arr});
   }
 
+  onDrop = (files) => {
+    console.log(files);
+    var file = files[0]
+    const reader = new FileReader();
+    reader.onload = (event) => {
+      this.setState({clientImage: event.target.result});
+    };
+    reader.readAsDataURL(file);
+  }
+
   /**
    * Makes the POST or PUT request ready
    */
@@ -150,7 +163,8 @@ export default class ClientForm extends React.Component {
       clientWachtwoord: this.state.clientWachtwoord,
       clientBegeleiderVerplicht: this.state.clientBegeleiderVerplicht,
       clientBeperkingen: this.state.clientBeperkingen,
-      clientBuget: this.state.clientBuget
+      clientBuget: this.state.clientBuget,
+      clientImage: this.state.clientImage
     }
     if(this.props.update) {
       this.handleUpdateClient(data);
@@ -185,7 +199,19 @@ export default class ClientForm extends React.Component {
             </Row>
           }
           <Row>
-            <Col md="4">
+            <Col md="3">
+              <span className="img-header">Kopie paspoort / ID bewijs:</span>
+              <Dropzone className="dropzone" accept="image/jpeg, image/png, image/jpg" onDrop={files => this.onDrop(files)}
+               multiple={false}>
+                <p>Upload hier uw afbeelding (JPEG/PNG/JPG)</p>
+              </Dropzone><br />
+              <span>Voorvertoning bestand:</span><br />
+              {this.state.clientImage ?
+                <div><img className='img-preview' src={this.state.clientImage} alt='Client-afbeelding' /></div> :
+                <small>Nog geen afbeelding geupload.</small>
+              }
+            </Col>
+            <Col md="3">
               <FormGroup>
                 <Label for="clientNaam">Naam:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientNaam} type="text" name="clientNaam"
@@ -213,7 +239,7 @@ export default class ClientForm extends React.Component {
               </FormGroup>
             </Col>
 
-            <Col md="4">
+            <Col md="3">
               <FormGroup>
                 <Label for="clientEmail">Email:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientEmail} type="text" name="clientEmail"
@@ -241,7 +267,7 @@ export default class ClientForm extends React.Component {
               </FormGroup>
             </Col>
 
-            <Col md="4">
+            <Col md="3">
               <FormGroup>
                 <Label for="clientBegeleiderVerplicht">Begeleider verplicht:</Label>
                 <Select name="clientBegeleiderVerplicht" value={this.state.clientBegeleiderVerplicht} onChange={this.handleSelect}
