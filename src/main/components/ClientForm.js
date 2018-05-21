@@ -128,17 +128,28 @@ export default class ClientForm extends React.Component {
     });
   }
 
+  /**
+   * Fills the state with data from the form
+   * @param {String} selectedOption - The data that needs to be added to the state
+   */
   handleSelect = (selectedOption) => {
     this.setState({ [selectedOption.state]: selectedOption.value });
   }
 
+  /**
+   * Fills the clientBeperkingen array in the state with beperkingen
+   * @param {String} selectedOption - The beperking that needs to be added to the state
+   */
   handleClientBeperkingenSelect = (selectedOption) => {
     let arr = selectedOption.split(',');
     this.setState({ clientBeperkingen: arr});
   }
 
+  /**
+   * Converts uploaded file to a base64 String
+   * @param {Object} files - Object that holds the meta data of the uploaded file
+   */
   onDrop = (files) => {
-    console.log(files);
     var file = files[0]
     const reader = new FileReader();
     reader.onload = (event) => {
@@ -166,10 +177,15 @@ export default class ClientForm extends React.Component {
       clientBuget: this.state.clientBuget,
       clientImage: this.state.clientImage
     }
-    if(this.props.update) {
-      this.handleUpdateClient(data);
+
+    if(data.clientWachtwoord === this.state.clientWachtwoord2) {
+      if(this.props.update) {
+        this.handleUpdateClient(data);
+      } else {
+        this.handleAddClient(data);
+      }
     } else {
-      this.handleAddClient(data);
+      this.setState({error: "Wachtwoorden niet gelijk of leeg!", success: false});
     }
   }
 
@@ -215,27 +231,27 @@ export default class ClientForm extends React.Component {
               <FormGroup>
                 <Label for="clientNaam">Naam:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientNaam} type="text" name="clientNaam"
-                  placeholder="Naam van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Naam cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientGeboortedatum">Geboortedatum:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientGeboortedatum} type="date" name="clientGeboortedatum"
-                  placeholder="Geboortedatum van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Geboortedatum cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientStraatEnHuisnummer">Straat + huisnummer:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientStraatEnHuisnummer} type="text" name="clientStraatEnHuisnummer"
-                  placeholder="Straat en huisnummer van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Straat+huisnummer cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientPostcode">Postcode:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientPostcode} type="text" name="clientPostcode"
-                  placeholder="Postcode van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Postcode cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientWoonplaats">Woonplaats:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientWoonplaats} type="text" name="clientWoonplaats"
-                  placeholder="Woonplaats van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Woonplaats cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
 
@@ -243,34 +259,34 @@ export default class ClientForm extends React.Component {
               <FormGroup>
                 <Label for="clientEmail">Email:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientEmail} type="text" name="clientEmail"
-                  placeholder="Email van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Email cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientTelefoon">Telefoon:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientTelefoon} type="text" name="clientTelefoon"
-                  placeholder="Telefoonnummer van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Telefoon cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientBanknr">Bankrekeningnummer:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientBanknr} type="text" name="clientBanknr"
-                  placeholder="Bankrekeningnummer van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Bankrekening cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientWachtwoord">Wachtwoord:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientWachtwoord} type="password" name="clientWachtwoord"
-                  onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Wachtwoord cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientWachtwoord2">Herhaal wachtwoord:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientWachtwoord2} type="password" name="clientWachtwoord2"
-                  onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Wachtwoord cliënt herhaling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
 
             <Col md="3">
               <FormGroup>
                 <Label for="clientBegeleiderVerplicht">Begeleider verplicht:</Label>
-                <Select name="clientBegeleiderVerplicht" value={this.state.clientBegeleiderVerplicht} onChange={this.handleSelect}
+                <Select placeholder="Begeleider verplicht?" name="clientBegeleiderVerplicht" value={this.state.clientBegeleiderVerplicht} onChange={this.handleSelect}
                   options={[
                     { value: 'ja', label: 'Ja', state: 'clientBegeleiderVerplicht'},
                     { value: 'nee', label: 'Nee', state: 'clientBegeleiderVerplicht'}
@@ -279,7 +295,7 @@ export default class ClientForm extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="clientBeperkingen">Beperkingen:</Label>
-                <Select multi simpleValue name="clientBeperkingen" value={this.state.clientBeperkingen} onChange={this.handleClientBeperkingenSelect}
+                <Select placeholder="Beperkingen cliënt" multi simpleValue name="clientBeperkingen" value={this.state.clientBeperkingen} onChange={this.handleClientBeperkingenSelect}
                   options={[
                     { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'clientBeperkingen'},
                     { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'clientBeperkingen'},
@@ -290,13 +306,13 @@ export default class ClientForm extends React.Component {
               <FormGroup>
                 <Label for="clientBuget">Persoonlijk km buget:</Label>
                 <Input value={this.state.removed ? "" : this.state.clientBuget} type="text" name="clientBuget"
-                  placeholder="Persoonlijk km buget van de cliënt" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="KM buget cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
           </Row>
         </Form>
         <Button disabled={this.state.removed} onClick={this.handleClient} color="primary" className="crud-btn">
-          {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
+          {this.props.update ? <span>Bewerken</span> : <span>Cliënt toevoegen</span>}
         </Button>
         {this.props.update &&
           <Button onClick={this.handleRemoveClient} color="primary" className="crud-btn">
