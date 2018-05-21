@@ -231,6 +231,7 @@ export default class ChauffeurForm extends React.Component {
               }
             </Col>
             <Col md="3">
+              <h5>Persoonlijke info</h5>
               <FormGroup>
                 <Label for="chauffeurNaam">Naam:</Label>
                 <Input value={this.state.removed ? "" : this.state.chauffeurNaam} type="text" name="chauffeurNaam"
@@ -238,7 +239,7 @@ export default class ChauffeurForm extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="chauffeurGeboortedatum">Geboortedatum:</Label>
-                <Input value={this.state.removed ? "" : this.state.chauffeurGeboortedatum} type="text" name="chauffeurGeboortedatum"
+                <Input value={this.state.removed ? "" : this.state.chauffeurGeboortedatum} type="date" name="chauffeurGeboortedatum"
                   placeholder="Geboortedatum chauffeur" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
@@ -250,9 +251,36 @@ export default class ChauffeurForm extends React.Component {
                   ]}
                 />
               </FormGroup>
+              <FormGroup>
+                <Label for="chauffeurDoel">Organisatie:</Label>
+                <Select placeholder="Doel chauffeur" name="chauffeurDoel" value={this.state.chauffeurDoel} onChange={this.handleSelect}
+                  options={[
+                    { value: 'accolade', label: 'Accolade', state: 'chauffeurDoel'},
+                    { value: 'axion_continue', label: 'Axion Continue', state: 'chauffeurDoel'},
+                    { value: 'cordaan', label: 'Cordaan', state: 'chauffeurDoel'},
+                    { value: 'de_zijlen', label: 'De Zijlen', state: 'chauffeurDoel'},
+                    { value: 'ecr', label: 'ECR', state: 'chauffeurDoel'},
+                    { value: 'ons_tweede_huis', label: 'Ons tweede huis', state: 'chauffeurDoel'},
+                    { value: 'piladelphia_zorg_midden', label: 'Piladelphia zorg midden', state: 'chauffeurDoel'},
+                    { value: 'raphalstichting', label: 'Raphalstichting', state: 'chauffeurDoel'},
+                    { value: 'reinaerde', label: 'Reinaerde', state: 'chauffeurDoel'},
+                    { value: 'stichting_de_opbouw', label: 'Stichting de opbouw', state: 'chauffeurDoel'}
+                  ]}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="chauffeurOmgaan">Mag omgaan met:</Label>
+                <Select placeholder="Mag omgaan met" multi simpleValue name="chauffeurOmgaan" value={this.state.chauffeurOmgaan} onChange={this.handleChauffeurOmgaanSelect}
+                  options={[
+                    { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'chauffeurOmgaan'},
+                    { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'chauffeurOmgaan'},
+                    { value: 'oudere', label: 'Oudere', state: 'chauffeurOmgaan'}
+                  ]}
+                />
+              </FormGroup>
             </Col>
-
             <Col md="3">
+              <h5>Contactgegevens</h5>
               <FormGroup>
                 <Label for="chauffeurTelefoon">Telefoon:</Label>
                 <Input value={this.state.removed ? "" : this.state.chauffeurTelefoon} type="text" name="chauffeurTelefoon"
@@ -279,35 +307,8 @@ export default class ChauffeurForm extends React.Component {
                   placeholder="Wachtwoord chauffeur herhaling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
-
             <Col md="3">
-              <FormGroup>
-                <Label for="chauffeurDoel">Beperkingen:</Label>
-                <Select placeholder="Doel chauffeur" name="chauffeurDoel" value={this.state.chauffeurDoel} onChange={this.handleSelect}
-                  options={[
-                    { value: 'accolade', label: 'Accolade', state: 'chauffeurDoel'},
-                    { value: 'axion_continue', label: 'Axion Continue', state: 'chauffeurDoel'},
-                    { value: 'cordaan', label: 'Cordaan', state: 'chauffeurDoel'},
-                    { value: 'de_zijlen', label: 'De Zijlen', state: 'chauffeurDoel'},
-                    { value: 'ecr', label: 'ECR', state: 'chauffeurDoel'},
-                    { value: 'ons_tweede_huis', label: 'Ons tweede huis', state: 'chauffeurDoel'},
-                    { value: 'piladelphia_zorg_midden', label: 'Piladelphia zorg midden', state: 'chauffeurDoel'},
-                    { value: 'raphalstichting', label: 'Raphalstichting', state: 'chauffeurDoel'},
-                    { value: 'reinaerde', label: 'Reinaerde', state: 'chauffeurDoel'},
-                    { value: 'stichting_de_opbouw', label: 'Stichting de opbouw', state: 'chauffeurDoel'}
-                  ]}
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="chauffeurOmgaan">Beperkingen:</Label>
-                <Select placeholder="Chauffeur mag omgaan met" multi simpleValue name="chauffeurOmgaan" value={this.state.chauffeurOmgaan} onChange={this.handleChauffeurOmgaanSelect}
-                  options={[
-                    { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'oudere', label: 'Oudere', state: 'chauffeurOmgaan'}
-                  ]}
-                />
-              </FormGroup>
+              <h5>Auto informatie</h5>
               <FormGroup>
                 <Label for="chauffeurKenteken">Kenteken auto:</Label>
                 <Input value={this.state.removed ? "" : this.state.chauffeurKenteken} type="text" name="chauffeurKenteken"
@@ -316,7 +317,7 @@ export default class ChauffeurForm extends React.Component {
               <FormGroup>
                 <Label for="chauffeurAutoMaxPersonen">Kenteken auto:</Label>
                 <Input value={this.state.removed ? "" : this.state.chauffeurAutoMaxPersonen} type="text" name="chauffeurAutoMaxPersonen"
-                  placeholder="Max. personen in auto chauffeur" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Max. personen in auto" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="chauffeurAutoSegment">Segment:</Label>

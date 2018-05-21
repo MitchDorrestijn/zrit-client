@@ -113,7 +113,6 @@ export default class ClientForm extends React.Component {
  * @param {string} data - Name of the client
  */
   handleAddClient = (data) => {
-    console.log(data);
     createClient(data)
     .then((res) => this.setState({success: `cliënt ${data.name} succesvol toegevoegd`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
