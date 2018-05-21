@@ -28,8 +28,8 @@ export const deleteClient = (props) => {
 
 /**
 * Sends a PUT request to the server to update a specific client
-* @param {props} props - the id of the zorginstelling that will be updated
-* @param {data} data - the new name of the zorginstelling
+* @param {props} props - the id of the client that will be updated
+* @param {data} data - the new data for the client
 */
 export const updateClient = (props, data) => {
   return axios.put(`${config.url}/client/${props.id}/edit`, data);
@@ -40,5 +40,5 @@ export const updateClient = (props, data) => {
 * @param {data} data - the object with all data for the new client
 */
 export const createClient = (data) => {
-  return axios.post(`${config.url}/zorginstelling/addZorginstelling`, data);
+  return axios.post(`${config.url}/cleint/addClientß`, data);
 }

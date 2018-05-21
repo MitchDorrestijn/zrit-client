@@ -26,7 +26,7 @@ import {
 /**
  * Style related imports
  */
-import '../css/zorginstellingForm.css';
+import '../css/form.css';
 
 /**
  * This class takes care of rendering the zorginstellingen form and manages its state

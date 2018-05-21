@@ -28,7 +28,7 @@ import {
 /**
  * Style related imports
  */
-import '../css/zorginstellingForm.css';
+import '../css/form.css';
 import 'react-select/dist/react-select.css';
 
 /**
