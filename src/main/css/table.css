@@ -41,3 +41,11 @@ th {
   background: #DDDDD  !important;
   cursor: not-allowed;
 }
+
+.react-bs-table table td, .react-bs-table table th {
+  white-space: normal;
+}
+
+.starImg {
+  width: 100%;
+}
