@@ -22,6 +22,12 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
+ * Other imports
+ */
+import warning from '../assets/img/warning.png';
+
+
+/**
  * This class takes care of rendering the client table, from here other actions can be taken like editing
  */
 export default class ClientTable extends React.Component {
@@ -100,9 +106,17 @@ export default class ClientTable extends React.Component {
   warningFormatter = (cell) => {
     switch (cell) {
       case true:
-        return <div className="tooltip_wrapper"><Tooltip placement="left" content="PKB bijna op!">a</Tooltip></div>;
+        return (
+          <div className="tooltip_wrapper">
+            <Tooltip placement="right" content="PKB bijna op!">
+              <img className="warning_icon" src={warning} alt="warning" />
+            </Tooltip>
+          </div>
+        )
       default:
-        return <div className="tooltip_wrapper"><Tooltip placement="left" content="PKB bijna op!">b</Tooltip></div>;
+        return (
+          <span>-</span>
+        )
     }
   }
 
@@ -129,21 +143,21 @@ export default class ClientTable extends React.Component {
           ID
         </TableHeaderColumn>
 
-        <TableHeaderColumn dataFormat={this.warningFormatter} width="50" dataField="warningPKB" dataSort={true}>
+        <TableHeaderColumn dataFormat={this.warningFormatter} width="70" dataField="warningPKB" dataSort={true}>
           Warning
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="100" dataField="name" dataSort={true}>
+        <TableHeaderColumn width="200" dataField="name" dataSort={true}>
           Naam
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="pkb" dataSort={true}>
+        <TableHeaderColumn width="75" dataField="pkb" dataSort={true}>
           PKB
           <br/>
           cliënt &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="totalMeters" dataSort={true}>
+        <TableHeaderColumn width="75" dataField="totalMeters" dataSort={true}>
           Gemaakte
           <br/>
           km's' &#x2195;

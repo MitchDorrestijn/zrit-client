@@ -59,8 +59,12 @@ th {
 .tooltip_wrapper div > div {
   background: #303c51;
   color: #fff;
-    border-radius: 0;
-    border: none;
-    font-size: 12px;
-    font-family: inherit;
+  border-radius: 0;
+  border: none;
+  font-size: 12px;
+  font-family: inherit;
+}
+
+.warning_icon {
+  width: 30px;
 }
