@@ -29,7 +29,25 @@ export default class ClientTable extends React.Component {
    * Makes a GET request to get all chauffeurs when component is mounted
    */
   componentDidMount() {
-    getAllClients(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+    //getAllClients(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+    this.setState({
+      data: [
+        {
+          warningPKB: false,
+          name: 'Jan',
+          pkb: 200,
+          totalMeters: 20,
+          priceToPay: 30.2
+        },
+        {
+          warningPKB: true,
+          name: 'Fred',
+          pkb: 824,
+          totalMeters: 323,
+          priceToPay: 32.2
+        }
+      ]
+    });
   }
 
   /**
