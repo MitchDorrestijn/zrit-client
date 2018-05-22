@@ -28,8 +28,13 @@ const routes = {
   updateZorginstelling: '/update/zorginstelling',
   error: '/error',
   readChauffeur: '/read/chauffeur',
+  createChauffeur: '/create/chauffeur',
+  updateChauffeur: '/update/chauffeur',
   readClienten: '/read/client',
-  aboutPage: '/about'
+  aboutPage: '/about',
+  readRatings: '/read/ratings',
+  createClient: '/create/client',
+  updateClient: '/update/client'
 }
 
 const AppRouter = () => {
@@ -40,8 +45,13 @@ const AppRouter = () => {
         <Route exact path={routes.readZorginstelling} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readClienten} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
-	      <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
-	      <Route exact path={`${routes.updateZorginstelling}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
+        <Route exact path={routes.readRatings} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
+        <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
+        <Route exact path={routes.createChauffeur} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
+        <Route exact path={routes.createClient} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
+        <Route exact path={`${routes.updateZorginstelling}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
+        <Route exact path={`${routes.updateClient}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
+        <Route exact path={`${routes.updateChauffeur}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
         <Route exact path={`${routes.error}`} render={(props) => (<ErrorPage {...props} routes={routes}/>)}/>
         <Route exact path={routes.About} render={(props) => (<AboutPage {...props} routes={routes}/>)}/>
       </Switch>
