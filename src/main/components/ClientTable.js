@@ -94,6 +94,18 @@ export default class ClientTable extends React.Component {
   };
 
   /**
+   * Renders the warning icon based on the warning state
+   */
+  warningFormatter = (cell) => {
+    switch (cell) {
+      case true:
+        return "warning" ;
+      default:
+        return "geen warning" ;
+    }
+  }
+
+  /**
    * Renders the view for the user
    */
   render() {
@@ -116,7 +128,7 @@ export default class ClientTable extends React.Component {
           ID
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="50" dataField="warningPKB" dataSort={true}>
+        <TableHeaderColumn dataFormat={this.warningFormatter} width="50" dataField="warningPKB" dataSort={true}>
           Warning
         </TableHeaderColumn>
 
