@@ -49,3 +49,18 @@ th {
 .starImg {
   width: 100%;
 }
+
+.clientTable .react-bs-table table td,
+.clientTable .react-bs-table table th,
+.clientTable .react-bs-container-body {
+  overflow: visible !important;
+}
+
+.tooltip_wrapper div > div {
+  background: #303c51;
+  color: #fff;
+    border-radius: 0;
+    border: none;
+    font-size: 12px;
+    font-family: inherit;
+}

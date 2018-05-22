@@ -6,6 +6,7 @@ import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {renderSearchField, renderSortedColumn} from '../global/Methods';
+import Tooltip from "react-simple-tooltip";
 
 /**
  * Endpoints import
@@ -99,9 +100,9 @@ export default class ClientTable extends React.Component {
   warningFormatter = (cell) => {
     switch (cell) {
       case true:
-        return "warning" ;
+        return <div className="tooltip_wrapper"><Tooltip placement="left" content="PKB bijna op!">a</Tooltip></div>;
       default:
-        return "geen warning" ;
+        return <div className="tooltip_wrapper"><Tooltip placement="left" content="PKB bijna op!">b</Tooltip></div>;
     }
   }
 
@@ -119,7 +120,7 @@ export default class ClientTable extends React.Component {
     };
 
     return (<div>
-      <BootstrapTable search={true} data={this.state.data} options={tableOptions} selectRow={{
+      <BootstrapTable className="clientTable" search={true} data={this.state.data} options={tableOptions} selectRow={{
           mode: 'radio',
           onSelect: this.onSelect
         }} ref='table'>
