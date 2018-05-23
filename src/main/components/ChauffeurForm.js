@@ -45,26 +45,8 @@ export default class ChauffeurForm extends React.Component {
    */
   componentDidMount() {
     this.getAllLimitations();
-
     if (this.props.update) {
-      getSpecificChauffeur(this.props)
-      .then((res) => this.setState({
-        chauffeurNaam: res.data.name,
-        chauffeurGeboortedatum: res.data.dateOfBirth,
-        chauffeurVOG: res.data.vog,
-        chauffeurTelefoon: res.data.phone,
-        chauffeurEmail: res.data.email,
-        chauffeurBanknr: res.data.bank,
-        chauffeurWachtwoord: res.data.password,
-        chauffeurDoel: res.data.charity,
-        chauffeurOmgaan: res.data.privileges,
-        chauffeurKenteken: res.data.numberPlate,
-        chauffeurAutoMaxPersonen: res.data.maxPersons,
-        chauffeurAutoSegment: res.data.segment,
-        chauffeurAutoMerk: res.data.brand,
-        chauffeurImage: res.data.clientImage
-      }))
-      .catch((err) => this.setState({error: err.message, success: false}));
+      this.getASpecificChauffeur();
     }
   }
 
@@ -96,6 +78,32 @@ export default class ChauffeurForm extends React.Component {
       success: false,
       error: false
     }
+  }
+
+  /**
+ * Makes the GET request to get a specific chauffeur and updates the state
+ */
+  getASpecificChauffeur = () => {
+    return (
+      getSpecificChauffeur(this.props)
+      .then((res) => this.setState({
+        chauffeurNaam: res.data.name,
+        chauffeurGeboortedatum: res.data.dateOfBirth,
+        chauffeurVOG: res.data.vog,
+        chauffeurTelefoon: res.data.phone,
+        chauffeurEmail: res.data.email,
+        chauffeurBanknr: res.data.bank,
+        chauffeurWachtwoord: res.data.password,
+        chauffeurDoel: res.data.charity,
+        chauffeurOmgaan: res.data.privileges,
+        chauffeurKenteken: res.data.numberPlate,
+        chauffeurAutoMaxPersonen: res.data.maxPersons,
+        chauffeurAutoSegment: res.data.segment,
+        chauffeurAutoMerk: res.data.brand,
+        chauffeurImage: res.data.clientImage
+      }))
+      .catch((err) => this.setState({error: err.message, success: false}))
+    );
   }
 
   /**
