@@ -25,6 +25,10 @@ import {
   createChauffeur
 } from '../CRUD/Chauffeur';
 
+import {
+  getAllLimitations
+} from '../CRUD/Limitation';
+
 /**
  * Style related imports
  */
@@ -40,6 +44,8 @@ export default class ChauffeurForm extends React.Component {
    * is fired when the component did mount and makes it ready to do a PUT request to get all current data (if any)
    */
   componentDidMount() {
+    this.getAllLimitations();
+
     if (this.props.update) {
       getSpecificChauffeur(this.props)
       .then((res) => this.setState({
@@ -85,10 +91,31 @@ export default class ChauffeurForm extends React.Component {
       chauffeurAutoSegment: "",
       chauffeurImage: "",
       chauffeurAutoMerk: "",
+      limitations: [],
       removed: false,
       success: false,
       error: false
     }
+  }
+
+  /**
+ * Makes the GET all limitations request and updates the state
+ */
+  getAllLimitations = () => {
+    return (
+      getAllLimitations(this.props)
+      .then((res) => {
+        let limitations = [];
+        for(let i=0; i<res.data.length; i++){
+          limitations.push({
+            value: res.data[i].name.replace(/\s/g, ''),
+            label: res.data[i].name,
+            state: 'chauffeurOmgaan'
+          });
+        }
+        this.setState({limitations});
+      })
+    )
   }
 
   /**
@@ -271,11 +298,7 @@ export default class ChauffeurForm extends React.Component {
               <FormGroup>
                 <Label for="chauffeurOmgaan">Mag omgaan met:</Label>
                 <Select placeholder="Mag omgaan met" multi simpleValue name="chauffeurOmgaan" value={this.state.chauffeurOmgaan} onChange={this.handleChauffeurOmgaanSelect}
-                  options={[
-                    { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'oudere', label: 'Oudere', state: 'chauffeurOmgaan'}
-                  ]}
+                  options={this.state.limitations}
                 />
               </FormGroup>
             </Col>
