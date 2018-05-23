@@ -29,6 +29,10 @@ import {
   getAllLimitations
 } from '../CRUD/Limitation';
 
+import {
+  getAllZorginstellingen
+} from '../CRUD/Zorginstelling';
+
 /**
  * Style related imports
  */
@@ -45,6 +49,7 @@ export default class ChauffeurForm extends React.Component {
    */
   componentDidMount() {
     this.getAllLimitations();
+    this.getAllZorginstellingen();
     if (this.props.update) {
       this.getASpecificChauffeur();
     }
@@ -74,10 +79,32 @@ export default class ChauffeurForm extends React.Component {
       chauffeurImage: "",
       chauffeurAutoMerk: "",
       limitations: [],
+      zorginstellingen: [],
       removed: false,
       success: false,
       error: false
     }
+  }
+
+  /**
+ * Makes the GET request to get all the zorginstellingen and updates the state
+ */
+  getAllZorginstellingen = () => {
+    return (
+      getAllZorginstellingen(this.props).then((res) => {
+        if(res !== undefined){
+          let zorginstellingen = [];
+          for(let i=0; i<res.data.length; i++){
+            zorginstellingen.push({
+              value: res.data[i].id,
+              label: res.data[i].name,
+              state: 'chauffeurDoel'
+            });
+          }
+          this.setState({zorginstellingen});
+        }
+      })
+    );
   }
 
   /**
@@ -289,18 +316,7 @@ export default class ChauffeurForm extends React.Component {
               <FormGroup>
                 <Label for="chauffeurDoel">Organisatie:</Label>
                 <Select placeholder="Doel chauffeur" name="chauffeurDoel" value={this.state.chauffeurDoel} onChange={this.handleSelect}
-                  options={[
-                    { value: 'accolade', label: 'Accolade', state: 'chauffeurDoel'},
-                    { value: 'axion_continue', label: 'Axion Continue', state: 'chauffeurDoel'},
-                    { value: 'cordaan', label: 'Cordaan', state: 'chauffeurDoel'},
-                    { value: 'de_zijlen', label: 'De Zijlen', state: 'chauffeurDoel'},
-                    { value: 'ecr', label: 'ECR', state: 'chauffeurDoel'},
-                    { value: 'ons_tweede_huis', label: 'Ons tweede huis', state: 'chauffeurDoel'},
-                    { value: 'piladelphia_zorg_midden', label: 'Piladelphia zorg midden', state: 'chauffeurDoel'},
-                    { value: 'raphalstichting', label: 'Raphalstichting', state: 'chauffeurDoel'},
-                    { value: 'reinaerde', label: 'Reinaerde', state: 'chauffeurDoel'},
-                    { value: 'stichting_de_opbouw', label: 'Stichting de opbouw', state: 'chauffeurDoel'}
-                  ]}
+                  options={this.state.zorginstellingen}
                 />
               </FormGroup>
               <FormGroup>
