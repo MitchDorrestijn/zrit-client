@@ -40,5 +40,5 @@ export const updateChauffeur = (props, data) => {
 * @param {data} data - the object with all data for the new chauffeur
 */
 export const createChauffeur = (data) => {
-  return axios.post(`${config.url}/chauffeur/addChauffeur`, data);
+  return axios.post(`${config.url}/chauffeur/create/chauffeur`, data);
 }
