@@ -147,7 +147,7 @@ export default class ChauffeurForm extends React.Component {
         let limitations = [];
         for(let i=0; i<res.data.length; i++){
           limitations.push({
-            value: res.data[i].name.replace(/\s/g, ''),
+            value: res.data[i].name,
             label: res.data[i].name,
             state: 'chauffeurOmgaan'
           });
@@ -182,7 +182,7 @@ export default class ChauffeurForm extends React.Component {
  */
   handleAddChauffeur = (data) => {
     createChauffeur(data)
-    .then((res) => this.setState({success: `Chauffeur ${data.name} succesvol toegevoegd`, error: false}))
+    .then((res) => this.setState({success: `Chauffeur ${data.driver.userEntity.firstName} succesvol toegevoegd`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
   }
 
@@ -231,32 +231,29 @@ export default class ChauffeurForm extends React.Component {
    */
   handleChauffeur = () => {
     let data = {
-      careInstitutionId: this.state.chauffeurDoel,
-      limitationEntities: this.state.chauffeurOmgaan,
       driver: {
-        userEntity: {
-            firstName: this.state.chauffeurVoornaam,
-            lastName: this.state.chauffeurAchternaam,
-            email: this.state.chauffeurEmail,
-            phoneNumber: this.state.chauffeurTelefoon,
-            dateOfBirth: "1995-06-23",
-            passwordSalt: this.state.chauffeurWachtwoord
-        },
-        verification: this.state.chauffeurVOG === "Ja" ? 1 : 0,
-        image: this.state.chauffeurImage,
-        accountnr: this.state.chauffeurBanknr
+          verification: this.state.chauffeurVOG === "Ja" ? 1 : 0,
+          userEntity: {
+              firstName: this.state.chauffeurVoornaam,
+              lastName: this.state.chauffeurAchternaam,
+              email: this.state.chauffeurEmail,
+              phoneNumber: this.state.chauffeurTelefoon,
+              passwordSalt: this.state.chauffeurWachtwoord,
+              dateOfBirth: this.state.chauffeurGeboortedatum
+          },
+          image: this.state.chauffeurImage,
+          accountnr: this.state.chauffeurBanknr
       },
       drivercarEntity: {
-        numberPlate: this.state.chauffeurKenteken,
-        numberOfPassengers: this.state.chauffeurAutoMaxPersonen,
-        brand: this.state.chauffeurAutoMerk,
-      	utility: this.state.chauffeurAutoGeschiktVoor,
-        segment: this.state.chauffeurAutoSegment
-      }
+          utility: this.state.chauffeurAutoGeschiktVoor,
+          numberPlate: this.state.chauffeurKenteken,
+          numberOfPassengers: this.state.chauffeurAutoMaxPersonen,
+          segment: this.state.chauffeurAutoSegment,
+          brand: this.state.chauffeurAutoMerk
+      },
+      careInstitutionId: this.state.chauffeurDoel,
+      limitationEntities: this.state.chauffeurOmgaan
     }
-
-    console.log(JSON.stringify(data));
-    console.log(this.state);
 
     if(data.driver.userEntity.passwordSalt === this.state.chauffeurWachtwoord2) {
       if(this.props.update) {
