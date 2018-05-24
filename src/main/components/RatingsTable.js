@@ -37,7 +37,7 @@ export default class RatingsTable extends React.Component {
    * Makes a GET request to get all ratings when component is mounted
    */
   componentDidMount() {
-    //getAllRatings(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+    getAllRatings(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
   }
 
   /**
@@ -49,16 +49,16 @@ export default class RatingsTable extends React.Component {
     super(props);
     this.columns = [
       {
-        name: 'name_driver',
+        name: 'driverName',
         display: 'Naam chauffeur'
       }, {
-        name: 'stars',
+        name: 'sterren',
         display: 'Beoordeling'
       }, {
-        name: 'rating',
+        name: 'beoordeling',
         display: 'Opmerking'
       }, {
-        name: 'name_client',
+        name: 'clientName',
         display: 'Naam client'
       }
     ];
@@ -66,19 +66,7 @@ export default class RatingsTable extends React.Component {
       sortColumnName: undefined,
       sortOrder: undefined,
       disableButtons: true,
-      data: [ //fake data for now
-        {
-          name_driver: 'Heerhugo',
-          stars: 4,
-          rating: 'Prima prma prima! Dit is een lange beoordeling om de regels te testen. Gaan de regels naar een nieuwe regel als het allemaal iets te lang is?',
-          name_client: 'Jan-jans'
-        }, {
-          name_driver: 'Haagjan',
-          stars: 5,
-          rating: 'Goede chauffeur!',
-          name_client: 'Hendrik'
-        }
-      ]
+      data: []
     };
   }
 
@@ -116,19 +104,19 @@ export default class RatingsTable extends React.Component {
 
     return (<div>
       <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
-        <TableHeaderColumn width="120" dataField="name_driver" dataSort={true} isKey={true}>
+        <TableHeaderColumn width="120" dataField="driverName" dataSort={true} isKey={true}>
           Naam <br /> chauffeur &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataFormat={this.starFormatter} dataField="stars" dataSort={true}>
+        <TableHeaderColumn width="120" dataFormat={this.starFormatter} dataField="sterren" dataSort={true}>
           Beoordeling &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="500" dataField="rating" dataSort={true}>
+        <TableHeaderColumn width="500" dataField="beoordeling" dataSort={true}>
           Opmerking &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataField="name_client" dataSort={true}>
+        <TableHeaderColumn width="120" dataField="clientName" dataSort={true}>
           Naam <br /> cliënt &#x2195;
         </TableHeaderColumn>
       </BootstrapTable>

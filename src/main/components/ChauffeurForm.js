@@ -120,7 +120,7 @@ export default class ChauffeurForm extends React.Component {
         chauffeurVoornaam: res.data.driver.userEntity.firstName,
         chauffeurAchternaam: res.data.driver.userEntity.lastName,
         chauffeurGeboortedatum: res.data.driver.userEntity.dateOfBirth,
-        chauffeurVOG: res.data.driver.verification == 0 ? "nee" : "ja",
+        chauffeurVOG: res.data.driver.verification === 0 ? "nee" : "ja",
         chauffeurTelefoon: res.data.driver.userEntity.phoneNumber,
         chauffeurEmail: res.data.driver.userEntity.email,
         chauffeurBanknr: res.data.driver.accountnr,
@@ -131,7 +131,7 @@ export default class ChauffeurForm extends React.Component {
         chauffeurAutoMaxPersonen: res.data.drivercarEntity.numberOfPassengers,
         chauffeurAutoSegment: res.data.drivercarEntity.segment,
         chauffeurAutoMerk: res.data.drivercarEntity.brand,
-        chauffeurImage: res.data.driver.image == "" ? "" : res.data.driver.image,
+        chauffeurImage: res.data.driver.image === "" ? "" : res.data.driver.image,
         chauffeurAutoGeschiktVoor: res.data.drivercarEntity.utility
       }))
       .catch((err) => this.setState({error: err.message, success: false}))

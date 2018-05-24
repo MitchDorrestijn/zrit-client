@@ -77,10 +77,31 @@ export default class ClientTable extends React.Component {
    */
   renderButtons = () => {
     return (<div>
-      <Button color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
+      <Button onClick={this.updateItem} disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
+
+  /**
+   * Redirect to a page where a new client can be added.
+   */
+  createItem = () => {
+    return this.props.history.push(this.props.routes.createClient);
+  };
+
+  /**
+   * Redirect to a page where a the selected client can be updated.
+   */
+  updateItem = () => {
+    return this.props.history.push(`${this.props.routes.updateClient}/${this.refs.table.state.selectedRowKeys}`);
+  };
+
+  /**
+   * Enables the buttons for allowing the zorginstelling to update
+   */
+  onSelect = () => {
+    this.setState({disableButtons: false});
+  }
 
   /**
    * Renders the warning icon based on the warning state
