@@ -15,7 +15,7 @@ export const getAllChauffeurs = (props) => {
 * @param {props} props - the id of the chauffeur that will return its data
 */
 export const getSpecificChauffeur = (props) => {
-  return axios.get(`${config.url}/chauffeur/${props.id}`);
+  return axios.get(`${config.url}/chauffeur/getChauffeur/${props.id}`);
 }
 
 /**
