@@ -259,6 +259,13 @@ export default class ChauffeurForm extends React.Component {
 
     if(data.driver.userEntity.passwordSalt === this.state.chauffeurWachtwoord2) {
       if(this.props.update) {
+        data.driver.driverId = this.props.id;
+        data.driver.typeOfPayment = "Vrijwillig";
+        data.driver.userEntity.id = this.props.id;
+        data.driver.userEntity.password = this.state.chauffeurWachtwoord;
+        data.drivercarEntity.driverId = this.props.id;
+        console.log(data);
+        console.log(this.props.id);
         this.handleUpdateChauffeur(data);
       } else {
         this.handleAddChauffeur(data);

@@ -15,7 +15,7 @@ export const getAllClients = (props) => {
 * @param {props} props - the id of the client that will return its data
 */
 export const getSpecificClient = (props) => {
-  return axios.get(`${config.url}/client/${props.id}`);
+  return axios.get(`${config.url}/client/getClient/${props.id}`);
 }
 
 /**
@@ -23,7 +23,7 @@ export const getSpecificClient = (props) => {
 * @param {props} props - the id of the client that will be removed
 */
 export const deleteClient = (props) => {
-  return axios.delete(`${config.url}/client/${props.id}`);
+  return axios.delete(`${config.url}/client/deleteclient/${props.id}`);
 }
 
 /**
@@ -32,7 +32,7 @@ export const deleteClient = (props) => {
 * @param {data} data - the new data for the client
 */
 export const updateClient = (props, data) => {
-  return axios.put(`${config.url}/client/${props.id}/edit`, data);
+  return axios.put(`${config.url}/client/update/client`, data);
 }
 
 /**
@@ -40,5 +40,5 @@ export const updateClient = (props, data) => {
 * @param {data} data - the object with all data for the new client
 */
 export const createClient = (data) => {
-  return axios.post(`${config.url}/cleint/addClientß`, data);
+  return axios.post(`${config.url}/client/addClient`, data);
 }

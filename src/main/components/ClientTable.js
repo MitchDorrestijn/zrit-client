@@ -123,6 +123,10 @@ export default class ClientTable extends React.Component {
     }
   }
 
+  print = () => {
+    console.log(this.state);
+  }
+
   /**
    * Renders the view for the user
    */
@@ -137,6 +141,7 @@ export default class ClientTable extends React.Component {
     };
 
     return (<div>
+      <button onClick={this.print}>dfs</button>
       <BootstrapTable className="clientTable" search={true} data={this.state.data} options={tableOptions} selectRow={{
           mode: 'radio',
           onSelect: this.onSelect

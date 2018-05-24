@@ -23,7 +23,7 @@ export const getSpecificChauffeur = (props) => {
 * @param {props} props - the id of the chauffeur that will be removed
 */
 export const deleteChauffeur = (props) => {
-  return axios.delete(`${config.url}/chauffeur/${props.id}`);
+  return axios.put(`${config.url}/chauffeur/delete/${props.id}`);
 }
 
 /**
@@ -32,7 +32,7 @@ export const deleteChauffeur = (props) => {
 * @param {data} data - the new data of the chauffeur
 */
 export const updateChauffeur = (props, data) => {
-  return axios.put(`${config.url}/chauffeur/${props.id}/edit`, data);
+  return axios.put(`${config.url}/chauffeur/update/chauffeur`, data);
 }
 
 /**

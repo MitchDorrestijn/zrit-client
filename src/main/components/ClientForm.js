@@ -42,23 +42,35 @@ export default class ClientForm extends React.Component {
   componentDidMount() {
     if (this.props.update) {
       getSpecificClient(this.props)
-      .then((res) => this.setState({
-        clientNaam: res.data.name,
-        clientGeboortedatum: res.data.dateOfBirth,
-        clientStraatEnHuisnummer: res.data.street,
-        clientPostcode: res.data.zipcode,
-        clientWoonplaats: res.data.residence,
-        clientEmail: res.data.email,
-        clientTelefoon: res.data.phone,
-        clientBanknr: res.data.bank,
-        clientWachtwoord: res.data.password,
-        clientBegeleiderVerplicht: res.data.begeleider,
-        clientBeperkingen: res.data.disabilities,
-        clientBuget: res.data.pkb,
-        clientImage: res.data.clientImage
-      }))
-      .catch((err) => this.setState({error: err.message, success: false}));
+      .then((res) => {
+        this.setState({
+          clientVoornaam: res.data.client.userEntity.firstName,
+          clientAchternaam: res.data.client.userEntity.lastName,
+          clientGeboortedatum: res.data.client.userEntity.dateOfBirth,
+          clientStraatEnHuisnummer: res.data.client.userEntity.street + res.data.client.userEntity.houseNumber,
+          clientPostcode: res.data.client.userEntity.zipCode,
+          clientWoonplaats: res.data.client.userEntity.residence,
+          clientEmail: res.data.client.userEntity.email,
+          clientTelefoon: res.data.client.userEntity.phoneNumber,
+          clientBanknr: res.data.client.bankAccount,
+          clientWachtwoord: res.data.client.userEntity.password,
+          clientBegeleiderVerplicht: res.data.client.companionRequired === 1 ? 'ja' : 'nee',
+          clientBeperkingen: this.arraymaker(res.data.limitations),
+          clientBuget: res.data.client.pkb,
+          clientImage: res.data.client.image
+        })
+      })
+      // .catch((err) => this.setState({error: err.message, success: false}));
+      .catch((err) => console.log(err));
     }
+  }
+
+  arraymaker = (data) => {
+    let newarr = [];
+    for(let i=0; i<data.length; i++){
+      newarr.push({ value: data[i], label: data[i], state: 'clientBeperkingen'})
+    }
+    return newarr;
   }
 
   /**
@@ -69,7 +81,8 @@ export default class ClientForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientNaam: "",
+      clientVoornaam: "",
+      clientAchternaam: "",
       clientGeboortedatum: "",
       clientStraatEnHuisnummer: "",
       clientPostcode: "",
@@ -162,25 +175,126 @@ export default class ClientForm extends React.Component {
    * Makes the POST or PUT request ready
    */
   handleClient = () => {
-    let data = {
-      clientNaam: this.state.clientNaam,
-      clientGeboortedatum: this.state.clientGeboortedatum,
-      clientStraatEnHuisnummer: this.state.clientStraatEnHuisnummer,
-      clientPostcode: this.state.clientPostcode,
-      clientWoonplaats: this.state.clientWoonplaats,
-      clientEmail: this.state.clientEmail,
-      clientTelefoon: this.state.clientTelefoon,
-      clientBanknr: this.state.clientBanknr,
-      clientWachtwoord: this.state.clientWachtwoord,
-      clientBegeleiderVerplicht: this.state.clientBegeleiderVerplicht,
-      clientBeperkingen: this.state.clientBeperkingen,
-      clientBuget: this.state.clientBuget,
-      clientImage: this.state.clientImage
-    }
+    // let data = {
+    //   clientVoornaam: this.state.clientVoornaam,
+    //   clientAchternaam: this.state.clientAchternaam,
+    //   clientGeboortedatum: this.state.clientGeboortedatum,
+    //   clientStraatEnHuisnummer: this.state.clientStraatEnHuisnummer,
+    //   clientPostcode: this.state.clientPostcode,
+    //   clientWoonplaats: this.state.clientWoonplaats,
+    //   clientEmail: this.state.clientEmail,
+    //   clientTelefoon: this.state.clientTelefoon,
+    //   clientBanknr: this.state.clientBanknr,
+    //   clientWachtwoord: this.state.clientWachtwoord,
+    //   clientBegeleiderVerplicht: this.state.clientBegeleiderVerplicht,
+    //   clientBeperkingen: this.state.clientBeperkingen,
+    //   clientBuget: this.state.clientBuget,
+    //   clientImage: this.state.clientImage
+    // }
 
-    if(data.clientWachtwoord === this.state.clientWachtwoord2) {
+    let data = {
+        utility: "Wandelstok",
+        clientEntity: {
+            companion: "Sjon",
+            driverPreferenceForced: 1,
+            userEntity: {
+                firstName: this.state.clientVoornaam,
+                lastName: this.state.clientAchternaam,
+                email: this.state.clientEmail,
+                phoneNumber: this.state.clientTelefoon,
+                street: this.state.clientStraatEnHuisnummer,
+                houseNumber: "",
+                zipCode: this.state.clientPostcode,
+                residence: this.state.clientWoonplaats,
+                password: this.state.clientWachtwoord,
+                passwordSalt: this.state.clientWachtwoord,
+                dateOfBirth: this.state.clientGeboortedatum,
+                firstTimeProfileCheck: 0
+            },
+            warningPKB: 1,
+            PBK: this.state.clientBuget,
+            companionRequired: 1,
+            image: this.state.clientImage,
+            bankAccount: this.state.clientBanknr
+        },
+       limitations: this.state.clientBeperkingen,
+       companionForced: this.state.clientBegeleiderVerplicht === "ja" ? 1 : 0
+   }
+    if(this.state.clientWachtwoord === this.state.clientWachtwoord2) {
       if(this.props.update) {
-        this.handleUpdateClient(data);
+        // data.clientEntity.clientId = parseInt(this.props.id);
+        // data.clientEntity.userEntity.id = parseInt(this.props.id);
+        // data.limitations = [];
+        // console.log(data);
+        // console.log(this.props.id);
+        let dataa = {
+    client: {
+        clientId: this.props.id,
+        companion: "Sven",
+        driverPreferenceForced: 0,
+        companionRequired: 0,
+        image: null,
+        bankAccount: this.state.clientBanknr,
+        userEntity: {
+            id: this.props.id,
+            firstName: this.state.clientVoornaam,
+            lastName: this.state.clientAchternaam,
+            email: this.state.clientEmail,
+            phoneNumber: this.state.clientTelefoon,
+            street: this.state.clientStraatEnHuisnummer,
+            houseNumber: "",
+            zipCode: this.state.clientPostcode,
+            residence: this.state.clientWoonplaats,
+            password: this.state.clientWachtwoord,
+            passwordSalt: this.state.clientWachtwoord,
+            dateOfBirth: this.state.clientGeboortedatum,
+            firstTimeProfileCheck: 0
+        },
+        rideEntity: {
+            id: this.props.id,
+            pickUpDateTime: 1530187200000,
+            pickUpLocation: "Ketelstraat 3, Arnhem",
+            dropOffLocation: "Coolsingen 3, Rotterdam",
+            duration: 30,
+            distance: 6500,
+            numberOfcompanions: 0,
+            numberOfLuggage: 3,
+            returnRide: 1,
+            callService: 0,
+            repeatingRideId: 2,
+            cancelledByClient: 0,
+            executed: 0,
+            driverEntity: {
+                driverId: 1,
+                verification: 1,
+                userEntity: {
+                    id: 1,
+                    firstName: "Wiedo",
+                    lastName: "Harkema",
+                    email: "Wiede@gmail.com",
+                    phoneNumber: "0612345678",
+                    street: "Kerkstraat",
+                    houseNumber: "7",
+                    zipCode: "1234GB",
+                    residence: "Arnhem",
+                    password: "wachtwoord",
+                    passwordSalt: "abc",
+                    dateOfBirth: "1995-06-23",
+                    firstTimeProfileCheck: 0
+                },
+                image: this.state.clientImage,
+                accountnr: this.state.clientBanknr,
+                typeOfPayment: "Vrijwillig"
+            },
+            price_of_ride: 25.4
+        },
+        pkb: this.state.clientBuget
+    },
+    limitations: this.state.clientBeperkingen
+}
+
+
+        this.handleUpdateClient(dataa);
       } else {
         this.handleAddClient(data);
       }
@@ -229,9 +343,14 @@ export default class ClientForm extends React.Component {
             </Col>
             <Col md="3">
               <FormGroup>
-                <Label for="clientNaam">Naam:</Label>
-                <Input value={this.state.removed ? "" : this.state.clientNaam} type="text" name="clientNaam"
-                  placeholder="Naam cliënt" onChange={(event) => this.handleChange(event)}/>
+                <Label for="clientVoornaam">Voornaam:</Label>
+                <Input value={this.state.removed ? "" : this.state.clientVoornaam} type="text" name="clientVoornaam"
+                  placeholder="Voornaam cliënt" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="clientAchternaam">Achternaam:</Label>
+                <Input value={this.state.removed ? "" : this.state.clientAchternaam} type="text" name="clientAchternaam"
+                  placeholder="Achternaam cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="clientGeboortedatum">Geboortedatum:</Label>
@@ -304,7 +423,7 @@ export default class ClientForm extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="clientBuget">Persoonlijk km buget:</Label>
-                <Input value={this.state.removed ? "" : this.state.clientBuget} type="text" name="clientBuget"
+                <Input value={this.state.removed ? "" : this.state.clientBuget} type="number" name="clientBuget"
                   placeholder="KM buget cliënt" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
