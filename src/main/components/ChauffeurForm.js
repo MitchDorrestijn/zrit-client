@@ -25,6 +25,14 @@ import {
   createChauffeur
 } from '../CRUD/Chauffeur';
 
+import {
+  getAllLimitations
+} from '../CRUD/Limitation';
+
+import {
+  getAllZorginstellingen
+} from '../CRUD/Zorginstelling';
+
 /**
  * Style related imports
  */
@@ -40,10 +48,76 @@ export default class ChauffeurForm extends React.Component {
    * is fired when the component did mount and makes it ready to do a PUT request to get all current data (if any)
    */
   componentDidMount() {
+    this.getAllLimitations();
+    this.getAllZorginstellingen();
     if (this.props.update) {
+      this.getASpecificChauffeur();
+    }
+  }
+
+  /**
+   * Setups all the data.
+   * @constructor
+   * @param {props} props - The given properties by the superclass
+   */
+  constructor(props) {
+    super(props);
+    this.state = {
+      chauffeurVoornaam: "",
+      chauffeurAchternaam: "",
+      chauffeurGeboortedatum: "",
+      chauffeurVOG: "",
+      chauffeurTelefoon: "",
+      chauffeurEmail: "",
+      chauffeurBanknr: "",
+      chauffeurWachtwoord: "",
+      chauffeurWachtwoord2: "",
+      chauffeurDoel: "",
+      chauffeurOmgaan: [],
+      chauffeurKenteken: "",
+      chauffeurAutoMaxPersonen: 0,
+      chauffeurAutoSegment: "",
+      chauffeurImage: "",
+      chauffeurAutoMerk: "",
+      chauffeurAutoGeschiktVoor: "",
+      limitations: [],
+      zorginstellingen: [],
+      removed: false,
+      success: false,
+      error: false
+    }
+  }
+
+  /**
+ * Makes the GET request to get all the zorginstellingen and updates the state
+ */
+  getAllZorginstellingen = () => {
+    return (
+      getAllZorginstellingen(this.props).then((res) => {
+        if(res !== undefined){
+          let zorginstellingen = [];
+          for(let i=0; i<res.data.length; i++){
+            zorginstellingen.push({
+              value: res.data[i].id,
+              label: res.data[i].name,
+              state: 'chauffeurDoel'
+            });
+          }
+          this.setState({zorginstellingen});
+        }
+      })
+    );
+  }
+
+  /**
+ * Makes the GET request to get a specific chauffeur and updates the state
+ */
+  getASpecificChauffeur = () => {
+    return (
       getSpecificChauffeur(this.props)
       .then((res) => this.setState({
-        chauffeurNaam: res.data.name,
+        chauffeurVoornaam: res.data.firstName,
+        chauffeurAchternaam: res.data.lastName,
         chauffeurGeboortedatum: res.data.dateOfBirth,
         chauffeurVOG: res.data.vog,
         chauffeurTelefoon: res.data.phone,
@@ -56,39 +130,31 @@ export default class ChauffeurForm extends React.Component {
         chauffeurAutoMaxPersonen: res.data.maxPersons,
         chauffeurAutoSegment: res.data.segment,
         chauffeurAutoMerk: res.data.brand,
-        chauffeurImage: res.data.clientImage
+        chauffeurImage: res.data.clientImage,
+        chauffeurAutoGeschiktVoor: res.data.utility
       }))
-      .catch((err) => this.setState({error: err.message, success: false}));
-    }
+      .catch((err) => this.setState({error: err.message, success: false}))
+    );
   }
 
   /**
-   * Setups all the data.
-   * @constructor
-   * @param {props} props - The given properties by the superclass
-   */
-  constructor(props) {
-    super(props);
-    this.state = {
-      chauffeurNaam: "",
-      chauffeurGeboortedatum: "",
-      chauffeurVOG: "",
-      chauffeurTelefoon: "",
-      chauffeurEmail: "",
-      chauffeurBanknr: "",
-      chauffeurWachtwoord: "",
-      chauffeurWachtwoord2: "",
-      chauffeurDoel: "",
-      chauffeurOmgaan: [],
-      chauffeurKenteken: "",
-      chauffeurAutoMaxPersonen: "",
-      chauffeurAutoSegment: "",
-      chauffeurImage: "",
-      chauffeurAutoMerk: "",
-      removed: false,
-      success: false,
-      error: false
-    }
+ * Makes the GET all limitations request and updates the state
+ */
+  getAllLimitations = () => {
+    return (
+      getAllLimitations(this.props)
+      .then((res) => {
+        let limitations = [];
+        for(let i=0; i<res.data.length; i++){
+          limitations.push({
+            value: res.data[i].name,
+            label: res.data[i].name,
+            state: 'chauffeurOmgaan'
+          });
+        }
+        this.setState({limitations});
+      })
+    )
   }
 
   /**
@@ -116,7 +182,7 @@ export default class ChauffeurForm extends React.Component {
  */
   handleAddChauffeur = (data) => {
     createChauffeur(data)
-    .then((res) => this.setState({success: `Chauffeur ${data.name} succesvol toegevoegd`, error: false}))
+    .then((res) => this.setState({success: `Chauffeur ${data.driver.userEntity.firstName} succesvol toegevoegd`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
   }
 
@@ -165,23 +231,31 @@ export default class ChauffeurForm extends React.Component {
    */
   handleChauffeur = () => {
     let data = {
-      chauffeurNaam: this.state.chauffeurNaam,
-      chauffeurGeboortedatum: this.state.chauffeurGeboortedatum,
-      chauffeurVOG: this.state.chauffeurVOG,
-      chauffeurTelefoon: this.state.chauffeurTelefoon,
-      chauffeurEmail: this.state.chauffeurEmail,
-      chauffeurBanknr: this.state.chauffeurBanknr,
-      chauffeurWachtwoord: this.state.chauffeurWachtwoord,
-      chauffeurDoel: this.state.chauffeurDoel,
-      chauffeurOmgaan: this.state.chauffeurOmgaan,
-      chauffeurKenteken: this.state.chauffeurKenteken,
-      chauffeurAutoMaxPersonen: this.state.chauffeurAutoMaxPersonen,
-      chauffeurAutoSegment: this.state.chauffeurAutoSegment,
-      chauffeurAutoMerk: this.state.chauffeurAutoMerk,
-      chauffeurImage: this.state.chauffeurImage
+      driver: {
+          verification: this.state.chauffeurVOG === "Ja" ? 1 : 0,
+          userEntity: {
+              firstName: this.state.chauffeurVoornaam,
+              lastName: this.state.chauffeurAchternaam,
+              email: this.state.chauffeurEmail,
+              phoneNumber: this.state.chauffeurTelefoon,
+              passwordSalt: this.state.chauffeurWachtwoord,
+              dateOfBirth: this.state.chauffeurGeboortedatum
+          },
+          image: this.state.chauffeurImage,
+          accountnr: this.state.chauffeurBanknr
+      },
+      drivercarEntity: {
+          utility: this.state.chauffeurAutoGeschiktVoor,
+          numberPlate: this.state.chauffeurKenteken,
+          numberOfPassengers: this.state.chauffeurAutoMaxPersonen,
+          segment: this.state.chauffeurAutoSegment,
+          brand: this.state.chauffeurAutoMerk
+      },
+      careInstitutionId: this.state.chauffeurDoel,
+      limitationEntities: this.state.chauffeurOmgaan
     }
 
-    if(data.chauffeurWachtwoord === this.state.chauffeurWachtwoord2) {
+    if(data.driver.userEntity.passwordSalt === this.state.chauffeurWachtwoord2) {
       if(this.props.update) {
         this.handleUpdateChauffeur(data);
       } else {
@@ -233,9 +307,14 @@ export default class ChauffeurForm extends React.Component {
             <Col md="3">
               <h5>Persoonlijke info</h5>
               <FormGroup>
-                <Label for="chauffeurNaam">Naam:</Label>
-                <Input value={this.state.removed ? "" : this.state.chauffeurNaam} type="text" name="chauffeurNaam"
-                  placeholder="Naam chauffeur" onChange={(event) => this.handleChange(event)}/>
+                <Label for="chauffeurVoornaam">Voornaam:</Label>
+                <Input value={this.state.removed ? "" : this.state.chauffeurVoornaam} type="text" name="chauffeurVoornaam"
+                  placeholder="Voornaam chauffeur" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="chauffeurActerNaam">Achternaam:</Label>
+                <Input value={this.state.removed ? "" : this.state.chauffeurAchternaam} type="text" name="chauffeurAchternaam"
+                  placeholder="Achternaam chauffeur" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
                 <Label for="chauffeurGeboortedatum">Geboortedatum:</Label>
@@ -254,28 +333,13 @@ export default class ChauffeurForm extends React.Component {
               <FormGroup>
                 <Label for="chauffeurDoel">Organisatie:</Label>
                 <Select placeholder="Doel chauffeur" name="chauffeurDoel" value={this.state.chauffeurDoel} onChange={this.handleSelect}
-                  options={[
-                    { value: 'accolade', label: 'Accolade', state: 'chauffeurDoel'},
-                    { value: 'axion_continue', label: 'Axion Continue', state: 'chauffeurDoel'},
-                    { value: 'cordaan', label: 'Cordaan', state: 'chauffeurDoel'},
-                    { value: 'de_zijlen', label: 'De Zijlen', state: 'chauffeurDoel'},
-                    { value: 'ecr', label: 'ECR', state: 'chauffeurDoel'},
-                    { value: 'ons_tweede_huis', label: 'Ons tweede huis', state: 'chauffeurDoel'},
-                    { value: 'piladelphia_zorg_midden', label: 'Piladelphia zorg midden', state: 'chauffeurDoel'},
-                    { value: 'raphalstichting', label: 'Raphalstichting', state: 'chauffeurDoel'},
-                    { value: 'reinaerde', label: 'Reinaerde', state: 'chauffeurDoel'},
-                    { value: 'stichting_de_opbouw', label: 'Stichting de opbouw', state: 'chauffeurDoel'}
-                  ]}
+                  options={this.state.zorginstellingen}
                 />
               </FormGroup>
               <FormGroup>
                 <Label for="chauffeurOmgaan">Mag omgaan met:</Label>
                 <Select placeholder="Mag omgaan met" multi simpleValue name="chauffeurOmgaan" value={this.state.chauffeurOmgaan} onChange={this.handleChauffeurOmgaanSelect}
-                  options={[
-                    { value: 'geestelijke_handicap', label: 'Geestelijke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'zware_fysieke_handicap', label: 'Zware/fysieke handicap', state: 'chauffeurOmgaan'},
-                    { value: 'oudere', label: 'Oudere', state: 'chauffeurOmgaan'}
-                  ]}
+                  options={this.state.limitations}
                 />
               </FormGroup>
             </Col>
@@ -315,8 +379,8 @@ export default class ChauffeurForm extends React.Component {
                   placeholder="Kenteken auto chauffeur" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
-                <Label for="chauffeurAutoMaxPersonen">Kenteken auto:</Label>
-                <Input value={this.state.removed ? "" : this.state.chauffeurAutoMaxPersonen} type="text" name="chauffeurAutoMaxPersonen"
+                <Label for="chauffeurAutoMaxPersonen">Max. personen in auto:</Label>
+                <Input value={this.state.removed ? "" : this.state.chauffeurAutoMaxPersonen} type="number" name="chauffeurAutoMaxPersonen"
                   placeholder="Max. personen in auto" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
@@ -326,6 +390,16 @@ export default class ChauffeurForm extends React.Component {
                     { value: 'A', label: 'A', state: 'chauffeurAutoSegment'},
                     { value: 'B', label: 'B', state: 'chauffeurAutoSegment'},
                     { value: 'C', label: 'C', state: 'chauffeurAutoSegment'}
+                  ]}
+                />
+              </FormGroup>
+              <FormGroup>
+                <Label for="chauffeurAutoGeschiktVoor">Auto geschikt voor:</Label>
+                <Select placeholder="Geschikt voor..." name="chauffeurAutoGeschiktVoor" value={this.state.chauffeurAutoGeschiktVoor} onChange={this.handleSelect}
+                  options={[
+                    { value: 'rolstoel', label: 'Rolstoel', state: 'chauffeurAutoGeschiktVoor'},
+                    { value: 'rollator', label: 'Rollator', state: 'chauffeurAutoGeschiktVoor'},
+                    { value: 'scootmobiel', label: 'Scootmobiel', state: 'chauffeurAutoGeschiktVoor'}
                   ]}
                 />
               </FormGroup>

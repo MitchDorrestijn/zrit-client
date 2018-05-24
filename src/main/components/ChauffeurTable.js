@@ -75,12 +75,33 @@ export default class ChauffeurTable extends React.Component {
   }
 
   /**
+   * Redirect to a page where a new chauffeur can be added.
+   */
+  createItem = () => {
+    return this.props.history.push(this.props.routes.createChauffeur);
+  };
+
+  /**
+   * Redirect to a page where a the selected chauffeur can be updated.
+   */
+  updateItem = () => {
+    return this.props.history.push(`${this.props.routes.updateChauffeur}/${this.refs.table.state.selectedRowKeys}`);
+  };
+
+  /**
+   * Enables the buttons for allowing the zorginstelling to update
+   */
+  onSelect = () => {
+    this.setState({disableButtons: false});
+  }
+
+  /**
    * Renders the buttons above the table
    */
   renderButtons = () => {
     return (<div>
-      <Button color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
+      <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
+      <Button onClick={this.updateItem} disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
 
