@@ -117,7 +117,7 @@ export default class ClientForm extends React.Component {
  */
   handleUpdateClient = (data) => {
     updateClient(this.props, data)
-    .then((res) => this.setState({success: `Naam cliënt gewijzigd naar ${res.data.name}`, error: false}))
+    .then((res) => this.setState({success: `Naam cliënt gewijzigd naar ${this.state.clientVoornaam} ${this.state.clientAchternaam}`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
   }
 
@@ -127,7 +127,7 @@ export default class ClientForm extends React.Component {
  */
   handleAddClient = (data) => {
     createClient(data)
-    .then((res) => this.setState({success: `cliënt ${data.name} succesvol toegevoegd`, error: false}))
+    .then((res) => this.setState({success: `cliënt ${this.state.clientVoornaam} ${this.state.clientAchternaam} succesvol toegevoegd`, error: false}))
     .catch((err) => this.setState({error: err.message, success: false}));
   }
 
@@ -432,10 +432,10 @@ export default class ClientForm extends React.Component {
         <Button disabled={this.state.removed} onClick={this.handleClient} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Cliënt toevoegen</span>}
         </Button>
-        {this.props.update &&
+        {/* {this.props.update &&
           <Button onClick={this.handleRemoveClient} color="primary" className="crud-btn">
             Verwijder client
-          </Button>}
+          </Button>} */}
       </div>
     );
   }
