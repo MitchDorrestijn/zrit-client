@@ -21,6 +21,15 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
+ * Other imports
+ */
+ import oneStar from '../assets/img/star-1.png';
+ import twoStars from '../assets/img/star-2.png';
+ import threeStars from '../assets/img/star-3.png';
+ import fourStars from '../assets/img/star-4.png';
+ import fiveStars from '../assets/img/star-5.png';
+
+/**
  * This class takes care of rendering the chauffeur table, from here other actions can be taken
  */
 export default class ChauffeurTable extends React.Component {
@@ -89,6 +98,13 @@ export default class ChauffeurTable extends React.Component {
   };
 
   /**
+   * Redirect to the ratings page.
+   */
+  goToRatings = () => {
+    return this.props.history.push(`${this.props.routes.readRatings}`);
+  };
+
+  /**
    * Enables the buttons for allowing the zorginstelling to update
    */
   onSelect = () => {
@@ -104,6 +120,26 @@ export default class ChauffeurTable extends React.Component {
       <Button onClick={this.updateItem} disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bewerken</Button>
     </div>);
   };
+
+  /**
+   * Renders the correct amount of stars based on the value of the cell
+   */
+  starFormatter = (cell) => {
+    switch (cell) {
+      case 1:
+        return "<img onClick= class='starImg' alt='one-star' src='"+oneStar+"'/>" ;
+      case 2:
+        return "<img class='starImg' alt='two-stars' src='"+twoStars+"'/>" ;
+      case 3:
+        return "<img class='starImg' alt='three-stars' src='"+threeStars+"'/>" ;
+      case 4:
+        return "<img class='starImg' alt='four-stars' src='"+fourStars+"'/>" ;
+      case 5:
+        return "<img class='starImg' alt='five-stars' src='"+fiveStars+"'/>" ;
+      default:
+        return "-" ;
+    }
+  }
 
   /**
    * Renders the view for the user
@@ -168,8 +204,8 @@ export default class ChauffeurTable extends React.Component {
           auto &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="130" dataField="rating" dataSort={true}>
-          Beoordeling &#x2195;
+        <TableHeaderColumn width="130" dataFormat={this.starFormatter} dataField="rating" dataSort={true}>
+          Gem. beoordeling &#x2195;
         </TableHeaderColumn>
 
       </BootstrapTable>
@@ -177,6 +213,7 @@ export default class ChauffeurTable extends React.Component {
       <CSVLink data={this.state.data} filename={"chauffeurs_overview"} className="btn btn-primary crud-btn" target="">
         Export als CSV
       </CSVLink>
+      <Button onClick={this.goToRatings} color="primary" className='crud-btn'>Bekijk beoordelingen</Button>
     </div>);
   };
 }

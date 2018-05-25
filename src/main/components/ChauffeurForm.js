@@ -113,25 +113,26 @@ export default class ChauffeurForm extends React.Component {
  * Makes the GET request to get a specific chauffeur and updates the state
  */
   getASpecificChauffeur = () => {
+    //OrganisatieID, VOG,
     return (
       getSpecificChauffeur(this.props)
       .then((res) => this.setState({
-        chauffeurVoornaam: res.data.firstName,
-        chauffeurAchternaam: res.data.lastName,
-        chauffeurGeboortedatum: res.data.dateOfBirth,
-        chauffeurVOG: res.data.vog,
-        chauffeurTelefoon: res.data.phone,
-        chauffeurEmail: res.data.email,
-        chauffeurBanknr: res.data.bank,
-        chauffeurWachtwoord: res.data.password,
-        chauffeurDoel: res.data.charity,
-        chauffeurOmgaan: res.data.privileges,
-        chauffeurKenteken: res.data.numberPlate,
-        chauffeurAutoMaxPersonen: res.data.maxPersons,
-        chauffeurAutoSegment: res.data.segment,
-        chauffeurAutoMerk: res.data.brand,
-        chauffeurImage: res.data.clientImage,
-        chauffeurAutoGeschiktVoor: res.data.utility
+        chauffeurVoornaam: res.data.driver.userEntity.firstName,
+        chauffeurAchternaam: res.data.driver.userEntity.lastName,
+        chauffeurGeboortedatum: res.data.driver.userEntity.dateOfBirth,
+        chauffeurVOG: res.data.driver.verification === 0 ? "nee" : "ja",
+        chauffeurTelefoon: res.data.driver.userEntity.phoneNumber,
+        chauffeurEmail: res.data.driver.userEntity.email,
+        chauffeurBanknr: res.data.driver.accountnr,
+        chauffeurWachtwoord: res.data.driver.userEntity.password,
+        chauffeurDoel: res.data.careInstitutionId,
+        chauffeurOmgaan: res.data.limitationEntities,
+        chauffeurKenteken: res.data.drivercarEntity.numberPlate,
+        chauffeurAutoMaxPersonen: res.data.drivercarEntity.numberOfPassengers,
+        chauffeurAutoSegment: res.data.drivercarEntity.segment,
+        chauffeurAutoMerk: res.data.drivercarEntity.brand,
+        chauffeurImage: res.data.driver.image === "" ? "" : res.data.driver.image,
+        chauffeurAutoGeschiktVoor: res.data.drivercarEntity.utility
       }))
       .catch((err) => this.setState({error: err.message, success: false}))
     );
@@ -232,7 +233,7 @@ export default class ChauffeurForm extends React.Component {
   handleChauffeur = () => {
     let data = {
       driver: {
-          verification: this.state.chauffeurVOG === "Ja" ? 1 : 0,
+          verification: this.state.chauffeurVOG === "ja" ? 1 : 0,
           userEntity: {
               firstName: this.state.chauffeurVoornaam,
               lastName: this.state.chauffeurAchternaam,
@@ -252,11 +253,19 @@ export default class ChauffeurForm extends React.Component {
           brand: this.state.chauffeurAutoMerk
       },
       careInstitutionId: this.state.chauffeurDoel,
-      limitationEntities: this.state.chauffeurOmgaan
+      limitationEntities: this.state.chauffeurOmgaan,
+      active: 1
     }
 
     if(data.driver.userEntity.passwordSalt === this.state.chauffeurWachtwoord2) {
       if(this.props.update) {
+        data.driver.driverId = this.props.id;
+        data.driver.typeOfPayment = "Vrijwillig";
+        data.driver.userEntity.id = this.props.id;
+        data.driver.userEntity.password = this.state.chauffeurWachtwoord;
+        data.drivercarEntity.driverId = this.props.id;
+        console.log(data);
+        console.log(this.props.id);
         this.handleUpdateChauffeur(data);
       } else {
         this.handleAddChauffeur(data);
