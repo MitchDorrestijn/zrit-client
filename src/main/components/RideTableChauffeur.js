@@ -13,7 +13,7 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
- * This class takes care of rendering the rideCHauffeur table, from here other actions can be taken
+ * This class takes care of rendering the rideChauffeur table, from here other actions can be taken
  */
 export default class RideTableChauffeur extends React.Component {
 
@@ -76,7 +76,11 @@ export default class RideTableChauffeur extends React.Component {
     return (<div>
       <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
 
-        <TableHeaderColumn isKey={true} width="120" dataField="date" dataSort={true}>
+      <TableHeaderColumn hidden={true} dataField="rideId" isKey={true}>
+        RideID
+      </TableHeaderColumn>
+
+        <TableHeaderColumn width="120" dataField="date" dataSort={true}>
           Datum &#x2195;
         </TableHeaderColumn>
 
