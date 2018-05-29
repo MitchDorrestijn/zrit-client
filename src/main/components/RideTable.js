@@ -7,10 +7,6 @@ import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {renderSearchField, renderSortedColumn} from '../global/Methods';
 
 /**
- * Endpoints import
- */
-
-/**
  * Style related imports
  */
 import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-all.min.css';
@@ -25,7 +21,7 @@ export default class RideTable extends React.Component {
    * Makes a GET request to get all rides when component is mounted
    */
   componentDidMount() {
-    //getALlRides(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+    //getAllRides(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
   }
 
   /**
