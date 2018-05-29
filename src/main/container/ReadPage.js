@@ -18,6 +18,7 @@ import ReadChauffeur from '../views/chauffeur/ReadChauffeur';
 import ReadClient from '../views/client/ReadClient';
 import ReadRatings from '../views/rating/ReadRatings';
 import ReadRides from '../views/rides/ReadRides';
+import ReadRideClient from '../views/rides/ReadRideClient';
 
 /**
  * This component renders the read (overview) page for the elements based on the URL
@@ -40,8 +41,11 @@ const ReadPage = (props) => {
 						{props.match.url === props.routes.readRatings &&
 							<ReadRatings routes={props.routes} history={props.history} />
 						}
-						{props.match.url === props.routes.readRides &&
+						{props.match.url === props.routes.readAllRides &&
 							<ReadRides routes={props.routes} history={props.history} />
+						}
+						{props.match.url === props.routes.readRideClient &&
+							<ReadRideClient routes={props.routes} history={props.history} />
 						}
           <Footer />
         </Col>
