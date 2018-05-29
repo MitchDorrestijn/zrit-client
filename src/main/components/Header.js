@@ -45,7 +45,7 @@ const Header = (props) => {
           <Link className="nav-link" to={props.routes.readZorginstelling}>Zorginstellingen</Link>
         </NavItem>
         <NavItem>
-          <Link className="nav-link" to="#">Ritten</Link>
+          <Link className="nav-link" to={props.routes.readRides}>Ritten</Link>
         </NavItem>
         <NavItem>
           <Link className="nav-link" to={props.routes.readChauffeur}>Chauffeurs</Link>
