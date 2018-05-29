@@ -30,7 +30,8 @@ const routes = {
   readChauffeur: '/read/chauffeur',
   createChauffeur: '/create/chauffeur',
   updateChauffeur: '/update/chauffeur',
-  readClienten: '/read/ride/client  ',
+  readClienten: '/read/client',
+  readRideChauffeur: '/read/ride/chauffeur',
   readAllRides: '/read/ride/all',
   aboutPage: '/about',
   readRatings: '/read/ratings',
@@ -50,6 +51,7 @@ const AppRouter = () => {
         <Route exact path={routes.readRatings} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readAllRides} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readRideClient} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
+        <Route exact path={routes.readRideChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createChauffeur} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createClient} render={(props) => (<CreatePage {...props} routes={routes}/>)} />

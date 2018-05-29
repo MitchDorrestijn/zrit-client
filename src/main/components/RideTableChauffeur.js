@@ -13,9 +13,9 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
- * This class takes care of rendering the rideClient table, from here other actions can be taken
+ * This class takes care of rendering the rideChauffeur table, from here other actions can be taken
  */
-export default class RideTableClient extends React.Component {
+export default class RideTableChauffeur extends React.Component {
 
   /**
    * Setups all the data.
@@ -26,9 +26,6 @@ export default class RideTableClient extends React.Component {
     super(props);
     this.columns = [
       {
-        name: 'warning',
-        display: 'Warning'
-      }, {
         name: 'date',
         display: 'Datum'
       }, {
@@ -39,16 +36,20 @@ export default class RideTableClient extends React.Component {
         display: 'Bestemming'
       },
       {
+        name: 'transerPaymentTo',
+        display: 'Overmaken naar'
+      },
+      {
+        name: 'totalToPay',
+        display: 'Bedrag'
+      },
+      {
         name: 'nameDriver',
         display: 'Naam chauffeur'
       },
       {
         name: 'nameClient',
         display: 'Naam client'
-      },
-      {
-        name: 'toPay',
-        display: 'Te betalen door cliënt'
       }
     ];
     this.state = {
@@ -79,10 +80,6 @@ export default class RideTableClient extends React.Component {
         RideID
       </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataField="warning" dataSort={true}>
-          Warning &#x2195;
-        </TableHeaderColumn>
-
         <TableHeaderColumn width="120" dataField="date" dataSort={true}>
           Datum &#x2195;
         </TableHeaderColumn>
@@ -95,6 +92,14 @@ export default class RideTableClient extends React.Component {
           Bestemming &#x2195;
         </TableHeaderColumn>
 
+        <TableHeaderColumn width="120" dataField="transerPaymentTo" dataSort={true}>
+          Overmaken <br /> naar &#x2195;
+        </TableHeaderColumn>
+
+        <TableHeaderColumn width="120" dataField="totalToPay" dataSort={true}>
+          Bedrag &#x2195;
+        </TableHeaderColumn>
+
         <TableHeaderColumn width="120" dataField="nameDriver" dataSort={true}>
           Naam <br/> chauffeur &#x2195;
         </TableHeaderColumn>
@@ -103,13 +108,9 @@ export default class RideTableClient extends React.Component {
           Naam <br/> client &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataField="toPay" dataSort={true}>
-          Te betalen <br/> door cliënt &#x2195;
-        </TableHeaderColumn>
-
       </BootstrapTable>
 
-      <CSVLink data={this.state.data} filename={"ritten_client_overview"} className="btn btn-primary crud-btn" target="">
+      <CSVLink data={this.state.data} filename={"ritten_chauffeur_overview"} className="btn btn-primary crud-btn" target="">
         Export als CSV
       </CSVLink>
     </div>);
