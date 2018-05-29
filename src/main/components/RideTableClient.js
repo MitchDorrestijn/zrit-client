@@ -74,7 +74,12 @@ export default class RideTableClient extends React.Component {
 
     return (<div>
       <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
-        <TableHeaderColumn width="120" dataField="warning" dataSort={true} isKey={true}>
+
+      <TableHeaderColumn hidden={true} dataField="rideId" isKey={true}>
+        RideID
+      </TableHeaderColumn>
+
+        <TableHeaderColumn width="120" dataField="warning" dataSort={true}>
           Warning &#x2195;
         </TableHeaderColumn>
 
