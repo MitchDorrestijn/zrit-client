@@ -30,7 +30,7 @@ const routes = {
   readChauffeur: '/read/chauffeur',
   createChauffeur: '/create/chauffeur',
   updateChauffeur: '/update/chauffeur',
-  readClienten: '/read/client',
+  readClienten: '/read/ride/client  ',
   readAllRides: '/read/ride/all',
   aboutPage: '/about',
   readRatings: '/read/ratings',

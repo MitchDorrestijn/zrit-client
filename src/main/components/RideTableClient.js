@@ -15,7 +15,7 @@ import '../css/table.css';
 /**
  * This class takes care of rendering the ratings table, from here other actions can be taken
  */
-export default class RideTable extends React.Component {
+export default class RideTableClient extends React.Component {
 
   /**
    * Makes a GET request to get all rides when component is mounted
@@ -46,16 +46,16 @@ export default class RideTable extends React.Component {
         display: 'Bestemming'
       },
       {
-        name: 'driverAssigned',
-        display: 'Chauffeur toegewezen'
-      },
-      {
         name: 'nameDriver',
         display: 'Naam chauffeur'
       },
       {
         name: 'nameClient',
         display: 'Naam client'
+      },
+      {
+        name: 'toPay',
+        display: 'Te betalen door cliënt'
       }
     ];
     this.state = {
@@ -97,10 +97,6 @@ export default class RideTable extends React.Component {
           Bestemming &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataField="driverAssigned" dataSort={true}>
-          Chauffeur <br/> toegewezen &#x2195;
-        </TableHeaderColumn>
-
         <TableHeaderColumn width="120" dataField="nameDriver" dataSort={true}>
           Naam <br/> chauffeur &#x2195;
         </TableHeaderColumn>
@@ -109,9 +105,13 @@ export default class RideTable extends React.Component {
           Naam <br/> client &#x2195;
         </TableHeaderColumn>
 
+        <TableHeaderColumn width="120" dataField="toPay" dataSort={true}>
+          Te betalen <br/> door cliënt &#x2195;
+        </TableHeaderColumn>
+
       </BootstrapTable>
 
-      <CSVLink data={this.state.data} filename={"ritten_overview"} className="btn btn-primary crud-btn" target="">
+      <CSVLink data={this.state.data} filename={"ritten_client_overview"} className="btn btn-primary crud-btn" target="">
         Export als CSV
       </CSVLink>
     </div>);

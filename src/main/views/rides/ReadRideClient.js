@@ -16,9 +16,7 @@ const ReadRideClient = (props) => {
   return (
 		<div>
 	    <TextContent title="Ritten beheren">
-	      Hieronder kunt u ritten beheren.
-				Druk op het rondje vooraan de tabel om een record te selecteren,
-				vervolgens kunt u het record bewerken door op de knop 'bewerken' te drukken.
+	      Hieronder ziet U de ritten van een specifieke cliënt.
 	    </TextContent>
 	    <RideTableClient routes={props.routes} history={props.history}/>
   	</div>
