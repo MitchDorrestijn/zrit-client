@@ -13,16 +13,9 @@ import '../../../node_modules/react-bootstrap-table/dist/react-bootstrap-table-a
 import '../css/table.css';
 
 /**
- * This class takes care of rendering the ratings table, from here other actions can be taken
+ * This class takes care of rendering the rideClient table, from here other actions can be taken
  */
 export default class RideTableClient extends React.Component {
-
-  /**
-   * Makes a GET request to get all rides when component is mounted
-   */
-  componentDidMount() {
-    //getAllRides(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
-  }
 
   /**
    * Setups all the data.

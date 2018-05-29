@@ -15,7 +15,7 @@ import RideTableClient from '../../components/RideTableClient';
 const ReadRideClient = (props) => {
   return (
 		<div>
-	    <TextContent title="Ritten beheren">
+	    <TextContent title="Ritten beheren cliënt">
 	      Hieronder ziet U de ritten van een specifieke cliënt.
 	    </TextContent>
 	    <RideTableClient routes={props.routes} history={props.history}/>
