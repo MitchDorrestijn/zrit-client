@@ -49,6 +49,18 @@ export default class ZorginstellingTable extends React.Component {
       {
         name: 'name',
         display: 'Naam'
+      },
+      {
+        name: 'address',
+        display: 'Gemeente'
+      },
+      {
+        name: 'community',
+        display: 'Gemeente'
+      },
+      {
+        name: 'telephonenumber',
+        display: 'Telefoonnummer'
       }
     ];
     this.state = {
@@ -117,6 +129,18 @@ export default class ZorginstellingTable extends React.Component {
 
           <TableHeaderColumn dataField="name" dataSort={true}>
             Naam &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="address" dataSort={true}>
+            Adres &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="community" dataSort={true}>
+            Gemeente &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="telephonenumber" dataSort={true}>
+            Telefoonnummer &#x2195;
           </TableHeaderColumn>
         </BootstrapTable>
 

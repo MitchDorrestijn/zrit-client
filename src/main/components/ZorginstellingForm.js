@@ -39,7 +39,7 @@ export default class ZorginstellingForm extends React.Component {
   componentDidMount() {
     if (this.props.update) {
       getSpecificZorginstelling(this.props)
-      .then((res) => this.setState({zorginstellingNaam: res.data.name}))
+      .then((res) => this.setState({zorginstellingNaam: res.data.name, zorginstellingAdres: res.data.address, zorginstellingGemeente: res.data.community, zorginstellingTelefoonnummer: res.data.telephonenumber}))
       .catch((err) => this.setState({error: err.message, success: false}));
     }
   }
@@ -53,6 +53,9 @@ export default class ZorginstellingForm extends React.Component {
     super(props);
     this.state = {
       zorginstellingNaam: "",
+      zorginstellingAdres: "",
+      zorginstellingGemeente: "",
+      zorginstellingTelefoonnummer: "",
       removed: false,
       success: false,
       error: false
@@ -102,7 +105,7 @@ export default class ZorginstellingForm extends React.Component {
    * Makes the POST or PUT request ready
    */
   handleZorginstelling = () => {
-    let data = {name: this.state.zorginstellingNaam}
+    let data = {name: this.state.zorginstellingNaam, address: this.state.zorginstellingAdres, community: this.state.zorginstellingGemeente, telephonenumber: this.state.zorginstellingTelefoonnummer}
     if(
       this.props.update) {this.handleUpdateZorginstelling(data);
     } else {
@@ -141,10 +144,41 @@ export default class ZorginstellingForm extends React.Component {
               <FormGroup>
                 <Label for="zorginstellingNaam">Naam:</Label>
                 <Input value={this.state.removed ? "" : this.state.zorginstellingNaam} type="text" name="zorginstellingNaam"
-                  placeholder="Type de naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
+                  placeholder="Type de nieuwe naam van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
             </Col>
           </Row>
+
+          <Row>
+            <Col md="4">
+              <FormGroup>
+                <Label for="zorginstellingNaam">Adres:</Label>
+                <Input value={this.state.removed ? "" : this.state.zorginstellingAdres} type="text" name="zorginstellingAdres"
+                  placeholder="Type het nieuwe adres van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="4">
+              <FormGroup>
+                <Label for="zorginstellingNaam">Gemeente:</Label>
+                <Input value={this.state.removed ? "" : this.state.zorginstellingGemeente} type="text" name="zorginstellingGemeente"
+                  placeholder="Type de nieuwe gemeente van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+            </Col>
+          </Row>
+
+          <Row>
+            <Col md="4">
+              <FormGroup>
+                <Label for="zorginstellingNaam">Telefoonnummer:</Label>
+                <Input value={this.state.removed ? "" : this.state.zorginstellingTelefoonnummer} type="text" name="zorginstellingTelefoonnummer"
+                  placeholder="Type het nieuwe telefoonnummer van de zorginstelling" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+            </Col>
+          </Row>
+
         </Form>
         <Button disabled={this.state.removed} onClick={this.handleZorginstelling} color="primary" className="crud-btn">
           {this.props.update ? <span>Bewerken</span> : <span>Toevoegen</span>}
