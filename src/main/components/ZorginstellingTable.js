@@ -51,17 +51,21 @@ export default class ZorginstellingTable extends React.Component {
         display: 'Naam'
       },
       {
-        name: 'address',
-        display: 'Gemeente'
+        name: 'street',
+        display: 'Straat'
       },
       {
-        name: 'community',
-        display: 'Gemeente'
+        name: 'houseNumber',
+        display: 'Huisnummer'
       },
       {
-        name: 'telephonenumber',
-        display: 'Telefoonnummer'
-      }
+        name: 'zipCode',
+        display: 'Postcode'
+      },
+      {
+        name: 'residence',
+        display: 'Gemeente'
+      },
     ];
     this.state = {
       sortColumnName: undefined,
@@ -131,16 +135,20 @@ export default class ZorginstellingTable extends React.Component {
             Naam &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="address" dataSort={true}>
-            Adres &#x2195;
+          <TableHeaderColumn dataField="street" dataSort={true}>
+            Straat &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="community" dataSort={true}>
+          <TableHeaderColumn dataField="houseNumber" dataSort={true}>
+            Huisnummer &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="zipCode" dataSort={true}>
+            Postcode &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="residence" dataSort={true}>
             Gemeente &#x2195;
-          </TableHeaderColumn>
-
-          <TableHeaderColumn dataField="telephonenumber" dataSort={true}>
-            Telefoonnummer &#x2195;
           </TableHeaderColumn>
         </BootstrapTable>
 
