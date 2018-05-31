@@ -35,7 +35,23 @@ export default class ZorginstellingTable extends React.Component {
    * Makes a GET request to get all zorginstellingen when component is mounted
    */
   componentDidMount(){
-    getAllZorginstellingen(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+    getAllZorginstellingen(this.props).then((res) => {this.setState({data: this.dataFormatterGET(res.data)})});
+  }
+
+  dataFormatterGET = (data) => {
+    let dataDisplay = [];
+    for(let i=0; i<data.length; i++){
+      let zorginstellingData = {
+        name: data[i].name,
+        street: data[i].addresses[0].street,
+        houseNumber: data[i].addresses[0].houseNumber,
+        zipCode: data[i].addresses[0].zipCode,
+        residence: data[i].addresses[0].residence,
+        id: data[i].id
+      }
+      dataDisplay.push(zorginstellingData);
+    }
+    return dataDisplay;
   }
 
   /**
@@ -49,7 +65,23 @@ export default class ZorginstellingTable extends React.Component {
       {
         name: 'name',
         display: 'Naam'
-      }
+      },
+      {
+        name: 'street',
+        display: 'Straat'
+      },
+      {
+        name: 'houseNumber',
+        display: 'Huisnummer'
+      },
+      {
+        name: 'zipCode',
+        display: 'Postcode'
+      },
+      {
+        name: 'residence',
+        display: 'Gemeente'
+      },
     ];
     this.state = {
       sortColumnName: undefined,
@@ -117,6 +149,22 @@ export default class ZorginstellingTable extends React.Component {
 
           <TableHeaderColumn dataField="name" dataSort={true}>
             Naam &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="street" dataSort={true}>
+            Straat &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="houseNumber" dataSort={true}>
+            Huisnummer &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="zipCode" dataSort={true}>
+            Postcode &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn dataField="residence" dataSort={true}>
+            Gemeente &#x2195;
           </TableHeaderColumn>
         </BootstrapTable>
 
