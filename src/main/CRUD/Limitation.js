@@ -7,5 +7,5 @@ import {redirectToErrorPage} from '../global/Methods';
 * @param {props} props - the history router so users can go back after receiving an error
 */
 export const getAllLimitations = (props) => {
-  return axios.get(`${config.url}/limitation/limitations`).catch((err) => redirectToErrorPage(props));
+  return axios.get(`${config.url}/limitation/getAllLimitations`).catch((err) => redirectToErrorPage(props));
 };
