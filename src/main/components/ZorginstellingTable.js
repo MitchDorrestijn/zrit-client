@@ -39,7 +39,6 @@ export default class ZorginstellingTable extends React.Component {
   }
 
   dataFormatterGET = (data) => {
-    console.log(data);
     let dataDisplay = [];
     for(let i=0; i<data.length; i++){
       let zorginstellingData = {

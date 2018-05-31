@@ -39,10 +39,18 @@ export default class ZorginstellingForm extends React.Component {
   componentDidMount() {
     if (this.props.update) {
       getSpecificZorginstelling(this.props)
-      .then((res) => this.setState({zorginstellingNaam: res.data.name, zorginstellingStraat: res.data.street,
-       zorginstellingHuisnummer: res.data.houseNumber, zorginstellingPostcode: res.data.zipCode, zorginstellingGemeente: res.data.residence}))
-      .catch((err) => this.setState({error: err.message, success: false}));
-    }
+      .then((res) => {
+        let {name, street, houseNumber, zipCode, residence} = res.data;
+        this.setState({
+          zorginstellingNaam: name,
+          zorginstellingStraat: street,
+          zorginstellingHuisnummer: houseNumber,
+          zorginstellingPostcode: zipCode,
+          zorginstellingGemeente: residence})
+        })
+      .catch((err) =>
+        this.setState({error: err.message, success: false}));
+      }
   }
 
   /**
@@ -107,7 +115,24 @@ export default class ZorginstellingForm extends React.Component {
    * Makes the POST or PUT request ready
    */
   handleZorginstelling = () => {
-    let data = {name: this.state.zorginstellingNaam, addresses: [{street: this.state.zorginstellingStraat, houseNumber: this.state.zorginstellingHuisnummer, zipCode: this.state.zorginstellingPostcode, residence: this.state.zorginstellingGemeente}]}
+    let {
+         zorginstellingNaam,
+         zorginstellingStraat,
+         zorginstellingHuisnummer,
+         zorginstellingPostcode,
+         zorginstellingGemeente
+       } = this.state;
+    let data = {
+     name: zorginstellingNaam,
+     addresses: [
+       {
+         street: zorginstellingStraat,
+         houseNumber: zorginstellingHuisnummer,
+         zipCode: zorginstellingPostcode,
+         residence: zorginstellingGemeente
+       }
+     ]
+   }
     if(
       this.props.update) {this.handleUpdateZorginstelling(data);
     } else {
