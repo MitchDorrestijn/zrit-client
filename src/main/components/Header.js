@@ -54,10 +54,10 @@ const Header = (props) => {
           <Link className="nav-link" to={props.routes.readClienten}>Clienten</Link>
         </NavItem>
         <NavItem>
-          <Link className="nav-link" to="#">Betalingen</Link>
+          <Link className="nav-link" to={props.routes.readBetalingen}>Betalingen</Link>
         </NavItem>
         <NavItem>
-          <Link className="nav-link" to="#">Ritten bestellen</Link>
+          <Link className="nav-link" to={props.routes.createRit}>Ritten bestellen</Link>
         </NavItem>
         <NavItem>
           <Link className="nav-link" to={props.routes.aboutPage}>Over</Link>

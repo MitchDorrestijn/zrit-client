@@ -113,7 +113,6 @@ export default class ChauffeurForm extends React.Component {
  * Makes the GET request to get a specific chauffeur and updates the state
  */
   getASpecificChauffeur = () => {
-    //OrganisatieID, VOG,
     return (
       getSpecificChauffeur(this.props)
       .then((res) => this.setState({
