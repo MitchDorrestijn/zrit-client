@@ -2,10 +2,16 @@
  * React related imports
  */
 import React from 'react';
-import {Button} from 'reactstrap'
 import {CSVLink} from 'react-csv';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import {renderSearchField, renderSortedColumn} from '../global/Methods';
+import {renderSearchField} from '../global/Methods';
+
+/**
+ * Endpoints import
+ */
+import {
+  getAllBetalingen
+} from '../CRUD/Betalingen';
 
 /**
  * Style related imports
@@ -19,6 +25,13 @@ import '../css/table.css';
 export default class BetalingenTable extends React.Component {
 
   /**
+   * Makes a GET request to get all betalingen when component is mounted
+   */
+  componentDidMount() {
+    getAllBetalingen(this.props).then((res) => {res !== undefined && this.setState({data: res.data})});
+  }
+
+  /**
    * Setups all the data.
    * @constructor
    * @param {props} props - The given properties by the superclass
@@ -27,25 +40,29 @@ export default class BetalingenTable extends React.Component {
     super(props);
     this.columns = [
       {
-        name: 'chauffeur',
+        name: 'driverName',
         display: 'Chauffeur'
       },
       {
-        name: 'overmaken_naar',
+        name: 'accountnr',
         display: 'Overmaken naar'
       },
       {
-        name: 'bedrag',
+        name: 'price_of_ride',
         display: 'Bedrag'
       },
       {
-        name: 'betalingsKenmerk',
+        name: 'paymentDescription',
         display: 'Betalingskenmerk'
       },
       {
-        name: 'periode_betaling',
-        display: 'Periode betaling'
+        name: 'paymentStatus',
+        display: 'Betaalstatus'
       },
+      {
+        name: 'paymentDueBefore',
+        display: 'Betalen voor'
+      }
     ];
     this.state = {
       sortColumnName: undefined,
@@ -60,42 +77,35 @@ export default class BetalingenTable extends React.Component {
    */
   render() {
     const tableOptions = {
-      sortColumnName: this.state.sortName,
-      sortOrder: this.state.sortOrder,
-      renderSortedColumn: renderSortedColumn,
       noDataText: 'Geen resultaten gevonden',
       searchField: renderSearchField
     };
 
     return (
       <div>
-        <BootstrapTable search={true} data={this.state.data} options={tableOptions} selectRow={{
-            mode: 'radio',
-            onSelect: this.onSelect
-          }} ref='table'>
-
-          <TableHeaderColumn hidden={true} dataField="id" isKey={true}>
-            ID
-          </TableHeaderColumn>
-
-          <TableHeaderColumn dataField="chauffeur" dataSort={true}>
+        <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
+          <TableHeaderColumn isKey width="230" dataField="driverName" dataSort={true}>
             Chauffeur &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="overmaken_naar" dataSort={true}>
+          <TableHeaderColumn width="250" dataField="accountnr" dataSort={true}>
             Overmaken naar &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="bedrag" dataSort={true}>
+          <TableHeaderColumn width="100" dataField="price_of_ride" dataSort={true}>
             Bedrag &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="betalingsKenmerk" dataSort={true}>
+          <TableHeaderColumn width="200" dataField="paymentDescription" dataSort={true}>
             Betalingskenmerk &#x2195;
           </TableHeaderColumn>
 
-          <TableHeaderColumn dataField="periode_betaling" dataSort={true}>
-            Periode betaling &#x2195;
+          <TableHeaderColumn width="150" dataField="paymentStatus" dataSort={true}>
+            Betaalstatus &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn width="140" dataField="paymentDueBefore" dataSort={true}>
+            Betalen voor &#x2195;
           </TableHeaderColumn>
         </BootstrapTable>
 
