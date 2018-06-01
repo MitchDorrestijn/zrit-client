@@ -38,7 +38,8 @@ const routes = {
   createClient: '/create/client',
   updateClient: '/update/client',
   readRideClient: '/read/ride/client',
-  createRit: '/create/rit'
+  createRit: '/create/rit',
+  readBetalingen: '/read/betalingen'
 }
 
 const AppRouter = () => {
@@ -62,6 +63,7 @@ const AppRouter = () => {
         <Route exact path={`${routes.updateChauffeur}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>
         <Route exact path={`${routes.error}`} render={(props) => (<ErrorPage {...props} routes={routes}/>)}/>
         <Route exact path={routes.aboutPage} render={(props) => (<AboutPage {...props} routes={routes}/>)}/>
+        <Route exact path={routes.readBetalingen} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
       </Switch>
   	</BrowserRouter>
 	);
