@@ -257,7 +257,7 @@ export default class RittenForm extends React.Component {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="vasteRit">Vate rit?</Label>
+                <Label for="vasteRit">Vaste rit?</Label>
                 <Select placeholder="Selecteer 'ja' of 'nee'" name="vasteRit" value={this.state.vasteRit} onChange={this.handleSelect}
                   options={[
                     { value: 1, label: 'Ja', state: 'vasteRit'},
