@@ -84,7 +84,11 @@ export default class BetalingenTable extends React.Component {
     return (
       <div>
         <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
-          <TableHeaderColumn isKey width="230" dataField="driverName" dataSort={true}>
+          <TableHeaderColumn hidden={true} isKey width="230" dataField="id" dataSort={true}>
+            id &#x2195;
+          </TableHeaderColumn>
+
+          <TableHeaderColumn width="230" dataField="driverName" dataSort={true}>
             Chauffeur &#x2195;
           </TableHeaderColumn>
 

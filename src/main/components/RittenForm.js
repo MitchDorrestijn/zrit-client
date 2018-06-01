@@ -1,6 +1,8 @@
+/**
+ * React related imports
+ */
 import React from 'react';
 import Select from 'react-select';
-
 import {
   Col,
   Form,
@@ -12,11 +14,44 @@ import {
   Alert
 } from 'reactstrap';
 
+/**
+ * Endpoints import
+ */
+import {
+  getAllClients
+} from '../CRUD/Client';
+
+import {
+  getAllChauffeurs
+} from '../CRUD/Chauffeur';
+
+import {
+  getAllUtilities
+} from '../CRUD/Utilities';
+
 import {
   createRide
 } from '../CRUD/Ride';
 
+/**
+ * This class takes care of rendering the ritten form and manages its state
+ */
 export default class RittenForm extends React.Component {
+
+  /**
+   * Makes GET requests to get all clients, chauffeurs and utilities when component is mounted
+   */
+  componentDidMount() {
+    getAllClients(this.props).then((res) => {res !== undefined && this.fillClientList(res.data)});
+    getAllChauffeurs(this.props).then((res) => {res !== undefined && this.fillDriverList(res.data)});
+    getAllUtilities(this.props).then((res) => {res !== undefined && this.fillUtilityList(res.data)});
+  }
+
+  /**
+   * Setups all the data.
+   * @constructor
+   * @param {props} props - The given properties by the superclass
+   */
   constructor(props) {
     super(props);
     this.state = {
@@ -34,35 +69,93 @@ export default class RittenForm extends React.Component {
       utilities: null,
       error: "",
       success: "",
+      clientenLijst: [],
+      chauffeurLijst: [],
+      utilityLijst: [],
       removed: false
     }
   }
 
+  /**
+   * Fills the list of clients from the given data to display it in the select field
+   * @param {object} data - result of the getAllClients endpoint
+   */
+  fillClientList = (data) => {
+    let clientenLijst = [];
+    for(let i=0; i<data.length; i++){
+      clientenLijst.push({value: data[i].clientId, label: data[i].name, state: 'clientId'});
+    }
+    this.setState({clientenLijst})
+  }
+
+  /**
+   * Fills the list of drivers from the given data to display it in the select field
+   * @param {object} data - result of the getAllChauffeurs endpoint
+   */
+  fillDriverList = (data) => {
+    let chauffeurLijst = [];
+    for(let i=0; i<data.length; i++){
+      chauffeurLijst.push({value: data[i].id, label: data[i].name, state: 'chauffeurId'});
+    }
+    this.setState({chauffeurLijst});
+  }
+
+  /**
+   * Fills the list of utilities from the given data to display it in the select field
+   * @param {object} data - result of the getAllUtilities endpoint
+   */
+  fillUtilityList = (data) => {
+    let utilityLijst = [];
+    for(let i=0; i<data.length; i++){
+      utilityLijst.push({value: data[i].utility, label: data[i].utility, state: 'utilities'});
+    }
+    this.setState({utilityLijst});
+  }
+
+  /**
+   * Makes the POST request to the server
+   * @param {object} data - the data that needs to be posted
+   */
+  handleAddRide = (data) => {
+    createRide(data)
+    .then((res) => this.setState({success: `Rit succesvol opgeslagen`, error: false}))
+    .catch((err) => this.setState({error: err.message, success: false}));
+  }
+
+  /**
+   * Fills the state with data from the form
+   * @param {String} selectedOption - The data that needs to be added to the state
+   */
   handleSelect = (selectedOption) => {
     this.setState({
       [selectedOption.state]: selectedOption.value
     });
   }
 
+  /**
+   * Saves form changes in the state.
+   * @param {string} event - HTML object from the form target
+   */
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
   }
 
-  handleAddRide = (data) => {
-    createRide(data)
-    .then((res) => this.setState({success: `Succesbericht`, error: false}))
-    .catch((err) => this.setState({error: err.message, success: false}));
-  }
-
-
+  /**
+   * Converts a date + time to a Unix timestamp
+   * @param {date} date - date from a HTML form
+   * @param {time} time - time from a HTML form
+   */
   dateTimeFormatter = (date, time) => {
     const dateTime = new Date(`${date}T${time}:00Z`).getTime();
     const timestamp = Math.floor(dateTime / 1000);
     return timestamp;
   }
 
+  /**
+   * Makes the POST object ready so it can be send
+   */
   handleRit = () => {
     let data = {
       "clientId": this.state.clientId,
@@ -72,17 +165,17 @@ export default class RittenForm extends React.Component {
       "dropOffLocation": this.state.eindbestemming,
       "numberOfcompanions": this.state.aantalPersonen,
       "numberOfLuggage": this.state.aantalBagagestukken,
-      "utilitys": this.state.utilities,
+      "UtilityEntity": {name: this.state.utilities},
       "returnRide": this.state.retour,
       "callService": this.state.belService,
       "fixedRide": this.state.vasteRit
     }
-
     this.handleAddRide(data);
-
-    console.log(data);
   }
 
+  /**
+   * Renders the view for the user
+   */
   render() {
     return (
       <div>
@@ -109,22 +202,7 @@ export default class RittenForm extends React.Component {
             <Col md="6">
               <FormGroup>
                 <Label for="clientNaam">Naam cliënt:</Label>
-                <Select placeholder="Selecteer cliënt" name="clientNaam" value={this.state.clientId} onChange={this.handleSelect} options={[
-                    {
-                      value: '1',
-                      label: 'Henk Dieren',
-                      state: 'clientId'
-                    }, {
-                      value: '2',
-                      label: 'Jaap van Goor',
-                      state: 'clientId'
-                    }, {
-                      value: '3',
-                      label: 'Alliu Pakar',
-                      state: 'clientId'
-                    }
-                  ]
-                } />
+                <Select placeholder="Selecteer cliënt" name="clientNaam" value={this.state.clientId} onChange={this.handleSelect} options={this.state.clientenLijst} />
               </FormGroup>
               {/* {ophaaldatetime hier} */}
               <FormGroup>
@@ -144,7 +222,7 @@ export default class RittenForm extends React.Component {
                   placeholder="Selecteer datum" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
               <FormGroup>
-                <Label for="ophaalTijd">Van:</Label>
+                <Label for="ophaalTijd">Tijd:</Label>
                 <Input type="time" name="ophaalTijd"
                   placeholder="Selecteer tijd" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
@@ -163,46 +241,11 @@ export default class RittenForm extends React.Component {
               </FormGroup>
               <FormGroup>
                 <Label for="utilities">Bijzondere items die worden meegenomen:</Label>
-                <Select placeholder="Bijzondere items" name="utilities" value={this.state.utilities} onChange={this.handleSelect} options={[
-                    {
-                      value: 'rolstoel',
-                      label: 'Rolstoel',
-                      state: 'utilities'
-                    }, {
-                      value: 'rollator',
-                      label: 'Rollator',
-                      state: 'utilities'
-                    }, {
-                      value: 'scootmobiel',
-                      label: 'Scootmobiel',
-                      state: 'utilities'
-                    },
-                    {
-                      value: null,
-                      label: 'Geen',
-                      state: 'utilities'
-                    }
-                  ]
-                } />
+                <Select placeholder="Bijzondere items" name="utilities" value={this.state.utilities} onChange={this.handleSelect} options={this.state.utilityLijst} />
               </FormGroup>
               <FormGroup>
                 <Label for="chauffeurNaam">Chauffeur die de rit gaat uitvoeren:</Label>
-                <Select placeholder="Selecteer chauffeur" name="chauffeurNaam" value={this.state.chauffeurId} onChange={this.handleSelect} options={[
-                    {
-                      value: '1',
-                      label: 'Henk Dieren',
-                      state: 'chauffeurId'
-                    }, {
-                      value: '2',
-                      label: 'Jaap van Goor',
-                      state: 'chauffeurId'
-                    }, {
-                      value: '3',
-                      label: 'Alliu Pakar',
-                      state: 'chauffeurId'
-                    }
-                  ]
-                } />
+                <Select placeholder="Selecteer chauffeur" name="chauffeurNaam" value={this.state.chauffeurId} onChange={this.handleSelect} options={this.state.chauffeurLijst} />
               </FormGroup>
               <FormGroup>
                 <Label for="retour">Retour?</Label>
