@@ -12,13 +12,18 @@ import {
   Alert
 } from 'reactstrap';
 
+import {
+  createRide
+} from '../CRUD/Ride';
 
 export default class RittenForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      clientNaam: "",
-      datumEnTijd: "",
+      clientId: null,
+      driverId: null,
+      ophaalDatum: "",
+      ophaalTijd: "",
       ophaalLocatie: "",
       eindbestemming: "",
       aantalPersonen: 0,
@@ -26,7 +31,7 @@ export default class RittenForm extends React.Component {
       vasteRit: 0,
       belService: 0,
       aantalBagagestukken: 0,
-      utilities: "",
+      utilities: null,
       error: "",
       success: "",
       removed: false
@@ -45,8 +50,37 @@ export default class RittenForm extends React.Component {
     });
   }
 
+  handleAddRide = (data) => {
+    createRide(data)
+    .then((res) => this.setState({success: `Succesbericht`, error: false}))
+    .catch((err) => this.setState({error: err.message, success: false}));
+  }
+
+
+  dateTimeFormatter = (date, time) => {
+    const dateTime = new Date(`${date}T${time}:00Z`).getTime();
+    const timestamp = Math.floor(dateTime / 1000);
+    return timestamp;
+  }
+
   handleRit = () => {
-    console.log(this.state);
+    let data = {
+      "clientId": this.state.clientId,
+      "driverId": this.state.chauffeurId,
+      "date": this.dateTimeFormatter(this.state.ophaalDatum, this.state.ophaalTijd),
+      "pickUpLocation": this.state.ophaalLocatie,
+      "dropOffLocation": this.state.eindbestemming,
+      "numberOfcompanions": this.state.aantalPersonen,
+      "numberOfLuggage": this.state.aantalBagagestukken,
+      "utilitys": this.state.utilities,
+      "returnRide": this.state.retour,
+      "callService": this.state.belService,
+      "fixedRide": this.state.vasteRit
+    }
+
+    this.handleAddRide(data);
+
+    console.log(data);
   }
 
   render() {
@@ -75,19 +109,19 @@ export default class RittenForm extends React.Component {
             <Col md="6">
               <FormGroup>
                 <Label for="clientNaam">Naam cliënt:</Label>
-                <Select placeholder="Selecteer cliënt" name="clientNaam" value={this.state.clientNaam} onChange={this.handleSelect} options={[
+                <Select placeholder="Selecteer cliënt" name="clientNaam" value={this.state.clientId} onChange={this.handleSelect} options={[
                     {
                       value: '1',
                       label: 'Henk Dieren',
-                      state: 'clientNaam'
+                      state: 'clientId'
                     }, {
                       value: '2',
                       label: 'Jaap van Goor',
-                      state: 'clientNaam'
+                      state: 'clientId'
                     }, {
                       value: '3',
                       label: 'Alliu Pakar',
-                      state: 'clientNaam'
+                      state: 'clientId'
                     }
                   ]
                 } />
@@ -103,15 +137,31 @@ export default class RittenForm extends React.Component {
                 <Input value={this.state.removed ? "" : this.state.eindbestemming} type="text" name="eindbestemming"
                   placeholder="Type adres" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
+
+              <FormGroup>
+                <Label for="ophaalDatum">Datum:</Label>
+                <Input type="date" name="ophaalDatum"
+                  placeholder="Selecteer datum" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+              <FormGroup>
+                <Label for="ophaalTijd">Van:</Label>
+                <Input type="time" name="ophaalTijd"
+                  placeholder="Selecteer tijd" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
               <FormGroup>
                 <Label for="aantalPersonen">Aantal personen die de cliënt meeneemt:</Label>
                 <Input value={this.state.removed ? "" : this.state.aantalPersonen} type="number" name="aantalPersonen"
                   placeholder="Selecteer het aantal personen" onChange={(event) => this.handleChange(event)}/>
               </FormGroup>
+            </Col>
+            <Col md="6">
+
               <FormGroup>
-                <Label for="aantalBagagestukken">Aantal bagagestukken die meegenomen worden:</Label><br />
+                <Label for="aantalBagagestukken">Aantal bagagestukken die meegenomen worden:</Label>
                 <Input value={this.state.removed ? "" : this.state.aantalBagagestukken} type="number" name="aantalBagagestukken"
-                  placeholder="Selecteer het aantal bagagestukken" onChange={(event) => this.handleChange(event)}/><br />
+                  placeholder="Selecteer het aantal bagagestukken" onChange={(event) => this.handleChange(event)}/>
+              </FormGroup>
+              <FormGroup>
                 <Label for="utilities">Bijzondere items die worden meegenomen:</Label>
                 <Select placeholder="Bijzondere items" name="utilities" value={this.state.utilities} onChange={this.handleSelect} options={[
                     {
@@ -135,8 +185,25 @@ export default class RittenForm extends React.Component {
                   ]
                 } />
               </FormGroup>
-            </Col>
-            <Col md="6">
+              <FormGroup>
+                <Label for="chauffeurNaam">Chauffeur die de rit gaat uitvoeren:</Label>
+                <Select placeholder="Selecteer chauffeur" name="chauffeurNaam" value={this.state.chauffeurId} onChange={this.handleSelect} options={[
+                    {
+                      value: '1',
+                      label: 'Henk Dieren',
+                      state: 'chauffeurId'
+                    }, {
+                      value: '2',
+                      label: 'Jaap van Goor',
+                      state: 'chauffeurId'
+                    }, {
+                      value: '3',
+                      label: 'Alliu Pakar',
+                      state: 'chauffeurId'
+                    }
+                  ]
+                } />
+              </FormGroup>
               <FormGroup>
                 <Label for="retour">Retour?</Label>
                 <Select placeholder="Selecteer 'ja' of 'nee'" name="retour" value={this.state.retour} onChange={this.handleSelect}
