@@ -6,9 +6,11 @@ import {
   Nav,
   NavItem,
   Row,
-  Col
+  Col,
+  Button
 } from 'reactstrap';
 import {Link} from 'react-router-dom';
+import { Redirect } from 'react-router'
 
 /**
  * Style related imports
@@ -20,51 +22,72 @@ import '../css/navbar.css';
  */
 import Logo from '../assets/img/logo.gif';
 
+import {
+  tokenExists
+} from '../CRUD/Authentication';
+
 /**
  * This component renders the header and navigation bar
  */
-const Header = (props) => {
-  return (
-    <div>
-      <Row className="top-navigation">
-        <Col xs="6">
-          <figure>
-            <Link to={props.routes.readZorginstelling}>
-              <img src={Logo} alt="logo Zorgrit"/>
-            </Link>
-          </figure>
-        </Col>
-        <Col xs="6">
-          <span className="float-right logout-btn">
-            <Link to="#">Uitloggen</Link>
-          </span>
-        </Col>
-      </Row>
-      <Nav className="nav-pills nav-justified">
-        <NavItem>
-          <Link className="nav-link" to={props.routes.readZorginstelling}>Zorginstellingen</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.readAllRides}>Ritten</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.readChauffeur}>Chauffeurs</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.readClienten}>Clienten</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.readBetalingen}>Betalingen</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.createRit}>Ritten bestellen</Link>
-        </NavItem>
-        <NavItem>
-          <Link className="nav-link" to={props.routes.aboutPage}>Over</Link>
-        </NavItem>
-      </Nav>
-    </div>
-  );
-}
+export default class Header extends React.Component {
+  componentDidMount(){
+    tokenExists(localStorage.getItem('Token')).then((res) => {res !== undefined && this.setState({redirectToLogin: !res.data})});
+  }
 
-export default Header;
+  constructor(props){
+    super(props);
+    this.state = {
+      redirectToLogin: false
+    }
+  }
+
+  logout = () => {
+    localStorage.removeItem('Token');
+    this.setState({redirectToLogin: true})
+  }
+
+  render(){
+    return (
+      <div>
+        {this.state.redirectToLogin && <Redirect to={this.props.routes.login}/>}
+        <Row className="top-navigation">
+          <Col xs="6">
+            <figure>
+              <Link to={this.props.routes.readZorginstelling}>
+                <img src={Logo} alt="logo Zorgrit"/>
+              </Link>
+            </figure>
+          </Col>
+          <Col xs="6">
+            <span className="float-right logout-btn">
+              <Button onClick={this.logout}>Uitloggen</Button>
+            </span>
+          </Col>
+        </Row>
+        <Nav className="nav-pills nav-justified">
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.readZorginstelling}>Zorginstellingen</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.readAllRides}>Ritten</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.readChauffeur}>Chauffeurs</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.readClienten}>Clienten</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.readBetalingen}>Betalingen</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.createRit}>Ritten bestellen</Link>
+          </NavItem>
+          <NavItem>
+            <Link className="nav-link" to={this.props.routes.aboutPage}>Over</Link>
+          </NavItem>
+        </Nav>
+      </div>
+    )
+  }
+}

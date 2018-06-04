@@ -23,7 +23,7 @@ import '../css/login.css';
 /**
  * This component renders login page
  */
-const LoginPage = () => {
+const LoginPage = (props) => {
   return (
     <Container>
       <Row>
@@ -31,7 +31,7 @@ const LoginPage = () => {
           <LoginImg/>
         </Col>
         <Col md={6}>
-          <LoginForm/>
+          <LoginForm routes={props.routes} history={props.history} />
         </Col>
       </Row>
     </Container>
