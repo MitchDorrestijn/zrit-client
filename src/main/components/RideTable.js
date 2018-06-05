@@ -96,10 +96,6 @@ export default class RideTable extends React.Component {
     };
   }
 
-test = (data) => {
-  console.log(data);
-}
-
   /**
    * Renders the view for the user
    */
