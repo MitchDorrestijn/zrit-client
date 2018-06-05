@@ -4,7 +4,7 @@
 import React from 'react';
 import {CSVLink} from 'react-csv';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import {renderSearchField, renderSortedColumn} from '../global/Methods';
+import {renderSearchField, renderSortedColumn, convertUNIXTimestampToTime} from '../global/Methods';
 
 /**
  * Style related imports
@@ -22,19 +22,18 @@ export default class RideTable extends React.Component {
    * Makes a GET request to get all rides when component is mounted
    */
   componentDidMount() {
-    getAllRides(this.props).then((res) => {res !== undefined && this.setState({data: this.converDate(res.data)})});
+    getAllRides(this.props).then((res) => {res !== undefined && this.setState({data: this.convertDate(res.data)})});
   }
 
 /**
   * Converts the given data so it can be displayed
   * @param {data} data - The given data thats getting converted
   */
-  converDate = (data) => {
+  convertDate = (data) => {
     let dataDisplay = [];
-    console.log(data.length);
     for (let i = 0; i < data.length; i ++){
       let rideData = {
-        date: this.convertUNIXTimestampToTime(data[i].date),
+        date: convertUNIXTimestampToTime(data[i].date),
         pickUpLocation: data[i].pickUpLocation,
         dropOffLocation: data[i].dropOffLocation,
         driverName: data[i].driverName,
@@ -43,15 +42,6 @@ export default class RideTable extends React.Component {
       dataDisplay.push(rideData);
     }
     return dataDisplay;
-  }
-
-  /**
-  * Converts a UNIX timestamp to a Date object
-  * @param {input} input - The given UNIX timestamp thats getting converted
-  **/
-  convertUNIXTimestampToTime(input){
-    let time = new Date(input);
-    return time.getDate() + "/" + (time.getMonth() + 1) + "/" + time.getFullYear();
   }
 
   /**

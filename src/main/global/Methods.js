@@ -20,3 +20,12 @@ export const renderSortedColumn = (sortColumnName, sortOrder) => {
 export const redirectToErrorPage = (props) => {
   return props.history.push(props.routes.error);
 }
+
+/**
+* Converts a UNIX timestamp to a Date object
+* @param {input} input - The given UNIX timestamp thats getting converted
+**/
+export const convertUNIXTimestampToTime = (input) => {
+  let time = new Date(input);
+  return time.getDate() + "/" + (time.getMonth() + 1) + "/" + time.getFullYear();
+}
