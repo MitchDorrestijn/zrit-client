@@ -16,3 +16,11 @@ export const createRide = (data) => {
 export const getAllRides = (data) => {
   return axios.get(`${config.url}/ride/getAllRides`);
 }
+
+/**
+  * Sends a GET to get the rides from a specific driver
+  * @param {data} data - the data that gets used for the GET request
+**/
+export const getDriverRides = (data) => {
+  return axios.get(`${config.url}/ride/driver/${data.id}`);
+}
