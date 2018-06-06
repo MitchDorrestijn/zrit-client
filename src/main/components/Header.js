@@ -31,7 +31,7 @@ import {
  */
 export default class Header extends React.Component {
   componentDidMount(){
-    tokenExists(localStorage.getItem('Token')).then((res) => {res !== undefined && this.setState({redirectToLogin: !res.data})});
+    tokenExists(localStorage.getItem("Token")).then((res) => {res !== undefined && this.setState({redirectToLogin: !res.data})});
   }
 
   constructor(props){

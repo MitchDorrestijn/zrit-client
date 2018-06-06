@@ -1,6 +1,6 @@
 import {SearchField} from 'react-bootstrap-table';
 import React from 'react';
-
+import config from '../config';
 /**
  * Renders the search field above the table
  */
@@ -19,4 +19,48 @@ export const renderSortedColumn = (sortColumnName, sortOrder) => {
 
 export const redirectToErrorPage = (props) => {
   return props.history.push(props.routes.error);
+}
+
+// export const getJwt = (props) => {
+//   if (localStorage.getItem("Token") === null) {
+//     console.log('token bestaat niet');
+//     return undefined;
+//   } else {
+//     return localStorage.getItem('Token');
+//   }
+// }
+
+export const parseJwt = (token) => {
+  if(token !== undefined){
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  } else {
+    return "Token niet gevonden";
+  }
+};
+
+export const getUserRole = () => {
+  return parseJwt(localStorage.getItem("Token")).role;
+}
+
+export const checkIfUserIsAdmin = () => {
+  if(parseJwt(localStorage.getItem("Token")).role === config.roles[0]){
+    console.log('Je mag hier komen');
+    return true;
+  } else {
+    console.log('Je mag hier NIET komen');
+    return false;
+  }
+}
+
+export const redirectIfUserIsNotAdmin = (props) => {
+  if(parseJwt(localStorage.getItem("Token")).role !== config.roles[0]){
+    localStorage.removeItem("Token");
+    return props.history.push(props.routes.login);
+  }
+}
+
+export const setAuthenticationHeader = () => {
+  return {headers: {"Authorization" : `Token: ${localStorage.getItem("Token")}`}};
 }
