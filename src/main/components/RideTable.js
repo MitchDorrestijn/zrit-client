@@ -38,7 +38,8 @@ export default class RideTable extends React.Component {
         pickUpLocation: data[i].pickUpLocation,
         dropOffLocation: data[i].dropOffLocation,
         driverName: data[i].driverName,
-        clientName: data[i].clientName
+        clientName: data[i].clientName,
+        driverId: data[i].driverId
       }
       dataDisplay.push(rideData);
     }
@@ -60,7 +61,7 @@ export default class RideTable extends React.Component {
     };
 
     getAllRides = () => {
-      return this.props.history.push(`${this.props.routes.updateClient}/${this.refs.table.state.selectedRowKeys}`);
+      return this.props.history.push(`${this.props.routes.readRideChauffeur}/${this.refs.table.state.selectedRowKeys}`);
     };
 
   /**
@@ -71,6 +72,10 @@ export default class RideTable extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [
+      {
+        name: 'driverId',
+        display: 'ID'
+      },
       {
         name: 'warning',
         display: 'Warning'
@@ -115,11 +120,19 @@ export default class RideTable extends React.Component {
       renderSortedColumn: renderSortedColumn,
       noDataText: 'Geen resultaten gevonden',
       searchField: renderSearchField,
+      btnGroup: this.renderButtons
     };
     return (<div>
-      <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
+      <BootstrapTable search={true} data={this.state.data} options={tableOptions} selectRow={{
+          mode: 'radio',
+          onSelect: this.onSelect
+        }} ref='table'>
 
-        <TableHeaderColumn width="120" dataField="warning" dataSort={true} isKey={true}>
+        <TableHeaderColumn hidden={true} dataField="driverId" isKey={true}>
+          ID
+        </TableHeaderColumn>
+
+        <TableHeaderColumn width="120" dataField="warning" dataSort={true}>
           Warning &#x2195;
         </TableHeaderColumn>
 

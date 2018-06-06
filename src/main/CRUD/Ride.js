@@ -21,6 +21,7 @@ export const getAllRides = (data) => {
   * Sends a GET to get the rides from a specific driver
   * @param {data} data - the data that gets used for the GET request
 **/
-export const getDriverRides = (data) => {
-  return axios.get(`${config.url}/ride/driver/${data.id}`);
+export const getDriverRides = (props) => {
+
+  return axios.get(`${config.url}/ride/driver/${props.id}`);
 }

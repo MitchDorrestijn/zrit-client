@@ -22,7 +22,7 @@ export default class RideTableChauffeur extends React.Component {
    * Makes a GET request to get all rides when component is mounted
    */
   componentDidMount() {
-    getDriverRides(this.props).then((res) => {res !== undefined && this.setState({data: this.convertDate(res.data)})});
+    getDriverRides(this.props).then((res) => {res !== undefined && this.convertDate(res.data)});
   }
 
   /**
@@ -37,12 +37,16 @@ export default class RideTableChauffeur extends React.Component {
           date: convertUNIXTimestampToTime(data[i].date),
           pickUpLocation: data[i].pickUpLocation,
           dropOffLocation: data[i].dropOffLocation,
+          transferTo: data[i].transferTo,
+          amount: data[i].amount,
           driverName: data[i].driverName,
           clientName: data[i].clientName
         }
         dataDisplay.push(rideData);
       }
-      return dataDisplay;
+
+      this.setState({data: dataDisplay});
+
     }
 
   /**
@@ -56,10 +60,12 @@ export default class RideTableChauffeur extends React.Component {
       {
         name: 'date',
         display: 'Datum'
-      }, {
+      },
+      {
         name: 'pickUpLocation',
         display: 'Ophaallocatie'
-      }, {
+      },
+      {
         name: 'dropOffLocation',
         display: 'Bestemming'
       },
@@ -88,7 +94,6 @@ export default class RideTableChauffeur extends React.Component {
     };
   }
 
-
   /**
    * Renders the view for the user
    */
@@ -102,7 +107,7 @@ export default class RideTableChauffeur extends React.Component {
     };
 
     return (<div>
-      <BootstrapTable className="clientTable" search={true} data={this.state.data} options={tableOptions} selectRow={{
+      <BootstrapTable className="RideTableChauffeur" search={true} data={this.state.data} options={tableOptions} selectRow={{
           mode: 'radio',
           onSelect: this.onSelect
         }} ref='table'>
@@ -115,7 +120,7 @@ export default class RideTableChauffeur extends React.Component {
           Datum &#x2195;
         </TableHeaderColumn>
 
-        <TableHeaderColumn width="120" dataField="pickupLocation" dataSort={true}>
+        <TableHeaderColumn width="120" dataField="pickUpLocation" dataSort={true}>
           Ophaallocatie &#x2195;
         </TableHeaderColumn>
 
@@ -140,7 +145,6 @@ export default class RideTableChauffeur extends React.Component {
         </TableHeaderColumn>
 
       </BootstrapTable>
-
       <CSVLink data={this.state.data} filename={"ritten_chauffeur_overview"} className="btn btn-primary crud-btn" target="">
         Export als CSV
       </CSVLink>
