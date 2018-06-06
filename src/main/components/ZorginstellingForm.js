@@ -23,6 +23,8 @@ import {
   createZorginstelling
 } from '../CRUD/Zorginstelling';
 
+import {redirectIfUserIsNotAdmin} from '../global/Methods';
+
 /**
  * Style related imports
  */
@@ -32,11 +34,11 @@ import '../css/form.css';
  * This class takes care of rendering the zorginstellingen form and manages its state
  */
 export default class ZorginstellingForm extends React.Component {
-
   /**
    * is fired when the component did mount and makes it ready to do a PUT request to get all current data (if any)
    */
   componentDidMount() {
+    redirectIfUserIsNotAdmin(this.props);
     if (this.props.update) {
       getSpecificZorginstelling(this.props)
       .then((res) => {

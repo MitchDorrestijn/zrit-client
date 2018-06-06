@@ -10,7 +10,8 @@ import {
 } from 'react-bootstrap-table';
 import {
   renderSearchField,
-  renderSortedColumn
+  renderSortedColumn,
+  getUserRole
 } from '../global/Methods';
 
 /**
@@ -19,6 +20,8 @@ import {
 import {
   getAllZorginstellingen
 } from '../CRUD/Zorginstelling';
+
+import config from '../config';
 
 /**
  * Style related imports
@@ -35,23 +38,29 @@ export default class ZorginstellingTable extends React.Component {
    * Makes a GET request to get all zorginstellingen when component is mounted
    */
   componentDidMount(){
-    getAllZorginstellingen(this.props).then((res) => {this.setState({data: this.dataFormatterGET(res.data)})});
+    getAllZorginstellingen(this.props).then((res) => {res !== undefined && this.setState({data: this.dataFormatterGET(res.data)})});
   }
 
   dataFormatterGET = (data) => {
-    let dataDisplay = [];
-    for(let i=0; i<data.length; i++){
-      let zorginstellingData = {
-        name: data[i].name,
-        street: data[i].addresses[0].street,
-        houseNumber: data[i].addresses[0].houseNumber,
-        zipCode: data[i].addresses[0].zipCode,
-        residence: data[i].addresses[0].residence,
-        id: data[i].id
+    if(data.length > 0){
+      let dataDisplay = [];
+      for(let i=0; i<data.length; i++){
+        let zorginstellingData = {
+          name: data[i].name,
+          street: data[i].addresses[0].street,
+          houseNumber: data[i].addresses[0].houseNumber,
+          zipCode: data[i].addresses[0].zipCode,
+          residence: data[i].addresses[0].residence,
+          id: data[i].id
+        }
+        dataDisplay.push(zorginstellingData);
       }
-      dataDisplay.push(zorginstellingData);
+      return dataDisplay;
+    } else {
+      let returnArray = [];
+      returnArray.push(data);
+      return returnArray;
     }
-    return dataDisplay;
   }
 
   /**
@@ -116,11 +125,15 @@ export default class ZorginstellingTable extends React.Component {
    * Renders the buttons above the table
    */
   renderButtons = () => {
-    return (<div>
-      <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
-      <Button disabled={this.state.disableButtons}
-        onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
-    </div>);
+    if(getUserRole(this.props) === config.roles[0]){
+      return (
+        <div>
+        <Button onClick={this.createItem} color="primary" className='crud-btn'>Toevoegen</Button>
+        <Button disabled={this.state.disableButtons}
+          onClick={this.updateItem} color="primary" className='crud-btn'>Bewerken</Button>
+        </div>
+      );
+    }
   };
 
   /**

@@ -1,21 +1,36 @@
 import axios from 'axios';
 import config from '../config';
-import {redirectToErrorPage} from '../global/Methods';
+import {redirectToErrorPage, setAuthenticationHeader, parseJwt, checkIfUserIsAdmin} from '../global/Methods';
 
 /**
 * Sends a GET request to the server to get the data of all chauffeurs
 * @param {props} props - the history router so users can go back after receiving an error
 */
 export const getAllChauffeurs = (props) => {
-  return axios.get(`${config.url}/chauffeur/chauffeurs`).catch((err) => redirectToErrorPage(props));
+  if(checkIfUserIsAdmin()){
+    return axios.get(`${config.url}/rest/chauffeur/chauffeurs`, setAuthenticationHeader()).catch((err) => redirectToErrorPage(props));
+  } else {
+    let properties = {
+      id: parseJwt(localStorage.getItem("Token")).careInstitutionId
+    };
+    return getChauffeursOfASpecificCareInstitution(properties);
+  }
 };
+
+/**
+* Sends a GET request to the server to get the data of all chauffeurs from a specific careInstitution
+* @param {props} props - the id of the careInstitution that will return its chauffeurs
+*/
+export const getChauffeursOfASpecificCareInstitution = (props) => {
+  return axios.get(`${config.url}/rest/chauffeur/chauffeurs/zorginstelling/${props.id}`, setAuthenticationHeader());
+}
 
 /**
 * Sends a GET request to the server to get the data of a specific chauffeur
 * @param {props} props - the id of the chauffeur that will return its data
 */
 export const getSpecificChauffeur = (props) => {
-  return axios.get(`${config.url}/chauffeur/getChauffeur/${props.id}`);
+  return axios.get(`${config.url}/rest/chauffeur/getChauffeur/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -23,7 +38,7 @@ export const getSpecificChauffeur = (props) => {
 * @param {props} props - the id of the chauffeur that will be removed
 */
 export const deleteChauffeur = (props) => {
-  return axios.put(`${config.url}/chauffeur/delete/${props.id}`);
+  return axios.put(`${config.url}/rest/chauffeur/delete/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -32,7 +47,7 @@ export const deleteChauffeur = (props) => {
 * @param {data} data - the new data of the chauffeur
 */
 export const updateChauffeur = (props, data) => {
-  return axios.put(`${config.url}/chauffeur/update/chauffeur`, data);
+  return axios.put(`${config.url}/rest/chauffeur/update/chauffeur`, data, setAuthenticationHeader());
 }
 
 /**
@@ -40,5 +55,5 @@ export const updateChauffeur = (props, data) => {
 * @param {data} data - the object with all data for the new chauffeur
 */
 export const createChauffeur = (data) => {
-  return axios.post(`${config.url}/chauffeur/create/chauffeur`, data);
+  return axios.post(`${config.url}/rest/chauffeur/create/chauffeur`, data, setAuthenticationHeader());
 }
