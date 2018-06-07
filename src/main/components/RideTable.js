@@ -54,11 +54,18 @@ export default class RideTable extends React.Component {
       this.setState({disableButtons: false});
     }
 
+    /**
+     * Renders the button thats getting displayed
+     **/
     renderButtons = () => {
       return (<div>
         <Button onClick={this.getAllRides} disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bekijk ritten</Button>
       </div>);
     };
+
+    /**
+    * Retrieves all rides from the endpoint
+    **/
 
     getAllRides = () => {
       return this.props.history.push(`${this.props.routes.readRideChauffeur}/${this.refs.table.state.selectedRowKeys}`);
