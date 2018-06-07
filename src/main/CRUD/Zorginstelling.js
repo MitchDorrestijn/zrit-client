@@ -1,6 +1,6 @@
 import axios from 'axios';
 import config from '../config';
-import {redirectToErrorPage, setAuthenticationHeader, parseJwt, checkIfUserIsAdmin} from '../global/Methods';
+import {redirectToErrorPage, setAuthenticationHeader, parseJwt, checkIfUserIsAdmin, getJwtToken} from '../global/Methods';
 
 /**
 * Sends a GET request to the server to get the data of all zorginstellingen
@@ -11,7 +11,7 @@ export const getAllZorginstellingen = (props) => {
     return axios.get(`${config.url}/rest/zorginstelling/zorginstellingen`, setAuthenticationHeader()).catch((err) => redirectToErrorPage(props));
   } else {
     let properties = {
-      id: parseJwt(localStorage.getItem("Token")).careInstitutionId
+      id: parseJwt(getJwtToken()).careInstitutionId
     };
     return getSpecificZorginstelling(properties);
   }
