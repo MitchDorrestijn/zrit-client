@@ -122,7 +122,7 @@ export default class ClientTable extends React.Component {
         )
     }
   }
-  
+
   /**
    * Renders the view for the user
    */

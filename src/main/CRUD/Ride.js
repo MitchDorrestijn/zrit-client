@@ -17,3 +17,12 @@ export const createRide = (data) => {
 export const getAllRides = (data) => {
   return axios.get(`${config.url}/ride/getAllRides`, setAuthenticationHeader());
 }
+
+/**
+  * Sends a GET to get the rides from a specific driver
+  * @param {data} data - the data that gets used for the GET request
+**/
+export const getDriverRides = (props) => {
+
+  return axios.get(`${config.url}/ride/driver/${props.id}`);
+}

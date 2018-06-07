@@ -75,7 +75,8 @@ export default class AuthenticatedUsersTable extends React.Component {
    */
   removeAuthenticatedUser = () => {
     let properties = {name: this.refs.table.state.selectedRowKeys}
-    removeAuthenticatedUser(properties).then(this.getAllAuthenticatedUsers());
+    console.log(properties);
+    removeAuthenticatedUser(properties);
   }
 
   /**

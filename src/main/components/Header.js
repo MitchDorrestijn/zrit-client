@@ -44,8 +44,8 @@ export default class Header extends React.Component {
   }
 
   logout = () => {
-    localStorage.removeItem('Token');
     this.setState({redirectToLogin: true})
+    localStorage.removeItem('Token');
   }
 
   render(){

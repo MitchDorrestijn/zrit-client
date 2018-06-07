@@ -3,6 +3,7 @@
  */
 import React from 'react';
 import {CSVLink} from 'react-csv';
+import {Button} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {renderSearchField, renderSortedColumn, convertUNIXTimestampToTime} from '../global/Methods';
 
@@ -37,12 +38,38 @@ export default class RideTable extends React.Component {
         pickUpLocation: data[i].pickUpLocation,
         dropOffLocation: data[i].dropOffLocation,
         driverName: data[i].driverName,
-        clientName: data[i].clientName
+        clientName: data[i].clientName,
+        driverId: data[i].driverId
       }
       dataDisplay.push(rideData);
     }
     return dataDisplay;
   }
+
+
+    /**
+     * Enables the buttons for allowing the zorginstelling to update
+     */
+    onSelect = () => {
+      this.setState({disableButtons: false});
+    }
+
+    /**
+     * Renders the button thats getting displayed
+     **/
+    renderButtons = () => {
+      return (<div>
+        <Button onClick={this.getAllRides} disabled={this.state.disableButtons} color="primary" className='crud-btn'>Bekijk ritten</Button>
+      </div>);
+    };
+
+    /**
+    * Retrieves all rides from the endpoint
+    **/
+
+    getAllRides = () => {
+      return this.props.history.push(`${this.props.routes.readRideChauffeur}/${this.refs.table.state.selectedRowKeys}`);
+    };
 
   /**
    * Setups all the data.
@@ -52,6 +79,10 @@ export default class RideTable extends React.Component {
   constructor(props) {
     super(props);
     this.columns = [
+      {
+        name: 'driverId',
+        display: 'ID'
+      },
       {
         name: 'warning',
         display: 'Warning'
@@ -96,10 +127,19 @@ export default class RideTable extends React.Component {
       renderSortedColumn: renderSortedColumn,
       noDataText: 'Geen resultaten gevonden',
       searchField: renderSearchField,
+      btnGroup: this.renderButtons
     };
     return (<div>
-      <BootstrapTable search={true} data={this.state.data} options={tableOptions} ref='table'>
-        <TableHeaderColumn width="120" dataField="warning" dataSort={true} isKey={true}>
+      <BootstrapTable search={true} data={this.state.data} options={tableOptions} selectRow={{
+          mode: 'radio',
+          onSelect: this.onSelect
+        }} ref='table'>
+
+        <TableHeaderColumn hidden={true} dataField="driverId" isKey={true}>
+          ID
+        </TableHeaderColumn>
+
+        <TableHeaderColumn width="120" dataField="warning" dataSort={true}>
           Warning &#x2195;
         </TableHeaderColumn>
 
