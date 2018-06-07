@@ -25,7 +25,6 @@ import {
   getAllZorginstellingen
 } from '../CRUD/Zorginstelling';
 
-import {redirectIfUserIsNotAdmin} from '../global/Methods';
 
 /**
  * Style related imports

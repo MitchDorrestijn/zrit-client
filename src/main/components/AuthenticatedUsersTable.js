@@ -5,7 +5,7 @@ import React from 'react';
 import {CSVLink} from 'react-csv';
 import {Button} from 'reactstrap';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
-import {renderSearchField, renderSortedColumn, redirectIfUserIsNotAdmin} from '../global/Methods';
+import {renderSearchField, renderSortedColumn} from '../global/Methods';
 
 /**
  * Endpoints import
