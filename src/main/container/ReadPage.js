@@ -26,6 +26,8 @@ import ReadBetalingen from '../views/betalingen/ReadBetalingen';
  * This component renders the read (overview) page for the elements based on the URL
  */
 const ReadPage = (props) => {
+	let pageURLToMatch = props.match.url.replace(/[0-9]/g, '').slice(0, -1);
+
 	return (
     <Container>
       <Row>
@@ -49,7 +51,7 @@ const ReadPage = (props) => {
 						{props.match.url === props.routes.readRideClient &&
 							<ReadRideClient routes={props.routes} history={props.history} />
 						}
-						{props.match.url === props.routes.readRideChauffeur &&
+						{pageURLToMatch === props.routes.readRideChauffeur &&
 							<ReadRideChauffeur routes={props.routes} history={props.history} />
 						}
 						{props.match.url === props.routes.readBetalingen &&

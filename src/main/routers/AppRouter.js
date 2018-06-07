@@ -53,7 +53,7 @@ const AppRouter = () => {
         <Route exact path={routes.readRatings} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readAllRides} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readRideClient} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
-        <Route exact path={routes.readRideChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
+        <Route exact path={`${routes.readRideChauffeur}/:id`} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createRit} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createChauffeur} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
