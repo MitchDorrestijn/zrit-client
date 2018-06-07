@@ -8,6 +8,7 @@
     "enzyme": "^3.0.0",
     "enzyme-adapter-react-16": "^1.0.0",
     "enzyme-to-json": "^3.3.3",
+    "jwt-decode": "^2.2.0",
     "raf": "^3.3.2",
     "react": "^16.3.2",
     "react-bootstrap": "^0.32.1",
@@ -26,6 +27,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "buildclean": "react-scripts build && npm run build:clean",
+    "buildsuperclean": "cd build && mv static/js/*.js main.js && mv static/css/*.css main.css && rm -r static",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
     "reporthtml": "react-scripts test --env=jsdom --testResultsProcessor ./node_modules/jest-html-reporter"

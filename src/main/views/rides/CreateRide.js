@@ -16,7 +16,7 @@ const CreateRide = () => {
   return (
 		<div>
 	    <TextContent title="Rit toevoegen">
-	      Op deze pagina kunt u een ritten toevoegen.
+	      Op deze pagina kunt u een rit toevoegen.
 				Vul alle velden hieronder in en de nieuwe rit wordt aan het systeem toegevoegd.
 	    </TextContent>
 	    <RittenForm/>
