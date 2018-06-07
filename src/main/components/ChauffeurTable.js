@@ -2,7 +2,7 @@
  * React related imports
  */
 import React from 'react';
-import {Button} from 'reactstrap'
+import {Button} from 'reactstrap';
 import {CSVLink} from 'react-csv';
 import {BootstrapTable, TableHeaderColumn} from 'react-bootstrap-table';
 import {renderSearchField, renderSortedColumn} from '../global/Methods';

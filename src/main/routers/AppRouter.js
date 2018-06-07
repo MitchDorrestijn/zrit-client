@@ -40,6 +40,8 @@ const routes = {
   readRideClient: '/read/ride/client',
   createRit: '/create/rit',
   readBetalingen: '/read/betalingen',
+  readAuthenticatedUsers: '/read/authenticatedUsers',
+  createAuthenticatedUser: '/create/createAuthenticatedUser',
   starterpage: '/read'
 }
 
@@ -49,6 +51,7 @@ const AppRouter = () => {
 	    <Switch>
 	      <Route exact path={routes.login} render={(props) => (<LoginPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readZorginstelling} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
+        <Route exact path={routes.readAuthenticatedUsers} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readClienten} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.readRatings} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
@@ -57,6 +60,7 @@ const AppRouter = () => {
         <Route exact path={routes.readRideChauffeur} render={(props) => (<ReadPage {...props} routes={routes}/>)} />
         <Route exact path={routes.createZorginstelling} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createRit} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
+        <Route exact path={routes.createAuthenticatedUser} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createChauffeur} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={routes.createClient} render={(props) => (<CreatePage {...props} routes={routes}/>)} />
         <Route exact path={`${routes.updateZorginstelling}/:id`} render={(props) => (<UpdatePage {...props}  routes={routes} />)}/>

@@ -21,15 +21,6 @@ export const redirectToErrorPage = (props) => {
   return props.history.push(props.routes.error);
 }
 
-// export const getJwt = (props) => {
-//   if (localStorage.getItem("Token") === null) {
-//     console.log('token bestaat niet');
-//     return undefined;
-//   } else {
-//     return localStorage.getItem('Token');
-//   }
-// }
-
 export const parseJwt = (token) => {
   if(token !== undefined){
     let base64Url = token.split('.')[1];
@@ -41,26 +32,28 @@ export const parseJwt = (token) => {
 };
 
 export const getUserRole = () => {
-  return parseJwt(localStorage.getItem("Token")).role;
+  return parseJwt(getJwtToken()).role;
+}
+
+export const getJwtToken = () => {
+  return localStorage.getItem("Token");
 }
 
 export const checkIfUserIsAdmin = () => {
-  if(parseJwt(localStorage.getItem("Token")).role === config.roles[0]){
-    console.log('Je mag hier komen');
-    return true;
+  if(parseJwt(getJwtToken()).role === config.roles[0]){
+    return true; //User is allowed here
   } else {
-    console.log('Je mag hier NIET komen');
-    return false;
+    return false; //User is not allowed here
   }
 }
 
 export const redirectIfUserIsNotAdmin = (props) => {
-  if(parseJwt(localStorage.getItem("Token")).role !== config.roles[0]){
+  if(parseJwt(getJwtToken()).role !== config.roles[0]){
     localStorage.removeItem("Token");
     return props.history.push(props.routes.login);
   }
 }
 
 export const setAuthenticationHeader = () => {
-  return {headers: {"Authorization" : `Token: ${localStorage.getItem("Token")}`}};
+  return {headers: {"Authorization" : `Token: ${getJwtToken()}`}};
 }

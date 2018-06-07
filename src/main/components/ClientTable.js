@@ -122,11 +122,7 @@ export default class ClientTable extends React.Component {
         )
     }
   }
-
-  print = () => {
-    console.log(this.state);
-  }
-
+  
   /**
    * Renders the view for the user
    */

@@ -26,12 +26,14 @@ import {
   tokenExists
 } from '../CRUD/Authentication';
 
+import {getJwtToken, getUserRole} from '../global/Methods';
+
 /**
  * This component renders the header and navigation bar
  */
 export default class Header extends React.Component {
   componentDidMount(){
-    tokenExists(localStorage.getItem("Token")).then((res) => {res !== undefined && this.setState({redirectToLogin: !res.data})});
+    tokenExists(getJwtToken()).then((res) => {res !== undefined && this.setState({redirectToLogin: !res.data})});
   }
 
   constructor(props){
@@ -86,6 +88,11 @@ export default class Header extends React.Component {
           <NavItem>
             <Link className="nav-link" to={this.props.routes.aboutPage}>Over</Link>
           </NavItem>
+          {getUserRole() === "ROLE_ADMIN" &&
+            <NavItem>
+              <Link className="nav-link" to={this.props.routes.readAuthenticatedUsers}>Beheerders</Link>
+            </NavItem>
+          }
         </Nav>
       </div>
     )
