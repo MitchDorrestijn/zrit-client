@@ -1,21 +1,36 @@
 import axios from 'axios';
 import config from '../config';
-import {redirectToErrorPage} from '../global/Methods';
+import {redirectToErrorPage, setAuthenticationHeader, parseJwt, checkIfUserIsAdmin, getJwtToken} from '../global/Methods';
 
 /**
 * Sends a GET request to the server to get the data of all clients
 * @param {props} props - the history router so users can go back after receiving an error
 */
 export const getAllClients = (props) => {
-  return axios.get(`${config.url}/client/clienten`).catch((err) => redirectToErrorPage(props));
+  if(checkIfUserIsAdmin()){
+    return axios.get(`${config.url}/rest/client/clienten`, setAuthenticationHeader()).catch((err) => redirectToErrorPage(props));
+  } else {
+    let properties = {
+      id: parseJwt(getJwtToken()).careInstitutionId
+    };
+    return getClientsOfASpecificCareInstitution(properties);
+  }
 };
+
+/**
+* Sends a GET request to the server to get the data of all clients from a specific careInstitution
+* @param {props} props - the id of the careInstitution that will return its clients
+*/
+export const getClientsOfASpecificCareInstitution = (props) => {
+  return axios.get(`${config.url}/rest/client/clienten/zorginstelling/${props.id}`, setAuthenticationHeader());
+}
 
 /**
 * Sends a GET request to the server to get the data of a specific client
 * @param {props} props - the id of the client that will return its data
 */
 export const getSpecificClient = (props) => {
-  return axios.get(`${config.url}/client/getClient/${props.id}`);
+  return axios.get(`${config.url}/rest/client/getClient/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -23,7 +38,7 @@ export const getSpecificClient = (props) => {
 * @param {props} props - the id of the client that will be removed
 */
 export const deleteClient = (props) => {
-  return axios.delete(`${config.url}/client/deleteclient/${props.id}`);
+  return axios.delete(`${config.url}/rest/client/deleteclient/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -32,7 +47,7 @@ export const deleteClient = (props) => {
 * @param {data} data - the new data for the client
 */
 export const updateClient = (props, data) => {
-  return axios.put(`${config.url}/client/update/client`, data);
+  return axios.put(`${config.url}/rest/client/update/client`, data, setAuthenticationHeader());
 }
 
 /**
@@ -40,5 +55,5 @@ export const updateClient = (props, data) => {
 * @param {data} data - the object with all data for the new client
 */
 export const createClient = (data) => {
-  return axios.post(`${config.url}/client/addClient`, data);
+  return axios.post(`${config.url}/rest/client/addClient`, data, setAuthenticationHeader());
 }

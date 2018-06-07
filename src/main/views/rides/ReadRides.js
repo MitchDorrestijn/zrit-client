@@ -8,6 +8,7 @@ import React from 'react';
  */
 import TextContent from '../../components/TextContent';
 import RideTable from '../../components/RideTable';
+import {checkIfUserIsAdmin} from '../../global/Methods';
 
 /**
  * This component puts the textblock and rides table together and renders it
@@ -15,8 +16,8 @@ import RideTable from '../../components/RideTable';
 const ReadRides = (props) => {
   return (
 		<div>
-	    <TextContent title="Ritten beheren">
-	      Hieronder kunt u ritten beheren.
+	    <TextContent title="Beheer ritten">
+	      Hieronder kunt u ritten {checkIfUserIsAdmin() || "van uw zorginstelling"} beheren.
 				Druk op het rondje vooraan de tabel om een record te selecteren,
 				vervolgens kunt u het record bewerken door op de knop 'bewerken' te drukken.
 	    </TextContent>

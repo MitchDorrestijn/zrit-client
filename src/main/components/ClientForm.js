@@ -60,7 +60,6 @@ export default class ClientForm extends React.Component {
           clientImage: res.data.client.image
         })
       })
-      // .catch((err) => this.setState({error: err.message, success: false}));
       .catch((err) => console.log(err));
     }
   }
@@ -222,11 +221,6 @@ export default class ClientForm extends React.Component {
    }
     if(this.state.clientWachtwoord === this.state.clientWachtwoord2) {
       if(this.props.update) {
-        // data.clientEntity.clientId = parseInt(this.props.id);
-        // data.clientEntity.userEntity.id = parseInt(this.props.id);
-        // data.limitations = [];
-        // console.log(data);
-        // console.log(this.props.id);
         let dataa = {
     client: {
         clientId: this.props.id,

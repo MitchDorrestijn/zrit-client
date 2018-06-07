@@ -1,13 +1,20 @@
 import axios from 'axios';
 import config from '../config';
-import {redirectToErrorPage} from '../global/Methods';
+import {redirectToErrorPage, setAuthenticationHeader, parseJwt, checkIfUserIsAdmin, getJwtToken} from '../global/Methods';
 
 /**
 * Sends a GET request to the server to get the data of all zorginstellingen
 * @param {props} props - the history router so users can go back after receiving an error
 */
 export const getAllZorginstellingen = (props) => {
-  return axios.get(`${config.url}/zorginstelling/zorginstellingen`).catch((err) => redirectToErrorPage(props));
+  if(checkIfUserIsAdmin()){
+    return axios.get(`${config.url}/rest/zorginstelling/zorginstellingen`, setAuthenticationHeader()).catch((err) => redirectToErrorPage(props));
+  } else {
+    let properties = {
+      id: parseJwt(getJwtToken()).careInstitutionId
+    };
+    return getSpecificZorginstelling(properties);
+  }
 };
 
 /**
@@ -15,7 +22,7 @@ export const getAllZorginstellingen = (props) => {
 * @param {props} props - the id of the zorginstelling that will return its data
 */
 export const getSpecificZorginstelling = (props) => {
-  return axios.get(`${config.url}/zorginstelling/${props.id}`);
+  return axios.get(`${config.url}/rest/zorginstelling/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -23,7 +30,7 @@ export const getSpecificZorginstelling = (props) => {
 * @param {props} props - the id of the zorginstelling that will be removed
 */
 export const deleteZorginstelling = (props) => {
-  return axios.delete(`${config.url}/zorginstelling/${props.id}`);
+  return axios.delete(`${config.url}/rest/zorginstelling/${props.id}`, setAuthenticationHeader());
 }
 
 /**
@@ -32,7 +39,7 @@ export const deleteZorginstelling = (props) => {
 * @param {data} data - the new name of the zorginstelling
 */
 export const updateZorginstelling = (props, data) => {
-  return axios.put(`${config.url}/zorginstelling/${props.id}/edit`, data);
+  return axios.put(`${config.url}/rest/zorginstelling/${props.id}/edit`, data, setAuthenticationHeader());
 }
 
 /**
@@ -40,5 +47,5 @@ export const updateZorginstelling = (props, data) => {
 * @param {data} data - the object with all data for the new zorginstelling
 */
 export const createZorginstelling = (data) => {
-  return axios.post(`${config.url}/zorginstelling/addZorginstelling`, data);
+  return axios.post(`${config.url}/rest/zorginstelling/addZorginstelling`, data, setAuthenticationHeader());
 }
